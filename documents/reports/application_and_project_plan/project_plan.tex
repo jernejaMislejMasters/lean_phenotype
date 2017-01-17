@@ -29,7 +29,7 @@
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 \\
-\title{\vspace{-15mm}\fontsize{12pt}{10pt}\selectfont{Working title:\\}\vspace{1mm}\fontsize{16pt}{12pt}\selectfont\textbf{Exploring the plausible lean phenotype in a northern Swedish cohort.}} % Article title
+\title{\vspace{-15mm}\fontsize{12pt}{10pt}\selectfont{Working title:\\}\vspace{1mm}\fontsize{16pt}{12pt}\selectfont\textbf{Genetic aetiology of the persistent lean phenotype, exposed to an unhealthy environment.}} % Article title
 
 \author{
 \large
@@ -67,10 +67,9 @@
 \begin{abstract}
 
 \noindent 
-\fontsize{10pt}{11pt}\selectfont {The master thesis project objective is to design, implement and preform the extraction and analysis of the lean phenotype, potentially present in a large, northern Swedish cohort. An extensive collection of lifestyle and clinical longitudinal data is available within a population-based prospective cohort study, enabling exploration of lifestyle risk factors with respect to various cardio-metabolic diseases and obesity. Several lifestyle risk factors and their combination have been well established to lead to obesity. Subjects, who are exceptions and maintain to be lean, despite having established lifestyle risk factors for obesity, present potential candidates with a lean phenotype.\\
-Successful extraction of subjects with a lean phenotype will enable further research of the lean phenotype phenomena. By switching the focus from subjects who are diagnosed, predisposed or at risk for obesity, to subjects with a lean phenotype, protective characteristic against obesity can be explored and established. Amongst other, clinical data available within the population-based prospective cohort study, includes genome-wide set of genetic variants. Purposed extraction of subjects with a lean phenotype could therefore lead to identification of genes associated with the lean phenotype or leastwise confirm and further establish genes, which have already been associated with the lean phenotype.\\
-\\\\
-\\\\\\\\\\}
+\fontsize{10pt}{11pt}\selectfont {Although during the last decades, obesity has reached epidemic proportions in high-income countries, mostly due to changes in lifestyle, there is still a part of the population remaining lean, despite of living in an unhealthy environment.\\The master thesis project objective is to design, implement and preform the identification and analysis of a lean phenotype, which is persistent despite an unhealthy environment and potentially present in a large, northern Swedish cohort. An extensive collection of environmental, genealogical, genetic, and clinical longitudinal data is available within this population-based prospective cohort study, enabling exploration of genetic and lifestyle risk factors associated to a persistent lean phenotype.\\ 
+Further research will be enabled by the successful identification of subjects that are able to maintain a lean phenotype, although exposed to an unhealthy lifestyle on a longitudinal basis. By switching the focus from subjects who are diagnosed, predisposed or at risk for obesity, to subjects with a persistent lean phenotype, protective characteristic against obesity can be explored and established. Proposed analyses could lead to the identification of genetic factors associated with persistent leanness or leastwise confirm the implication of previously established genetic variants. \\
+}
 
 \end{abstract}
 
@@ -80,7 +79,7 @@ Successful extraction of subjects with a lean phenotype will enable further rese
 
 \section{Basic information}
 
-\fontsize{11.25pt}{11.1pt}\selectfont {Within the masters program of Bioinformatics at Lund University, Department of Biology, I will carry out a 30 credit master thesis project under the code BINP30. \\ The project will take place at the department of Genetic and Molecular Epidemiology in the Lund University Diabetes Center at the Clinical Research Center in Malmo, under the supervision of Alaitz Poveda and co-supervision of Paul Franks and Azra Kurbasic.\\
+\fontsize{11.25pt}{11.1pt}\selectfont {Within the masters program of Bioinformatics at Lund University, Department of Biology, I will carry out a 30 credit master thesis project under the code BINP30. \\ The project will take place at the department of Genetic and Molecular Epidemiology in Lund University Diabetes Center at the Clinical Research Center in Malm{\"o}, under the supervision of Alaitz Poveda and co-supervision of Paul Franks and Azra Kurbasic.\\
 The project will start in week 4 on 23th of January 2017 and will finish in week 26, on the 26th of June 2017.
 }
 
@@ -88,27 +87,29 @@ The project will start in week 4 on 23th of January 2017 and will finish in week
 
 \subsection{Introduction}
 
-\fontsize{11.25pt}{11.1pt}\selectfont {The project will be concerned with the extensive collection of lifestyle and clinical longitudinal data, available within a population-based prospective cohort study\cite{ref1}. The data consists of approximately 600 variables, with partially obtained values for approximately 25000 subjects from the northern Swedish population of the province V{\"a}sterbotten. Values were obtained sequentially, at baseline, between the years 1990 and 1999, and at a follow-up, between the years 1995 and 2008, resulting in an approximate time difference of 10 years. Lifestyle variables cover environmental exposures such as diet, physical activity, smoking, alcohol and education. Clinical variables cover a large range of medical and anthropometric characteristics, including plasma glucose, serum total cholesterol, triglycerides concentrations and for a smaller subset of 5000 subjects, the genomic DNA samples. DNA samples were used to genotype approximately 150 gene variants, which were mostly selected based on the published GWAS meta-analyses of cardiometabolic traits.}
+\fontsize{11.25pt}{11.1pt}\selectfont {Obesity is a highly prevalent disease and one of the greatest public health concerns in high-income countries. The speed of the progression of obesity epidemic, over the last decades, indicates that at a population level, the global rising in obesity worldwide is due to a change in environmental factors, such as physical activity engagement and diet, rather than to an alteration of the genetic make-up of the population. However, a part of the population remains lean, although exposed to an unhealthy lifestyle. Identification of subjects with a persistent lean phenotype in an unhealthy environment and analysis of the genetic variants contributing to this phenotype could help with the understanding of the epidemiology of obesity\cite{ref3}\cite{ref4}\cite{ref5}.\\
+The project will be conducted with an extensive collection of lifestyle and clinical longitudinal data, available within a population-based prospective cohort study\cite{ref1}. The data consists of approximately 600 variables, with partially obtained values for approximately 25000 subjects from the northern Swedish population of the province V{\"a}sterbotten collected within the framework of the V{\"a}sterbottens Health Survey (also called the V{\"a}sterbottens Intervention Project) initiated in 1985\cite{ref1}. In the V{\"a}sterbottens Health Survey, residents within the county are invited to attend an extensive health examination in the years of their 40th, 50th and 60th birthdays. For the current analysis, health examinations were performed between 1985 and 2013 with a follow-up time of around 10 years between baseline and follow-up measurements. Lifestyle variables cover environmental exposures such as diet, physical activity, smoking, alcohol and education. Clinical variables cover a large range of medical and anthropometric characteristics, including plasma glucose, serum total cholesterol and triglycerides concentrations. A subset of the sample, 5000 participants, also contains information about genetic data as they have been GWAS genotyped. }
 
 \subsection{Project aims}
 
-\fontsize{11.25pt}{11.1pt}\selectfont {Project goal is to extract and analyze subjects with a lean phenotype.\\The first step will include familiarization with the data and topic, followed by data exploration and preparation. In the second step, script(s) for extraction of certain specific subjects will be designed, implemented and tested. Subjects in the extracted subset will have to be persistently exposed to lifestyle factors established to lead to obesity. At the same time, the subjects will have to possess characteristics of a lean and healthy person, with no confounding medical condition or environmental factor that could explain the persistent leanness despite the persistent unhealthy lifestyle. When having extracted a lean phenotype subset, the following steps would be to analyze characteristics that were not included in the extraction, in order to further research the lean phenotype\cite{ref3}\cite{ref4}\cite{ref5}. Particularly focusing on assessment of lean phenotype heritability and on potential extraction and analysis of associated gene variants. 
+\fontsize{11.25pt}{11.1pt}\selectfont {The overreaching aim of the project goal is to identify and analyze the genetic etiology of subjects having a persistent lean phenotype, while being exposed to an unhealthy environment.
+The first step will include familiarization with the data and topic, followed by data exploration and preparation. In the second step, script(s) for identification of certain specific subjects will be designed, implemented and tested. Subjects in the identified subset will have to be persistently exposed to lifestyle factors established to lead to obesity. At the same time, the subjects will have to possess characteristics of a lean and healthy person, with no confounding medical condition or environmental factor that could explain the persistent leanness despite the persistent unhealthy lifestyle. Once participants with persistent leanness have been identified, genetic analyses (heritability and genetic association analyses) will be conducted in order to further research the genetic epidemiology of the lean phenotype. 
 }
 
 
 \subsection{Methods}
 
-\fontsize{11.25pt}{11.1pt}\selectfont {Several lifestyle factors, such as diet, physical activity, smoking and education have been established to lead to obesity, with a high long-range predictive accuracy\cite{ref2}. These predictions were based on lifestyle risk scores at the baseline. Methods, serving for the lean phenotype subset extraction will attempt to combine these same lifestyle risk factors at baseline and at follow up to ensure persistence. Similar procedures are to be used to further extract those subjects who are persistently lean and healthy, based on the complement of the obese subset, used to calculate the predictive accuracy of lifestyle risk scores associated with obesity\cite{ref2}. Additional methods are to be adapted and developed to ensure the final subset, presenting the lean phenotype, will not include subjects who are lean due to confounding medical conditions or environmental factors.\\
-The remaining characteristics, which were not used in the lean phenotype subset extraction procedure, will be further explored by appropriate statistical analyses, primarily focusing on heritability assessment. The subset of  subjects, who were genotyped for a large set of gene variants associated with cardiometabolic traits, might or might not also include a sufficient sample size of subjects with the lean phenotype. If the resulting sample size will be sufficient, genome-wide association study can be carried out with an attempt to associate certain gene variants to the lean phenotype. 
+\fontsize{11.25pt}{11.1pt}\selectfont {Several lifestyle factors, such as diet, physical activity, smoking and education have been established to lead to obesity, with a high long-range predictive accuracy\cite{ref2}. Using lifestyle information from the dataset of northern Sweden, one or several lifestyle scores will be constructed, in order to identify participants exposed to an unhealthy lifestyle both at baseline and follow-up. Among those participants, methods serving for the lean phenotype subset identification will be applied in order to identify the subset of participants that could be considered persistent lean although exposed to an unhealthy lifestyle. Additional methods are to be adapted and developed to ensure the final subset, presenting the lean phenotype, will not include subjects who are lean due to confounding medical conditions or environmental factors.
+Quantitative genetic analyses based on genealogical information will be conducted on the SOLAR program\cite{ref6}, to estimate the heritability of the persistent lean phenotype being exposed to an unhealthy environment. The subset of participants containing GWAS information will be employed to conduct genetic association studies, in order to associate certain gene variants to the persistent lean phenotype.
 }
 
 \subsection{Timeline}
 \fontsize{11.25pt}{11.1pt}\selectfont {
 \begin{itemize}
 \item 23.1.2017 - 10.2.2017: Project starts, the student gets acquainted with the topic and available data and prepares the data for processing.
-\item 13.2.2017  - 24.3.2017: Design, implementation and testing of script(s) for lean phenotype subset extraction.
-\item 27.3.2017 - 10.4.2017: Analysis of the lean phenotype subset, focusing on heritability assessment.
-\item 13.4.2017 - 26.5.2017: Analysis of the lean phenotype subset, focusing on extraction and analysis of associated gene variants.
+\item 13.2.2017  - 24.3.2017: Design, implementation and testing of script(s) for unhealthy lean phenotype subset identification.
+\item 27.3.2017 - 10.4.2017: Analysis of the lean phenotype subset, focusing on heritability estimation.
+\item 13.4.2017 - 26.5.2017: Analysis of the lean phenotype subset, focusing on identification and analysis of associated gene variants.
 \item 29.5.2017 - 9.6.2017: Completion and closure.
 \item 12.5.2017 - 26.6.2017: Master thesis report and presentation preparation.
 \\\\\\\\\\\\
@@ -143,7 +144,9 @@ I. Harosh \textit{et al.}, Enteropeptidase: A Gene Associated with a Starvation 
 \bibitem{ref5}
 Jolivet G, Braud S, DaSilva B, Passet B, Harscoet E. \textit{et al.}, Induction of Body Weight Loss through RNAi-Knockdown of APOBEC1 Gene Expression in Transgenic Rabbits.
 \newblock \textit{PLoS ONE}9(9): e106655. doi:10.1371/journal.pone.0106655 (2014)
-
+\bibitem{ref6}
+Almasy L, Blangero J, Multipoint quantitative-trait linkage analysis in general pedigrees.
+\newblock \textit{Am J Hum Genet 62:1198-1211} (1998)
 
 
 \end{thebibliography}

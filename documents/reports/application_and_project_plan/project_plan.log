@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.8.29)  16 JAN 2017 14:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.8.29)  17 JAN 2017 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -316,87 +316,52 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
+Underfull \hbox (badness 10000) in paragraph at lines 69--73
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 74.
+(Font)              <7> on input line 85.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 74.
+(Font)              <5> on input line 85.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 108.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 109.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <11.25> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 108.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 109.
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
@@ -408,18 +373,18 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.123 
+l.124 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 152.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 155.
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 152.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
  (./project_plan.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 152.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 152.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 155.
 Package rerunfilecheck Info: File `project_plan.out' has not changed.
 (rerunfilecheck)             Checksum: B2A57872196D3F72DAD79E8F023DD50C;329.
 
@@ -427,16 +392,16 @@ Package rerunfilecheck Info: File `project_plan.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.28pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 152.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 155.
  ) 
 Here is how much of TeX's memory you used:
- 5103 strings out of 495028
- 74221 string characters out of 6181497
- 155417 words of memory out of 5000000
- 8290 multiletter control sequences out of 15000+600000
+ 5105 strings out of 495028
+ 74236 string characters out of 6181497
+ 155463 words of memory out of 5000000
+ 8291 multiletter control sequences out of 15000+600000
  17070 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 30i,10n,43p,1164b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,10n,43p,1329b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home
 /jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/jerneja/
 .texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/jerneja/.texmf-va
@@ -447,10 +412,10 @@ ec/eccc1200.600pk> </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx17
 28.600pk> </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk>
  </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on project_plan.pdf (4 pages, 103502 bytes).
+Output written on project_plan.pdf (4 pages, 108095 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
- 17 named destinations out of 1000 (max. 500000)
+ 413 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
+ 18 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
