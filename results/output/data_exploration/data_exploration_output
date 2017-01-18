@@ -1,0 +1,187 @@
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "first visit:"| sort -n | uniq -c
+    143 	 first visit: 1985
+    189 	 first visit: 1986
+    155 	 first visit: 1987
+    612 	 first visit: 1988
+   1262 	 first visit: 1989
+   2060 	 first visit: 1990
+   3535 	 first visit: 1991
+   4309 	 first visit: 1992
+   4510 	 first visit: 1993
+   3995 	 first visit: 1994
+   4198 	 first visit: 1995
+   3338 	 first visit: 1996
+   3185 	 first visit: 1997
+   3020 	 first visit: 1998
+   2644 	 first visit: 1999
+   1841 	 first visit: 2000
+   1554 	 first visit: 2001
+   1129 	 first visit: 2002
+    992 	 first visit: 2003
+   1150 	 first visit: 2004
+   1254 	 first visit: 2005
+    478 	 first visit: 2006
+      5 	 first visit: 2007
+      2 	 first visit: 2008
+      1 	 first visit: 2009
+      1 	 first visit: 2010
+      3 	 first visit: 2011
+      2 	 first visit: 2012
+      1 	 first visit: 2014
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "second visit:"| sort -n | uniq -c
+      5 	 second visit: 1990
+      1 	 second visit: 1991
+      4 	 second visit: 1992
+      7 	 second visit: 1993
+      5 	 second visit: 1994
+    117 	 second visit: 1995
+    177 	 second visit: 1996
+    157 	 second visit: 1997
+    537 	 second visit: 1998
+    456 	 second visit: 1999
+   2244 	 second visit: 2000
+   3147 	 second visit: 2001
+   3911 	 second visit: 2002
+   4088 	 second visit: 2003
+   3710 	 second visit: 2004
+   3920 	 second visit: 2005
+   2880 	 second visit: 2006
+   3228 	 second visit: 2007
+   3023 	 second visit: 2008
+   2738 	 second visit: 2009
+   2379 	 second visit: 2010
+   2030 	 second visit: 2011
+   1569 	 second visit: 2012
+   1505 	 second visit: 2013
+   1589 	 second visit: 2014
+   1591 	 second visit: 2015
+    550 	 second visit: 2016
+
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "third visit:"| sort -n | uniq -c
+      1 	 third visit: 1999
+      6 	 third visit: 2000
+      4 	 third visit: 2001
+      3 	 third visit: 2002
+      3 	 third visit: 2003
+      3 	 third visit: 2004
+     68 	 third visit: 2005
+     46 	 third visit: 2006
+     58 	 third visit: 2007
+    235 	 third visit: 2008
+    228 	 third visit: 2009
+   1179 	 third visit: 2010
+   1635 	 third visit: 2011
+   2030 	 third visit: 2012
+   1883 	 third visit: 2013
+   1783 	 third visit: 2014
+   1688 	 third visit: 2015
+    367 	 third visit: 2016
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "fourth visit:"| sort -n | uniq -c
+      1 	 fourth visit: 2007
+      1 	 fourth visit: 2009
+      2 	 fourth visit: 2010
+      3 	 fourth visit: 2011
+      1 	 fourth visit: 2012
+      1 	 fourth visit: 2013
+      1 	 fourth visit: 2014
+     22 	 fourth visit: 2015
+      5 	 fourth visit: 2016
+
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "between the first two" | cut -d":" -f2 | sort -n | uniq -c
+     13  0
+     11  1
+      3  2
+     13  3
+     15  4
+     16  5
+     17  6
+     28  7
+    108  8
+   1884  9
+  38984  10
+   1376  11
+     50  12
+      7  13
+     10  14
+      6  15
+      6  16
+      2  17
+     10  18
+    256  19
+   2530  20
+    214  21
+      4  22
+      1  25
+      1  26
+      3  30
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "between the second two" | cut -d":" -f2 | sort -n | uniq -c
+      7  0
+      1  1
+      3  2
+      5  3
+      2  4
+      2  5
+      3  6
+      3  7
+      8  8
+    240  9
+  10752  10
+    181  11
+      3  12
+      1  13
+      8  20
+      1  21
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "between the third two" | cut -d":" -f2 | sort -n | uniq -c
+      4  0
+      1  1
+      1  9
+     31  10
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "between the first and third" | cut -d":" -f2 | sort -n | uniq -c
+      1  9
+     14  10
+      5  11
+      4  12
+      6  13
+      9  14
+      3  15
+      7  16
+      5  17
+     36  18
+    790  19
+   9739  20
+    575  21
+      9  22
+      1  23
+      1  25
+      1  26
+     14  30
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "between the second and fourth" | cut -d":" -f2 | sort -n | uniq -c
+      4  10
+      1  11
+      1  13
+      2  19
+     29  20
+[jerneja_m@purple Private]$ 
+
+[jerneja_m@purple Private]$ cat temporary_file_checking_time_first_two_visits | grep "between the first and fourth" | cut -d":" -f2 | sort -n | uniq -c
+      6  20
+      3  21
+      1  22
+      1  25
+     26  30
+[jerneja_m@purple Private]$ 
+
