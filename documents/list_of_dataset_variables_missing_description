@@ -1,18 +1,7 @@
 
 BMR missing description
 
-
-are these the frequency per day(otherwise missing data for frequency per day)?
-da01-da84
-dat01-DAT66
-
-
-these are in capital in the variable description
-l1(L1)
-l2(L2)
-l3(L3)
-l5a(L5a)
-l5b(L5b)
-l5c(L5c)
-
 efter_090901....missing variable indicating whether it is after 2009-09-01, due to some changes in measurements after that time, i guess the datum will have to be used?
+
+L4a-e, 1-12
+(question L4 in the long FFQ)......these variables seem to not be present in the dataset
