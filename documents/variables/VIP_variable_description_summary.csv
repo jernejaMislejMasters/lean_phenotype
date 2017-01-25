@@ -1,0 +1,607 @@
+variable,description,variable_type,summary
+subject_id,subject id represents the real id of each participant; meaning that in the dataset; the id is repeated for each visit; so out of 168330 entries; there are only 111505 unique ids,D,
+enummer,the enummer is a unique id of each entry; so there are as much unique enummer as there are entries; so 168330,D,
+gender,,D,1 : 81021 ; 2 : 87309 ; missing values : 0
+delproj,all values are VIP except one missing value for subject id 3956;enummer 13360,D,
+age,,C,mean : 48.56 ; min : 19.4 ; max : 70.8 ; sd : 9.12; missing values : 1
+fasta_enk,Fasting state – concerns blood glucose; cholesterol and triglycerides. (The variable is from the questionnaire and is only available for optical questionnaires in VIP.); 1 = 8 hours or more; 2 = less than eight hours,D,1 : 144442 ; 2 : 3717 ; missing values : 20171
+langd,Body height in centimeters,C,mean : 171.46 ; min : 84 ; max : 208 ; sd : 9.36; missing values : 278
+vikt,Weight in kilograms,C,mean : 76.8 ; min : 26 ; max : 205 ; sd : 15.13; missing values : 376
+bmi,Body mass index – weight in kg/(height in m)²    (Calculated from langd and vikt),C,mean : 26.06 ; min : 7.2 ; max : 236.31 ; sd : 4.49; missing values : 428
+midja,Waist circumference in centimeters,C,mean : 91.86 ; min : 0 ; max : 197 ; sd : 13; missing values : 87164
+skol,Total cholesterol mmol/l. *,C,mean : 5.56 ; min : 0 ; max : 21.03 ; sd : 1.15; missing values : 946
+hdl,Hdl cholesterol mmol/l,C,mean : 1.42 ; min : 0 ; max : 41 ; sd : 0.85; missing values : 88168
+ldl,Ldl cholesterol mmol/l ,C,mean : 3.56 ; min : 0 ; max : 9.99 ; sd : 1.05; missing values : 111029
+stg,Triglycerides mmol/l. *,C,mean : 1.36 ; min : 0 ; max : 29 ; sd : 0.85; missing values : 14703
+blods0,Blood glucose 0-hours value (oral glucose tolerance test),C,mean : 5.38 ; min : 0 ; max : 51 ; sd : 0.84; missing values : 594
+blods2,Blood glucose 2-hours value (oral glucose tolerance test),C,mean : 6.59 ; min : 0 ; max : 64.1 ; sd : 1.72; missing values : 6142
+sbt;,Systolic blood pressure. *,C,mean : 126.3 ; min : 12 ; max : 285 ; sd : 17.22; missing values : 910
+dbt;,Diastolic blood pressure. *,C,mean : 78.97 ; min : 8 ; max : 178 ; sd : 10.77; missing values : 986
+civil,Marital status : 1 = Single; 2 = Married/partner + remarried/a new partner; 3 = Divorced/separated; 4 = Widow/widower; Numbers with two or more digits indicates combined alternatives.,D,1 : 17065 ; 2 : 134051 ; 3 : 12806 ; 4 : 2897 ; 21 : 2 ; 31 : 1 ; 32 : 2 ; missing values : 1506
+utbild,Educational level: 1 = Elementary school + nine-year (compulsory) school; 2 = Folk high school equivalent to nine-year (compulsory) school + junior secondary school + girls’ school + vocational (training) school; 3 = Folk high school equivalent to upper secondary school + girls’ school equivalent to upper secondary school; 4 = University education/college,D,1 : 31756 ; 2 : 29908 ; 3 : 56127 ; 4 : 48267 ; missing values : 2272
+sambo,Who do you live with:  1 = Only one adult (spouse; partner); 2 = Only children; 3 = Adult and children; 4 = Other/others; 5 = Live alone; 9999 = Not living alone,D,1 : 60530 ; 2 : 8049 ; 3 : 73134 ; 4 : 2318 ; 5 : 19525 ; missing values : 4774
+skiftarbete,Do you work shifts /weekends? : 1 = Yes; 2 = No,D,1 : 40839 ; 2 : 115685 ; missing values : 11806
+sjukskriven,Have you been long-term sick-listed for more than 6 months?;1 = Yes;2=No,D,1 : 28626 ; 2 : 121953 ; missing values : 17751
+ansttyp_a,Type of employment:ansttyp_a = Permanent employment;1 = Yes,D,1 : 98822 ; missing values : 69508
+ansttyp_b,Type of employment:;ansttyp_b =Temporary employment; deputyship; public relief work;1 = Yes,D,1 : 10106 ; missing values : 158224
+ansttyp_c,Type of employment:ansttyp_c = Works at home;1 = Yes,D,1 : 2945 ; missing values : 165385
+ansttyp_d,Type of employment:ansttyp_d = Unemployed;1 = Yes,D,1 : 7236 ; missing values : 161094
+ansttyp_e,Type of employment:ansttyp_e = Student;1 = Yes,D,1 : 3297 ; missing values : 165033
+ansttyp_f,Type of employment:ansttyp_f = Self-employed;1 = Yes,D,1 : 14399 ; missing values : 153931
+ansttyp_g,Type of employment:ansttyp_g = Retirement pensioner (due to illness-/in advance-/age-) full time;1 = Yes,D,1 : 9725 ; missing values : 158605
+ansttyp_h,Type of employment:ansttyp_h = Retirement pensioner (due to illness-/in advance-/age-) part-time;1 = Yes,D,1 : 4875 ; missing values : 163455
+ansttyp_i,Type of employment:;ansttyp_i = Retirement pensioner (due to illness-/in advance-/age-) unspecified;1 = Yes,D,1 : 498 ; missing values : 167832
+ursprungsland,What country are you from: ;1 = Sweden;2 = Other country; specify (see ursprungsland_vilket),D,1 : 126892 ; 2 : 7039 ; missing values : 34399
+ursprungsland_vilket,Specifies country of origin,D,
+halsojf,Overall state of health compared to others your age?;1 = Better;2 = About the same;3 = Worse,D,1 : 9593 ; 2 : 57325 ; 3 : 5780 ; missing values : 95632
+halsoal,How would you assess your overall state of health?;1 = Good;2 = Neither poor nor good / something in between;3 = Poor,D,1 : 3186 ; 2 : 1502 ; 3 : 107 ; missing values : 163535
+halsoar,State of health during the last year?;1 = Poor; 2 = Fairly poor;3 = Tolerably; 4 = Fairly good;5 = Very good,D,1 : 2152 ; 2 : 8090 ; 3 : 32421 ; 4 : 75673 ; 5 : 43811 ; missing values : 6183
+hjartinf_foraldrar_syskon,Have any of your parents or siblings had a cerebral hemorrhage/thrombosis or cardiac infarction before the age of 60?;1= Yes;2 = No;3 = Unknown,D,1 : 31897 ; 2 : 126838 ; 3 : 3402 ; missing values : 6193
+diab_foraldrar_syskon,Do any of your parents or siblings have diabetes?;1= Yes;2 = No;3 = Unknown ,D,1 : 33580 ; 2 : 125322 ; 3 : 3171 ; missing values : 6257
+beskbltr,Have you at any occasion been informed that you have a high blood pressure?;1 = Yes;2 = No,D,1 : 38159 ; 2 : 126417 ; missing values : 3754
+med_C5a,Blood pressure medication;1 = Yes,D,1 : 19727 ; missing values : 148603
+med_C5b,Heart/angina pectoris medication;1 = Yes,D,1 : 2306 ; missing values : 166024
+med_C5c,Tranquillizers or sleeping drugs;1 = Yes,D,1 : 8886 ; missing values : 159444
+med_C5d,Ulcer/gastric discomfort medication;1 = Yes,D,1 : 9433 ; missing values : 158897
+med_C5e,Lipid lowering medication;1 = Yes,D,1 : 4329 ; missing values : 164001
+med_C5f,No; I do not use any of the drugs above;1 = Yes,D,1 : 117776 ; missing values : 50554
+smartmed,Pain-relieving medication;1 = Yes,D,1 : 12783 ; missing values : 155547
+andra_mediciner,any other prescription medication; e.g . medication for  depression; epilepsy; penicillin or hormones;;or any over-the-counter medication; e.g. magnecyl (ASA); vitamins; iron supplements; omega 3 or any other;dietary supplements; naturopathic supplements or other supplements?;1 = Yes;2 = No,D,1 : 10783 ; 2 : 14798 ; missing values : 142749
+diabet,Do you have diabetes?;1 = Yes;2 = No,D,2 : 166888 ; missing values : 1442
+diabetesbehandling_a,If your answer to the diabetes question is ”Yes”; are you being treated with?;diabetesbehandling_a = Only diet and exercise,D,missing values : 168330
+diabetesbehandling_b,If your answer to the diabetes question is ”Yes”; are you being treated with? Diabetesbehandling_b = Pills,D,missing values : 168330
+diabetesbehandling_c,If your answer to the diabetes question is ”Yes”; are you being treated with? diabetesbehandling_c = Insulin,D,missing values : 168330
+diabetesbehandling_d,If your answer to the diabetes question is ”Yes”; are you being treated with? diabetsbehandling_d = No treatment with any of the above,D,1 : 10805 ; missing values : 157525
+graviditetsdiabetes,Have you had gestational diabetes?;1 = Yes;2 = No,D,1 : 476 ; 2 : 14073 ; missing values : 153781
+infarkt_sjukhus,Have you been hospitalized because of a verified heart attack?;1= Yes;2 = No,D,2 : 161316 ; missing values : 7014
+infarkt_sjukhus_ar,If you have been hospitalized because of a verified heart attack; in what year?;(4 participant answered 2 for No; the rest had either missing data; or 9999 for ;not answered or 8888 for not having that question.,D,missing values : 168330
+sf_1,How would you rate your overall health?;1= Excellent; 2 = Very good;3 = Good; 4 = Fairly good;5 = Poor,D,1 : 11386 ; 2 : 27981 ; 3 : 28975 ; 4 : 11532 ; 5 : 1454 ; missing values : 87002
+sf_2,Compared to a year ago; how would you rate your overall health now?;1 = Much better than a year ago; 2 = A little better than a year ago;3 = About the same; 4 = A little worse than a year ago;5 = Much worse than a year ago,D,1 : 3664 ; 2 : 10622 ; 3 : 56447 ; 4 : 8977 ; 5 : 977 ; missing values : 87643
+sf_3a,Are you; due to your physical state of health; limited in your ability to participate in strenuous activities like running; lifting heavy objects; taking part in physically demanding sports?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 12993 ; 2 : 30859 ; 3 : 37270 ; missing values : 87208
+sf_3b,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like moving a table; vacuuming; walking in the forest or gardening?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 1980 ; 2 : 11658 ; 3 : 67494 ; missing values : 87198
+sf_3c,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like lifting or carrying grocery bags?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 2648 ; 2 : 11811 ; 3 : 66596 ; missing values : 87275
+sf_3d,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like walking up several stairs?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 2398 ; 2 : 11532 ; 3 : 67153 ; missing values : 87247
+sf_3e,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like walking up one flight of  stairs?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 735 ; 2 : 4278 ; 3 : 75863 ; missing values : 87454
+sf_3f,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like bending down or kneeling?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 3292 ; 2 : 15593 ; 3 : 62073 ; missing values : 87372
+sf_3g,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like walking more than 2 kilometers?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 3176 ; 2 : 8370 ; 3 : 69532 ; missing values : 87252
+sf_3h,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like walking more than a few hundred meters?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 940 ; 2 : 3242 ; 3 : 76881 ; missing values : 87267
+sf_3i,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like walking a hundred meters?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 578 ; 2 : 2127 ; 3 : 78241 ; missing values : 87384
+sf_3j,Are you; due to your physical state of health; limited in your ability to participate in moderately demanding activities like bathing or getting dressed?;1 = Yes; very limited;2 = Yes; a little limited;3 = No; not limited at all,D,1 : 519 ; 2 : 3701 ; 3 : 76948 ; missing values : 87162
+sf_4a,During the last four weeks; have you as a consequence of your physical state of health; spent less time than normal at work or in other activities?;1 = Yes;2 = No,D,1 : 9172 ; 2 : 71922 ; missing values : 87236
+sf_4b,During the last four weeks; have you as a consequence of your physical state of health; done less than you wanted?;1 = Yes;2 = No,D,1 : 15986 ; 2 : 65060 ; missing values : 87284
+sf_4c,During the last four weeks; have you as a consequence of your physical state of health; not been able to perform certain work tasks or other activities?;1 = Yes;2 = No,D,1 : 12242 ; 2 : 68571 ; missing values : 87517
+sf_4d,During the last four weeks; have you as a consequence of your physical state of health; been limited in your ability to perform certain work tasks or other activities?;1 = Yes;2 = No,D,1 : 11108 ; 2 : 69802 ; missing values : 87420
+sf_5a,During the last four weeks; have you as a consequence of emotional problems spent less time than normal at work or in other activities?;1 = Yes;2 = No,D,1 : 6787 ; 2 : 74335 ; missing values : 87208
+sf_5b,During the last four weeks; have you as a consequence of emotional problems done less than you wanted?;1 = Yes;2 = No,D,1 : 11937 ; 2 : 69167 ; missing values : 87226
+sf_5c,During the last four weeks; have you as a consequence of emotional problems been less thorough than usual in work or other activities?;1 = Yes;2 = No,D,1 : 6551 ; 2 : 74478 ; missing values : 87301
+sf_6,During the last four weeks; to what extent have your physical or emotional health disrupted your usual social life with family; friends; neighbors or others?;1 = Not at all; 2 = A little;3 = Moderately; 4 = Much;5 = Very much,D,1 : 60821 ; 2 : 11429 ; 3 : 6012 ; 4 : 2323 ; 5 : 537 ; missing values : 87208
+sf_7,How much ache or pain have you felt during the last four weeks?;1 = None; 2 = Very little;3 = Little; 4 = Moderate;5 = Severe; 6 = Very severe,D,1 : 28165 ; 2 : 16331 ; 3 : 12404 ; 4 : 18525 ; 5 : 4926 ; 6 : 705 ; missing values : 87274
+sf_8,During the last four weeks; how much has the aching or pain disturbed your normal work?;1 = Not at all; 2 = A little;3 = Moderately; 4 = Much;5 = Very much,D,1 : 46588 ; 2 : 17209 ; 3 : 11321 ; 4 : 4678 ; 5 : 1083 ; missing values : 87451
+sf_9a,For how much of the time during the last four weeks have you felt really alert and strong?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 9498 ; 2 : 32181 ; 3 : 15356 ; 4 : 13071 ; 5 : 7261 ; 6 : 3568 ; missing values : 87395
+sf_9b,For how much of the time during the last four weeks have you felt very nervous?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 401 ; 2 : 562 ; 3 : 1788 ; 4 : 4265 ; 5 : 16837 ; 6 : 57203 ; missing values : 87274
+sf_9c,For how much of the time during the last four weeks have you felt so depressed that nothing could cheer you up?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 352 ; 2 : 512 ; 3 : 1365 ; 4 : 3115 ; 5 : 9149 ; 6 : 66515 ; missing values : 87322
+sf_9d,For how much of the time during the last four weeks have you felt calm and serene?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 15796 ; 2 : 35869 ; 3 : 13358 ; 4 : 9567 ; 5 : 4781 ; 6 : 1668 ; missing values : 87291
+sf_9e,For how much of the time during the last four weeks have you felt full of energy?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 6602 ; 2 : 25092 ; 3 : 19728 ; 4 : 15587 ; 5 : 9489 ; 6 : 4389 ; missing values : 87443
+sf_9f,For how much of the time during the last four weeks have you felt gloomy and sad?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 464 ; 2 : 989 ; 3 : 2507 ; 4 : 6585 ; 5 : 23597 ; 6 : 46780 ; missing values : 87408
+sf_9g,For how much of the time during the last four weeks have you felt worn out?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 1356 ; 2 : 3086 ; 3 : 6717 ; 4 : 12698 ; 5 : 26277 ; 6 : 30576 ; missing values : 87620
+sf_9h,For how much of the time during the last four weeks have you felt happy?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 10690 ; 2 : 34441 ; 3 : 16305 ; 4 : 11969 ; 5 : 6050 ; 6 : 1514 ; missing values : 87361
+sf_9i,For how much of the time during the last four weeks have you felt tired?;1 = All of the time; 2 = Most of the time;3 = Much of the time; 4 = Part of the time;5 = A little of the time; 6 = None of the time,D,1 : 2737 ; 2 : 5640 ; 3 : 12879 ; 4 : 19406 ; 5 : 30768 ; 6 : 9663 ; missing values : 87237
+sf_10,During the last four weeks; how much of the time has your physical health or your emotional problems limited your ability to interact with others (e.g. visiting relatives and friends etc.)?;1 = All of the time; 2 = Most of the time;3 = Part of the time; 4 = A little of the time;5 = None of the time,D,1 : 474 ; 2 : 1984 ; 3 : 7296 ; 4 : 12672 ; 5 : 58203 ; missing values : 87701
+sf_11a,I seem to get sick a little more often than other people.;1 = Altogether true; 2 = Mostly true;3 = Unsure; 4 = Not very true;5 = Not at all true,D,1 : 586 ; 2 : 2617 ; 3 : 5493 ; 4 : 13689 ; 5 : 58593 ; missing values : 87352
+sf_11b,I am as healthy as anyone I know.;1 = Totally true; 2 = Mostly true;3 = Unsure; 4 = Not very true;5 = Not at all true,D,1 : 36708 ; 2 : 25602 ; 3 : 9009 ; 4 : 5787 ; 5 : 3642 ; missing values : 87582
+sf_11c,I believe my health will worsen.;1 = Totally true; 2 = Mostly true;3 = Unsure; 4 = Not very true;5 = Not at all true,D,1 : 1639 ; 2 : 6913 ; 3 : 24912 ; 4 : 17733 ; 5 : 29556 ; missing values : 87577
+sf_11d,My health is excellent;1 = Totally true; 2 = Mostly true;3 = Unsure; 4 = Not very true;5 = Not at all true,D,1 : 18769 ; 2 : 38831 ; 3 : 9911 ; 4 : 8916 ; 5 : 4506 ; missing values : 87397
+livskvalitet_d1,Very poor = 1 …. Excellent = 7;livskvalitet_d1 = Home and family situation,D,1 : 605 ; 2 : 1547 ; 3 : 3421 ; 4 : 6894 ; 5 : 14429 ; 6 : 31318 ; 7 : 61823 ; missing values : 48293
+livskvalitet_d2,Very poor = 1 …. Excellent = 7;livskvalitet_d2 = Acommodation,D,1 : 328 ; 2 : 817 ; 3 : 2173 ; 4 : 5444 ; 5 : 13006 ; 6 : 29890 ; 7 : 68519 ; missing values : 48153
+livskvalitet_d3,Very poor = 1 …. Excellent = 7;livskvalitet_d3 = Work situation,D,1 : 4839 ; 2 : 4766 ; 3 : 8032 ; 4 : 15752 ; 5 : 25802 ; 6 : 30137 ; 7 : 28605 ; missing values : 50397
+livskvalitet_d4,Very poor = 1 …. Excellent = 7;livskvalitet_d4 = Economy,D,1 : 2312 ; 2 : 3464 ; 3 : 6325 ; 4 : 14011 ; 5 : 24499 ; 6 : 34030 ; 7 : 35358 ; missing values : 48331
+livskvalitet_d5,Very poor = 1 …. Excellent = 7;livskvalitet_d5 = Leisure time,D,1 : 1287 ; 2 : 3150 ; 3 : 6189 ; 4 : 12700 ; 5 : 22550 ; 6 : 32892 ; 7 : 41088 ; missing values : 48474
+livskvalitet_d6,Very poor = 1 …. Excellent = 7;Livskvalitet_d6 = Hearing,D,1 : 877 ; 2 : 2963 ; 3 : 8630 ; 4 : 12841 ; 5 : 23279 ; 6 : 32587 ; 7 : 38999 ; missing values : 48154
+livskvalitet_d7,Very poor = 1 …. Excellent = 7;Livskvalitet_d7 = Vision,D,1 : 770 ; 2 : 2700 ; 3 : 11186 ; 4 : 24032 ; 5 : 35047 ; 6 : 29001 ; 7 : 17219 ; missing values : 48375
+livskvalitet_d8,Very poor = 1 …. Excellent = 7;Livskvalitet_d8 = Memory,D,1 : 687 ; 2 : 2035 ; 3 : 6157 ; 4 : 14837 ; 5 : 30455 ; 6 : 40472 ; 7 : 25150 ; missing values : 48537
+livskvalitet_d9,Very poor = 1 …. Excellent = 7;Livskvalitet_d9 = Fitness,D,1 : 2544 ; 2 : 6190 ; 3 : 14461 ; 4 : 27594 ; 5 : 35080 ; 6 : 23184 ; 7 : 10918 ; missing values : 48359
+livskvalitet_d10,Very poor = 1 …. Excellent = 7;Livskvalitet_d10 = Appetite,D,1 : 158 ; 2 : 482 ; 3 : 1707 ; 4 : 6080 ; 5 : 13262 ; 6 : 30693 ; 7 : 67656 ; missing values : 48292
+livskvalitet_d11,Very poor = 1 …. Excellent = 7;Livskvalitet_d11 = Mood,D,1 : 370 ; 2 : 1727 ; 3 : 4887 ; 4 : 12870 ; 5 : 26696 ; 6 : 41038 ; 7 : 32365 ; missing values : 48377
+livskvalitet_d12,Very poor = 1 …. Excellent = 7;Livskvalitet_d12 = Energy,D,1 : 1529 ; 2 : 4522 ; 3 : 9547 ; 4 : 19115 ; 5 : 33889 ; 6 : 33751 ; 7 : 17526 ; missing values : 48451
+livskvalitet_d13,Very poor = 1 …. Excellent = 7;Livskvalitet_d13 = Patience,D,1 : 682 ; 2 : 2573 ; 3 : 7033 ; 4 : 15527 ; 5 : 30004 ; 6 : 38992 ; 7 : 25119 ; missing values : 48400
+livskvalitet_d14,Very poor = 1 …. Excellent = 7;Livskvalitet_d14 = Confidence,D,1 : 837 ; 2 : 2245 ; 3 : 5397 ; 4 : 13479 ; 5 : 28351 ; 6 : 41576 ; 7 : 27962 ; missing values : 48483
+livskvalitet_d15,Very poor = 1 …. Excellent = 7;Livskvalitet_d15 = Sleep,D,1 : 2819 ; 2 : 6053 ; 3 : 10478 ; 4 : 15396 ; 5 : 22289 ; 6 : 28357 ; 7 : 34771 ; missing values : 48167
+livskvalitet_d16,Do you feel important and appreciated;;1 = Not at all …. 7 = Very much;;livskvalitet_d16 = outside your home?,D,1 : 878 ; 2 : 1478 ; 3 : 3502 ; 4 : 11524 ; 5 : 28267 ; 6 : 45158 ; 7 : 29203 ; missing values : 48320
+livskvalitet_d17,Do you feel important and appreciated;;1 = Not at all …. 7 = Very much;;livskvalitet_d16 = in your home?,D,1 : 691 ; 2 : 989 ; 3 : 2213 ; 4 : 6753 ; 5 : 14911 ; 6 : 36529 ; 7 : 56963 ; missing values : 49281
+sockont,How many people do you know and have contact with; which have the same interests as you do?;1 = No one; 2 = 1-2 persons;3 = 3-5 persons; 4 = 6-10 persons;5 = 11-15 persons; 6 = > 15 persons,D,1 : 1714 ; 2 : 11990 ; 3 : 40681 ; 4 : 45987 ; 5 : 18598 ; 6 : 47127 ; missing values : 2233
+socsam,How many people; that you know; do you meet or talk with during a normal week?;1 = No one; 2 = 1-2 persons;3 = 3-5 persons; 4 = 6-10 persons;5 = 11-15 persons; 6 = > 15 persons,D,1 : 374 ; 2 : 7560 ; 3 : 29199 ; 4 : 39018 ; 5 : 23098 ; 6 : 62971 ; missing values : 6110
+soclago,Would you say that the number of people that you meet in your everyday life is enough? Would you like to meet more or fewer people?;1 = Fewer;2 = Sufficiently enough;3 = More,D,1 : 2367 ; 2 : 140343 ; 3 : 23712 ; missing values : 1908
+sochem,How many friends do you have; who can come to your home at any time and feel at home? (You would not care if the house was not clean or if you were eating. Do not count close relatives.);1 = No one; 2 = 1-2 persons;3 = 3-5 persons; 4 = 6-10 persons;5 = 11-15 persons; 6 = > 15 persons,D,1 : 4291 ; 2 : 20535 ; 3 : 55414 ; 4 : 47547 ; 5 : 15089 ; 6 : 18735 ; missing values : 6719
+soctala,How people can you speak openly with without being careful about what you are saying?;1 = No one; 2 = 1-2 persons;3 = 3-5 persons; 4 = 6-10 persons;5 = 11-15 persons; 6 = > 15 persons,D,1 : 3079 ; 2 : 30897 ; 3 : 67130 ; 4 : 41697 ; 5 : 11573 ; 6 : 11940 ; missing values : 2014
+socstod,Is there someone in particular that you can really get support from?;1 = Yes;2 = Yes; but I do not need it;3 = No,D,1 : 139125 ; 2 : 20928 ; 3 : 6447 ; missing values : 1830
+socnara,Is there a special person who feels that he or she is very close to you?;1 = Yes;2 = Not sure;3 = No,D,1 : 143299 ; 2 : 14776 ; 3 : 3891 ; missing values : 6364
+soclyck,Do you have a special person who you can share your innermost feelings with when you are happy? Somebody who is happy because you are happy?;1 = Yes;2 = No,D,1 : 150068 ; 2 : 13162 ; missing values : 5100
+socanfo,Do you have someone to share your innermost feelings with and confide in?;1 = Yes;2 = No,D,1 : 153362 ; 2 : 12323 ; missing values : 2645
+soctrost,Does it happen sometimes that someone hugs you to comfort and support you?;1 = Yes;2 = No,D,1 : 133897 ; 2 : 26914 ; missing values : 7519
+socupps,Do you think that the ones at home or others appreciate what you do?;1 = Yes;2 = Not enough;3 = No; not at all,D,1 : 150602 ; 2 : 12918 ; 3 : 2017 ; missing values : 2793
+soclana,Are there people around you who you easily can ask for favors from; e.g. borrowing tools or kitchen utensils?;1 = Yes;2 = No,D,1 : 157800 ; 2 : 4303 ; missing values : 6227
+sochelp,Apart from the ones at home; is there anyone you can turn to when you are in trouble?;1 = Yes;2 = No,D,1 : 147566 ; 2 : 18163 ; missing values : 2601
+socdelta,Have you; during the last year; participated in any association; voluntary organization etc. together with other people (e.g. sports; study circle; theatre group; choir; political group)?;1 = Yes;2 = No,D,1 : 96768 ; 2 : 64165 ; missing values : 7397
+socofta,How often do you engage in clubs; associations; study circles etc. together with others?;1 = 1-2 times per year; 2 = 1-2 times per month;3 = 1-2 times per week; 4 = Every day; 5 = Unknown,D,1 : 20044 ; 2 : 33115 ; 3 : 46087 ; 4 : 2858 ; 5 : 9991 ; missing values : 56235
+socforening_a,What associations etc. do you participate in?;socforening_a = Sports; physical exercise,D,1 : 30176 ; missing values : 138154
+socforening_b,What associations etc. do you participate in?;socforening_b = Study circle,D,1 : 7379 ; missing values : 160951
+socforening_c,What associations etc. do you participate in?;socforening_c = Theatre group,D,1 : 389 ; missing values : 167941
+socforening_d,What associations etc. do you participate in?;socforening_d = Choir,D,1 : 3740 ; missing values : 164590
+socforening_e,What associations etc. do you participate in?;socforening_e = Other association,D,1 : 23539 ; missing values : 144791
+arbfys,Is your job physically heavy?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 22609 ; 2 : 54465 ; 3 : 37450 ; 4 : 48340 ; missing values : 5466
+arbfort,Does your job demand you to work very fast?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 30416 ; 2 : 89218 ; 3 : 32500 ; 4 : 10449 ; missing values : 5747
+arbpsyk,Is your job mentally demanding?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 26087 ; 2 : 77602 ; 3 : 39212 ; 4 : 17947 ; missing values : 7482
+arbhin,Do you have enough time for your assignments?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 65606 ; 2 : 61753 ; 3 : 28527 ; 4 : 5894 ; missing values : 6550
+arbkrav,Are there contradictory demands in your job?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 15084 ; 2 : 62240 ; 3 : 57750 ; 4 : 25989 ; missing values : 7267
+arbnytt,Do you get to learn new things in your job?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 52647 ; 2 : 84875 ; 3 : 19243 ; 4 : 5250 ; missing values : 6315
+arbski,Does your job demand skill?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 80199 ; 2 : 68192 ; 3 : 10503 ; 4 : 2801 ; missing values : 6635
+arbide,Does your job require ingenuity or creativity?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 72838 ; 2 : 71568 ; 3 : 13851 ; 4 : 3113 ; missing values : 6960
+arbrut,Does your job mean doing the same things over and over again?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 66237 ; 2 : 59081 ; 3 : 31293 ; 4 : 5554 ; missing values : 6165
+arbhur,Do you have control over how your workday is planned and executed?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 91447 ; 2 : 54173 ; 3 : 13392 ; 4 : 3487 ; missing values : 5831
+arbvad,Do you have control over your own work assignment?;1 = Yes often; 2 = Yes sometimes;3 = No rarely; 4 = No as good as never,D,1 : 59935 ; 2 : 61988 ; 3 : 31227 ; 4 : 9306 ; missing values : 5874
+arbtala,Is it usually possible for you to speak with your colleagues during breaks ; if you want to?;1 = Yes; always; 2 = Yes; most of the time;3 = No; I do not have breaks; 4 = No; I do not have breaks with colleagues,D,1 : 75473 ; 2 : 55460 ; 3 : 3504 ; 4 : 18020 ; missing values : 15873
+arblamna,Is it possible for you to leave your work for a while if you want to speak with a colleague?;1 = Yes; most of the time; 2 = Yes; sometimes;3 = Only for urgent matters; 4 = No; it is totally impossible,D,1 : 82419 ; 2 : 45359 ; 3 : 14883 ; 4 : 8481 ; missing values : 17188
+arbkontakt,Do you; as a part of your work; have a lot of contacts with your colleagues?;1 = Yes; a lot; 2 = One or a few times per month;3 = No; I mostly work alone; 4 = Seldom or never,D,1 : 124629 ; 2 : 6434 ; 3 : 14307 ; 4 : 5515 ; missing values : 17445
+arbfritid,How often do you spend leisure time together with one or more of your colleagues?;1 = One or more times per week; 2 = One or more times per week;3 = One or more times per year; 4 = Seldom or never,D,1 : 15154 ; 2 : 36631 ; 3 : 55490 ; 4 : 41024 ; missing values : 20031
+arbbesok,When was the last time a colleague visited you at home?;1 = One to four weeks ago;2 = One to twelve months ago;3 = More than a year ago;4 = I have never been visited by a colleague ,D,1 : 58729 ; 2 : 48047 ; 3 : 24039 ; 4 : 19528 ; missing values : 17987
+g1_a,Indicate in the table below the way you usually travel to and from work for each season;Spring; g1_a;1 = By car; 2 = By bus;3 = Walking; 4 = By bicycle,D,1 : 83890 ; 2 : 6410 ; 3 : 18985 ; 4 : 39046 ; missing values : 19999
+g1_b,Indicate in the table below the way you usually travel to and from work for each season;Summer; g1_b;1 = By car; 2 = By bus;3 = Walking; 4 = By bicycle,D,1 : 75690 ; 2 : 4575 ; 3 : 13946 ; 4 : 52980 ; missing values : 21139
+g1_c,Indicate in the table below the way you usually travel to and from work for each season;Autumn; g1_c;1 = By car; 2 = By bus;3 = Walking; 4 = By bicycle,D,1 : 87050 ; 2 : 7123 ; 3 : 17641 ; 4 : 36026 ; missing values : 20490
+g1_d,Indicate in the table below the way you usually travel to and from work for each season;Winter; g1_d;1 = By car; 2 = By bus;3 = Walking; 4 = By bicycle,D,1 : 94852 ; 2 : 11112 ; 3 : 28008 ; 4 : 14122 ; missing values : 20236
+antal_km,Distance to work in kilometers (one way),C,mean : 1852.67 ; min : 0 ; max : 10000 ; sd : 3833.02; missing values : 0
+g2_a,Indicate the alternative that best describes your work;g2_a = Sedentary or standing,D,1 : 42357 ; missing values : 125973
+g2_b,Indicate the alternative that best describes your work;g2_b = Light but partly physically active,D,1 : 28849 ; missing values : 139481
+g2_c,Indicate the alternative that best describes your work;g2_c = Light and physically active,D,1 : 36154 ; missing values : 132176
+g2_d,Indicate the alternative that best describes your work;g2_d = Sometimes physically straining,D,1 : 43790 ; missing values : 124540
+g2_e,Indicate the alternative that best describes your work;g2_e = Physically straining most of the time,D,1 : 9635 ; missing values : 158695
+g3_a,How often do you take a walk during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 6867 ; 1 : 21316 ; 2 : 30101 ; 3 : 59185 ; 4 : 37493 ; missing values : 13368
+g3_b,How often do you ride a bike during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 29239 ; 1 : 31854 ; 2 : 22839 ; 3 : 29076 ; 4 : 17191 ; missing values : 38131
+g3_c,How often do you dance during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 49155 ; 1 : 22233 ; 2 : 5646 ; 3 : 1905 ; 4 : 22 ; missing values : 89369
+g3_d,How often do you shovel snow during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 12705 ; 1 : 18692 ; 2 : 22413 ; 3 : 27397 ; 4 : 5232 ; missing values : 81891
+g3_e,How often do you engage in gardening during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 10052 ; 1 : 16097 ; 2 : 21651 ; 3 : 33939 ; 4 : 4740 ; missing values : 81851
+g3_f,How often do you hunt or fish during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 32197 ; 1 : 23458 ; 2 : 18062 ; 3 : 8981 ; 4 : 559 ; missing values : 85073
+g3_g,How often do you pick berries or mushrooms during leisure time?;0 = Never; 1 = 1-2 times a month;2 = 3-4 times a month; 3 = 2-3 times a week;4 = Every day,D,0 : 13877 ; 1 : 32424 ; 2 : 23252 ; 3 : 15176 ; 4 : 1755 ; missing values : 81846
+g4,Have you changed your ”everyday exercise” during the last year?;1 = Decreased a lot; 2 = Decreased somewhat;3 = As before; 4 = Increased somewhat;5 = Increased a lot,D,1 : 6666 ; 2 : 16815 ; 3 : 50667 ; 4 : 16274 ; 5 : 2754 ; missing values : 75154
+g5,”The everyday exercise I get satisfies my need to move”. Is this assertion true for you?;1 = Not at all; 2 = Rather poorly;3 = Partly; 4 = Completely,D,1 : 11037 ; 2 : 18538 ; 3 : 44849 ; 4 : 18323 ; missing values : 75583
+g6,How often have you been training or exercising in exercise outfit during the last three months with the purpose to enhance your condition and/or to feel good?;1 = Never; 2 = Every now and then – not regularly;3 = 1-2 times/week; 4 = 2-3 times/week;5 = More than 3 times/week,D,1 : 62513 ; 2 : 38059 ; 3 : 24657 ; 4 : 23667 ; 5 : 10780 ; missing values : 8654
+g7,If you exercise – have you changed your exercising habits during the last year?;1 = Decreased a lot; 2 = Decreased somewhat;3 = As before; 4 = Increased somewhat;5 = Increased a lot,D,1 : 7694 ; 2 : 14553 ; 3 : 41944 ; 4 : 12771 ; 5 : 2257 ; missing values : 89111
+g8,How physically active were you before you turned 20?;1 = Freed from school gymnastics; 2 = Participated only in school gymnastics;3 = Trained without competing; 4 = Participated in both training and competitions (not on an competitive level);5 = Trained and participated in competitive athletics; Numbers with two or more digits indicate combined options. ,D,1 : 857 ; 2 : 35238 ; 3 : 25667 ; 4 : 26421 ; 5 : 3703 ; 31 : 2 ; 32 : 20 ; 41 : 1 ; 42 : 10 ; 43 : 6 ; 54 : 1 ; 432 : 1 ; missing values : 76403
+g9,How much have you exerted yourself physically during the last 12 months?If your activity level varies between e.g. summer and winter; try to take an average.;1 = Sedentary leisure time. You engage mostly in reading; watching TV; cinema or other sedentary activities in your leisure time. You walk; bike; or move otherwise less than two hours a week.;2 = Moderate exercise in leisure time.You walk; bike or move otherwise in at least 2 hours a week; mostly without sweating. Included are e.g. walking or biking to and from work; other walking; heavier household work; ordinary gardening; fishing; table tennis; bowling.;3 = Moderate; regular exercise in leisure time. You exercise regularly 1-2 times a week; at least 30 minutes each time. E.g. running; swimming; tennis; badminton or other activity that makes you sweat.;4 = Regular exerciseYou engage in running; swimming; tennis; badminton; keep-fit exercises or similar activities in at an average at least three times a week. Each time lasts at least 30 minutes. ,D,1 : 6252 ; 2 : 33344 ; 3 : 18564 ; 4 : 10527 ; missing values : 99643
+g10,How much time do you spend in an ordinary week in moderately strenuous activities making you feel warm? (e.g. brisk walks; gardening; heavier household work; biking; swimming. It may vary during the year; but try to take an average.);1 = 5 hours per week or more; 2 = More than 3 hours; but less than 5 hours per week;3 = 1-3 hours per week; 4 = Not more than 1 hour per week;5 = No time at all; 6 = Do not know/can not answer,D,1 : 15936 ; 2 : 18118 ; 3 : 23052 ; 4 : 7274 ; 5 : 1855 ; 6 : 2495 ; missing values : 99600
+g11a_h,How much time have you; each day during the last 7 days; spent sitting during work; studies and transportation; at home and during your leisure time?;Try to estimate an average amount of hours sitting; e.g. at a desk; at a friend´s house; riding in a car or a bus; sitting eating or talking; in front of the computer; watching a film or TV.;Hours weekdays; g11a_h,C,mean : 8.54 ; min : 0 ; max : 99 ; sd : 8.18; missing values : 149364
+g11a_m,How much time have you; each day during the last 7 days; spent sitting during work; studies and transportation; at home and during your leisure time?;Try to estimate an average amount of hours sitting; e.g. at a desk; at a friend´s house; riding in a car or a bus; sitting eating or talking; in front of the computer; watching a film or TV.;Minutes weekdays; g11a_m,C,mean : 11.99 ; min : 0 ; max : 60 ; sd : 14.94; missing values : 164021
+g11a_ej,How much time have you; each day during the last 7 days; spent sitting during work; studies and transportation; at home and during your leisure time?;Try to estimate an average amount of hours sitting; e.g. at a desk; at a friend´s house; riding in a car or a bus; sitting eating or talking; in front of the computer; watching a film or TV.;Do not know weekdays; g 11a_ej,D,1 : 8141 ; missing values : 160189
+g11b_h,How much time have you; each day during the last 7 days; spent sitting during work; studies and transportation; at home and during your leisure time?;Try to estimate an average amount of hours sitting; e.g. at a desk; at a friend´s house; riding in a car or a bus; sitting eating or talking; in front of the computer; watching a film or TV.;Hours weekends and holidays; g11b_h,C,mean : 6.17 ; min : 0 ; max : 70 ; sd : 3.51; missing values : 150031
+g11b_m,How much time have you; each day during the last 7 days; spent sitting during work; studies and transportation; at home and during your leisure time?;Try to estimate an average amount of hours sitting; e.g. at a desk; at a friend´s house; riding in a car or a bus; sitting eating or talking; in front of the computer; watching a film or TV.;Minutes weekends and holidays; g11b_m,C,mean : 8 ; min : 0 ; max : 90 ; sd : 13.45; missing values : 164607
+g11b_ej,How much time have you; each day during the last 7 days; spent sitting during work; studies and transportation; at home and during your leisure time?;Try to estimate an average amount of hours sitting; e.g. at a desk; at a friend´s house; riding in a car or a bus; sitting eating or talking; in front of the computer; watching a film or TV.;Do not know weekends and holidays; g11b_ej,C,1 : 8597 ; missing values : 159733
+motion,How much do you exercise in your leisure time?;0 = Virtually nothing; 1 = Every now and then;2 = Regularly about once a week; 3 = Regularly about twice a week ;4 = Regularly quite physically straining at least twice a week,D,0 : 233 ; 1 : 976 ; 2 : 433 ; 3 : 551 ; 4 : 205 ; missing values : 165932
+motion2,How often do you exercise?;1 = Never; 2 = 1-2 times/month;3 = 1 time/week; 4 = 2-3 times/week;5 = 4 or more times/week,D,1 : 233 ; 2 : 293 ; 3 : 609 ; 4 : 706 ; 5 : 231 ; missing values : 166258
+sleep_h7a,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;sleep_h7a  Sitting and reading;1 = None; 2 = Little;3 = Moderate; 4 = Big;,D,1 : 32084 ; 2 : 20925 ; 3 : 11201 ; 4 : 3512 ; missing values : 100608
+sleep_h7b,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;;sleep_h7b  Watching TV;(same alternatives as above),D,1 : 12268 ; 2 : 22848 ; 3 : 22122 ; 4 : 11099 ; missing values : 99993
+sleep_h7c,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;sleep_h7c  Sitting inactive in a public place (e.g. theatre or a meeting);(same alternatives as above);,D,1 : 40732 ; 2 : 19727 ; 3 : 6132 ; 4 : 1248 ; missing values : 100491
+sleep_h7d,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;sleep_h7d  As a passenger in a car for one hour without break.;(same alternatives as above),D,1 : 27954 ; 2 : 21113 ; 3 : 12289 ; 4 : 6174 ; missing values : 100800
+sleep_h7e,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;sleep_h7e  Lying down resting in the afternoon if conditions permit.;(same alternatives as above);,D,1 : 6744 ; 2 : 14338 ; 3 : 21221 ; 4 : 25720 ; missing values : 100307
+sleep_h7f,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;;,D,1 : 63455 ; 2 : 3693 ; 3 : 650 ; 4 : 151 ; missing values : 100381
+sleep_h7g,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;sleep_h7g  Sitting still after having lunch (without alcohol);(same alternatives as above);;,D,1 : 43348 ; 2 : 16738 ; 3 : 6569 ; 4 : 1421 ; missing values : 100254
+sleep_h7h,How big is the risk that you drift off or fall asleep in the following situations; in contrast to just feeling tired?;This applies to your usual way of living lately. Even if you have not done all this recently; try to indicate how it would have affected you.;sleep_h7h  In a car which has stopped for a few minutes in the traffic.;(same alternatives as above),D,1 : 62360 ; 2 : 4820 ; 3 : 779 ; 4 : 172 ; missing values : 100199
+sleep_h8a,Do you snore when you sleep?;1 = Yes; always; 2 = Yes; almost always; 3 = Yes; sometimes;4 = No; almost never; 5 = No; never; 6 = Do not know,D,1 : 3708 ; 2 : 8300 ; 3 : 29524 ; 4 : 14580 ; 5 : 7296 ; 6 : 5165 ; missing values : 99757
+sleep_h8b,Have your husband/wife/partner noticed that you have breath-holds when you sleep?;1 = Yes; always; 2 = Yes; almost always;3 = Yes; sometimes; 4 = No; almost never;5 = No; never; 6 = Do not know,D,1 : 992 ; 2 : 1035 ; 3 : 6613 ; 4 : 2747 ; 5 : 36545 ; 6 : 18937 ; missing values : 101461
+i1,Are you a teetotaler?;1 = Yes;2 = No,D,1 : 12438 ; 2 : 79251 ; missing values : 76641
+i2,Have you ever felt that you ought to drink less alcohol?;1 = Yes;2 = No,D,1 : 20335 ; 2 : 123476 ; missing values : 24519
+i3,Have other people annoyed you by criticizing your alcohol consumption?;1 = Yes;2 = No,D,1 : 3637 ; 2 : 140993 ; missing values : 23700
+i4,Have you ever felt uneasy or guilty because of your way of drinking?;1 = Yes;2 = No,D,1 : 8658 ; 2 : 69655 ; missing values : 90017
+i5,Have you ever drunk alcohol first thing in the morning to calm down or cure a hangover?;1 = Yes;2 = No,D,1 : 2148 ; 2 : 76355 ; missing values : 89827
+j1,How often do you drink alcohol?;1 = Never; 2 = 1 time/month or more seldom;3 = 2-4 times/month; 4 = 2-3 times/week;5 = 4 times/week or more,D,1 : 6904 ; 2 : 19586 ; 3 : 32804 ; 4 : 9034 ; 5 : 788 ; missing values : 99214
+j2,How many glasses do you usually drink on a day when you drink alcohol?;One glass: 50 cl medium-strong beer; 33 cl beer with alcohol content exceeding 3;5% by volume; 1 glass red or white wine; 1 small glass fortified wine; 4 cl liquor; e.g. whisky;1 = 0-2 glasses; 2 = 3-4 glasses; 3 = 5-6 glasses;4 = 7-9 glasses; 5 = 10 glasses or more,D,1 : 35484 ; 2 : 22548 ; 3 : 6040 ; 4 : 1178 ; 5 : 255 ; missing values : 102825
+j3,How often do you drink six or more such glasses at the same occasion?;1 = Never; 2 = More seldom than once a month;3 = Every month; 4 = Every week; 5 = Daily or almost daily,D,1 : 35455 ; 2 : 24617 ; 3 : 5386 ; 4 : 1369 ; 5 : 39 ; missing values : 101464
+j4,How often during the last year have you not been able to stop drinking after you started to drink?;1 = Never; 2 = More seldom than once a month;3 = Every month; 4 = Every week; 5 = Daily or almost daily,D,1 : 64208 ; 2 : 2062 ; 3 : 233 ; 4 : 73 ; 5 : 47 ; missing values : 101707
+j5,How often during the last year have you not done something you should have done because of your drinking?;1 = Never; 2 = More seldom than once a month;3 = Every month; 4 = Every week; 5 = Daily or almost daily,D,1 : 61018 ; 2 : 5283 ; 3 : 296 ; 4 : 59 ; 5 : 18 ; missing values : 101656
+j6,How often during the last year have you needed a drink in the morning to recover after drinking the day before?;1 = Never; 2 = More seldom than once a month;3 = Every month; 4 = Every week; 5 = Daily or almost daily,D,1 : 66231 ; 2 : 460 ; 3 : 58 ; 4 : 26 ; 5 : 16 ; missing values : 101539
+j7,How often during the last year have you felt guilt or remorse because of your drinking?;1 = Never; 2 = More seldom than once a month;3 = Every month; 4 = Every week; 5 = Daily or almost daily,D,1 : 59835 ; 2 : 6228 ; 3 : 485 ; 4 : 123 ; 5 : 59 ; missing values : 101600
+j8,How often during the last year did you drink so much that you the next day not was able to remember what you said or did the day before?;1 = Never; 2 = More seldom than once a month;3 = Every month; 4 = Every week; 5 = Daily or almost daily,D,1 : 61554 ; 2 : 5000 ; 3 : 155 ; 4 : 26 ; 5 : 9 ; missing values : 101586
+j9,Have you or anyone you know been hurt physically because of your drinking?;1= No;2 = Yes; but not during the last year;3 = Yes; during the last year,D,1 : 65365 ; 2 : 1411 ; 3 : 156 ; missing values : 101398
+j10,Has a relative; a friend; a doctor (or other medical personnel) been worried about your drinking or suggested that you should drink less?;1= No;2 = Yes; but not during the last year;3 = Yes; during the last year,D,1 : 64378 ; 2 : 1638 ; 3 : 851 ; missing values : 101463
+sm_status,Smoking status:;1 = Smoker; 2 = Former smoker;3 = Non-smoker; 4 = Occasional smoker;5 = Former occasional smoker,D,1 : 26119 ; 2 : 34858 ; 3 : 83069 ; 4 : 5590 ; 5 : 15726 ; missing values : 2968
+sm_cig_groups,Number of cigarettes smoked per day:;1 = 1-4; 2 = 5-14;3 = 15-24; 4 = >25,D,1 : 5253 ; 2 : 15897 ; 3 : 7431 ; 4 : 776 ; missing values : 138973
+sm_num_cig,Number of cigarettes smoked per day,C,mean : 11.97 ; min : 0.5 ; max : 50 ; sd : 6.6; missing values : 164583
+sm_num_cigar,Number of cigars smoked per day (in some questionnaires cigars per week; in these cases the number has been divided by 7),C,mean : 8.05 ; min : 0.14 ; max : 40 ; sd : 7.16; missing values : 168126
+sm_gr_tobacco,Grams of tobacco smoked per week,C,mean : 56 ; min : 5 ; max : 525 ; sd : 57.4; missing values : 168001
+sm_how_often,How often do you smoke? (Question answered by participants who answered “Yes; I smoke occasionally; not daily”);1 = Less than 1 day/month; 2 = 1-3 days/month;3 = Usually 1 day/week; 4 = Usually 2-4 days/week;5 = Almost every day,D,1 : 570 ; 2 : 375 ; 3 : 213 ; 4 : 266 ; 5 : 703 ; 9 : 2 ; missing values : 166201
+sm_start,Age when the participant started smoking,C,mean : 17.59 ; min : 1 ; max : 59 ; sd : 4.62; missing values : 104959
+sm_stop,Age when the participant stopped smoking,C,mean : 34.13 ; min : 1 ; max : 66 ; sd : 10.7; missing values : 118016
+sm_duration,Years smoking calculated from sm_start and sm_stop. For those who say they smoke and has not given a value for sm_stop; sm_duration is given up until date of questionnaire. Note that the information in sm_duration might be misleading for smokers who have stopped smoking at some point (and then started again).,C,mean : 22.89 ; min : 0 ; max : 54 ; sd : 11.9; missing values : 105810
+sm_whystop_1,Stopped smoking for health reasons; on own initiative;1 = Yes,D,1 : 1918 ; missing values : 166412
+sm_whystop_2,Stopped smoking after advice from physician/health personnel;1 = Yes,D,1 : 109 ; missing values : 168221
+sm_whystop_3,Stopped smoking after receiving other information;1 = Yes,D,1 : 500 ; missing values : 167830
+sm_whystop_4,Stopped smoking after pressure from friends/family members;1 = Yes,D,1 : 537 ; missing values : 167793
+sm_whystop_5,Stopped smoking for other reasons;1 = Yes,D,1 : 1436 ; missing values : 166894
+sn_status,Snuffer status;1 = Using snuff;2 = Former snuff user;3 = Not using snuff,D,1 : 27036 ; 2 : 18128 ; 3 : 113508 ; missing values : 9658
+sn_quantity,Snuff - number of boxes per week;1 = Less than 2; 2 = 2 to 4;3 =  More than 4 but less than 7; 4 = 7 or more,D,1 : 8830 ; 2 : 10880 ; 3 : 5634 ; 4 : 1692 ; missing values : 141294
+sn_time,Years using snuff,C,mean : 16.35 ; min : 0 ; max : 52 ; sd : 11.05; missing values : 127344
+sn_stopsmoke_a,Did you start using snuff when you stopped smoking?;1 = Yes;2 = No;3 = I am smoking and using snuff,D,1 : 12908 ; 2 : 28872 ; 3 : 2893 ; missing values : 123657
+sn_stopsmoke_b,Did you start using snuff when you stopped smoking?;1 = Yes;2 = No,D,1 : 528 ; 2 : 1110 ; missing values : 166692
+sn_nicotine_replace,Did you use nicotine replacement therapy in order to stop using snuff?;1 = Yes;2 = No,D,1 : 1252 ; 2 : 14552 ; missing values : 152526
+sm_nicotine_replace,Did you use nicotine replacement therapy in order to stop smoking?;1 = Yes;2 = No,D,1 : 2360 ; 2 : 19166 ; missing values : 146804
+nicotine_replace,Are you still using nicotine replacement therapy even though you are not using snuff or smoking any longer?;1 = Yes;2 = No,D,1 : 490 ; 2 : 18542 ; missing values : 149298
+sm_yes_no,Smoking (concerns participants without smoke data from VIP questionnaire);0 = Non-smoker/no answer;1 = Smoker,D,0 : 2327 ; 1 : 129 ; missing values : 165874
+sn_yes_no,Snuff using (concerns participants without snuff data from VIP questionnaire);0 = Not using snuff/no answer;1 = Using snuff,D,0 : 8424 ; 1 : 263 ; missing values : 159643
+DIETVARIABLES,,,
+agr10,Age groups according to:;1= <35 years; 2=35-44 years; 3=45-54 years;;4= ≥ 55 years; 5= ≥ 65 years,D,1 : 8586 ; 2 : 49946 ; 3 : 51922 ; 4 : 46151 ; 5 : 125 ; missing values : 11600
+besok,Number of health examinations in NSDD,D,1 : 100836 ; 2 : 38509 ; 3 : 5126 ; 4 : 3 ; missing values : 23856
+antfrag,Number of food items in the FFQ ,D,
+enkver,Indicates the specific FFQ version used ,D,
+enkver2,Indicates main type of FFQ version used based on the number of food items: ;apri = 84 food items; manually entered FFQ;long = 84 food items; optically read FFQ;short = 64-66 food items,D,
+exclude,Indicates level of insufficient diet data: ;0 = Complete set of portion size indications and ≤ 10% of food frequencies missing ;1 = > 10% of food frequencies missing;2 = portion size indications is not complete,D,0 : 149149 ; 1 : 3343 ; 2 : 4238 ; missing values : 11600
+BMR,?????,C,mean : 1641.04 ; min : 835.21 ; max : 3753.35 ; sd : 254.05; missing values : 11965
+missport,Number of portion size indications missing,D,0 : 151438 ; 1 : 1904 ; 2 : 922 ; 3 : 2466 ; missing values : 11600
+missproc,Proportion of food frequencies missing (%),C,mean : 1.87 ; min : 0 ; max : 80.95 ; sd : 6.45; missing values : 11600
+FIL;,Food Intake Level. Used to evaluate degree of underestimation of diet intake (Goldberg et al.; 1991). For more information see ’basic information’ on the NSDD website.     (a continuous numeric value),C,mean : 1.06 ; min : 0.01 ; max : 17.97 ; sd : 0.39; missing values : 17233
+potport,Average portion size of potatoes/rice/pasta based on a photographic illustration with four alternative sizes,D,1 : 11281 ; 2 : 64609 ; 3 : 64450 ; 4 : 12829 ; missing values : 15161
+kottport,Average portion size of meat/fish based on a photographic illustration with four alternative sizes,D,1 : 7387 ; 2 : 68235 ; 3 : 66258 ; 4 : 10962 ; missing values : 15488
+gronport,Average portion size of vegetables based on a photographic illustration with four alternative sizes,D,1 : 22771 ; 2 : 43881 ; 3 : 50578 ; 4 : 35803 ; missing values : 15297
+year,Year of the health examination/FFQ (YYYY),C,mean : 2003.14 ; min : 1990 ; max : 2016 ; sd : 7.15; missing values : 11600
+da01,Bregott on bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 1.09 ; min : 0 ; max : 4 ; sd : 1.25; missing values : 131017
+da02,Butter on bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.52; missing values : 131017
+da03,Low fat margarine on bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.99 ; min : 0 ; max : 4 ; sd : 1.24; missing values : 131017
+da04,Margarine on bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.08 ; min : 0 ; max : 4 ; sd : 0.42; missing values : 131017
+da05,Butter for cooking;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.14 ; min : 0 ; max : 4 ; sd : 0.37; missing values : 131017
+da06,Margarine for cooking;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.68 ; min : 0 ; max : 4 ; sd : 0.7; missing values : 131017
+da07,Oil for cooking;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.17 ; min : 0 ; max : 4 ; sd : 0.36; missing values : 131017
+da08,Salad dressing with oil;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.11 ; min : 0 ; max : 4 ; sd : 0.23; missing values : 131017
+da09,Cream; crème fraiche; sour cream;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.14 ; min : 0 ; max : 4 ; sd : 0.21; missing values : 131017
+da10,Whole grain crisp bread ;Food intake converted to frequency per day   (Before 1995);,C,mean : 1.56 ; min : 0 ; max : 4 ; sd : 1.04; missing values : 131017
+da11,Whole grain soft bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.51 ; min : 0 ; max : 4 ; sd : 0.68; missing values : 131017
+da12,White (soft) bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.54 ; min : 0 ; max : 4 ; sd : 0.65; missing values : 131017
+da13,Thin crisp bread (Incorporated in ’white (soft) bread’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.37 ; min : 0 ; max : 4 ; sd : 0.55; missing values : 131017
+da14,Coffee rolls/buns; rusk;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.44 ; min : 0 ; max : 4 ; sd : 0.52; missing values : 131017
+da15,Cheese 28% (e.g. Grevè);Food intake converted to frequency per day   (Before 1995);,C,mean : 0.75 ; min : 0 ; max : 4 ; sd : 0.82; missing values : 131017
+da16,Cheese 10-17% (e.g. Drabant);Food intake converted to frequency per day   (Before 1995);,C,mean : 0.41 ; min : 0 ; max : 4 ; sd : 0.66; missing values : 131017
+da17,Soft cheese (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.07 ; min : 0 ; max : 4 ; sd : 0.22; missing values : 131017
+da18,Soft whey cheese (messmör) (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.07 ; min : 0 ; max : 4 ; sd : 0.26; missing values : 131017
+da19,Sausage on bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.14 ; min : 0 ; max : 4 ; sd : 0.26; missing values : 131017
+da20,Meat on bread;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.22 ; min : 0 ; max : 4 ; sd : 0.31; missing values : 131017
+da21,Liver pàté on bread (Incorporated in ’sausage on bread’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.15 ; min : 0 ; max : 4 ; sd : 0.25; missing values : 131017
+da22,Oatflake porridge (Incorporated in ’whole wheat; rye; or barley porridge’ in the short FFQ);Food intake converted to frequency per day   (Before 1995);,C,mean : 0.16 ; min : 0 ; max : 4 ; sd : 0.28; missing values : 131017
+da23,Whole wheat; rye; or barley porridge;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.16; missing values : 131017
+da24,Rosehip; sweet syrup soup;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.08 ; min : 0 ; max : 4 ; sd : 0.14; missing values : 131017
+da25,Sour milk; yoghurt; 3% fat;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.39 ; min : 0 ; max : 4 ; sd : 0.43; missing values : 131017
+da26,Sour milk; yoghurt; low fat;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.18 ; min : 0 ; max : 4 ; sd : 0.35; missing values : 131017
+da27,Fiber cereals (e.g. muesli);Food intake converted to frequency per day   (Before 1995);,C,mean : 0.26 ; min : 0 ; max : 4 ; sd : 0.37; missing values : 131017
+da28,Corn flakes;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.19 ; min : 0 ; max : 4 ; sd : 0.31; missing values : 131017
+da29,Berries; fresh or frozen;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.15 ; min : 0 ; max : 4 ; sd : 0.24; missing values : 131017
+da30,Apple; pear; peach;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.5 ; min : 0 ; max : 4 ; sd : 0.55; missing values : 131017
+da31,Orange; mandarin; grapefruit (Incorportade in ’apple; pear; peach’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.44 ; min : 0 ; max : 4 ; sd : 0.5; missing values : 131017
+da32,Banana;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.43 ; min : 0 ; max : 4 ; sd : 0.46; missing values : 131017
+da33,White cabbage (Incorporated in ’lettuce; lettuce cabbage’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.16 ; min : 0 ; max : 4 ; sd : 0.26; missing values : 131017
+da34,Root vegetables; carrot;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.37 ; min : 0 ; max : 4 ; sd : 0.41; missing values : 131017
+da35,Tomato; cucumber;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.47 ; min : 0 ; max : 4 ; sd : 0.44; missing values : 131017
+da36,Lettuce; lettuce cabbage;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.4 ; min : 0 ; max : 4 ; sd : 0.4; missing values : 131017
+da37,Spinach; borecole (Incorporated in ’lettuce; lettuce cabbage’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.04 ; min : 0 ; max : 2.5 ; sd : 0.09; missing values : 131017
+da38,Mixed frozen vegetables (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.18; missing values : 131017
+da39,Boiled or baked potato;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.67 ; min : 0 ; max : 4 ; sd : 0.48; missing values : 131017
+da40,Fried potato;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 131017
+da41,Pommes frites (Incorporated in ’fried potato’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.05 ; min : 0 ; max : 4 ; sd : 0.07; missing values : 131017
+da42,Mashed potato (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.08 ; min : 0 ; max : 4 ; sd : 0.09; missing values : 131017
+da43,Potato salad (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.02 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 131017
+da44,Rice;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.15 ; min : 0 ; max : 4 ; sd : 0.18; missing values : 131017
+da45,Pasta;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.19 ; min : 0 ; max : 4 ; sd : 0.16; missing values : 131017
+da46,Brown beans; pea soup;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.04 ; min : 0 ; max : 4 ; sd : 0.07; missing values : 131017
+da47,Blöta (broth + bread)  (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995);,C,mean : 0.01 ; min : 0 ; max : 4 ; sd : 0.04; missing values : 131017
+da48,Pancake; waffle;Food intake converted to frequency per day   (Before 1995);,C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.07; missing values : 131017
+da49,Swedish (potato) dumpling (Incorporated in ’pancake; waffle’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 131017
+da50,Pizza;Food intake converted to frequency per day   (Before 1995),C,mean : 0.05 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 131017
+da51,Minced meat dishes;Food intake converted to frequency per day   (Before 1995),C,mean : 0.18 ; min : 0 ; max : 4 ; sd : 0.15; missing values : 131017
+da52,Meat stew;Food intake converted to frequency per day   (Before 1995),C,mean : 0.11 ; min : 0 ; max : 2.5 ; sd : 0.09; missing values : 131017
+da53,Steak; chop; e.g.;Food intake converted to frequency per day   (Before 1995),C,mean : 0.12 ; min : 0 ; max : 2.5 ; sd : 0.1; missing values : 131017
+da54,Bacon;Food intake converted to frequency per day   (Before 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.07; missing values : 131017
+da55,Sausage as main dish;Food intake converted to frequency per day   (Before 1995),C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.11; missing values : 131017
+da56,Hamburger;Food intake converted to frequency per day   (Before 1995),C,mean : 0.05 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 131017
+da57,White meat (poultry);Food intake converted to frequency per day   (Before 1995),C,mean : 0.07 ; min : 0 ; max : 2.5 ; sd : 0.07; missing values : 131017
+da58,Blood-based food (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995),C,mean : 0.04 ; min : 0 ; max : 2.5 ; sd : 0.05; missing values : 131017
+da59,Liver; kidney (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995),C,mean : 0.02 ; min : 0 ; max : 1 ; sd : 0.04; missing values : 131017
+da60,Lean fish (e.g. perch; bass; cod);Food intake converted to frequency per day   (Before 1995),C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.09; missing values : 131017
+da61,Fatty fish (e.g. (Baltic) herring; whitefish; salmon sik; lax);Food intake converted to frequency per day   (Before 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.08; missing values : 131017
+da62,Shellfish (e.g. shrimps; scallops) (Food item removed in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995),C,mean : 0.03 ; min : 0 ; max : 4 ; sd : 0.05; missing values : 131017
+da63,Salty fish;Food intake converted to frequency per day   (Before 1995),C,mean : 0.02 ; min : 0 ; max : 4 ; sd : 0.05; missing values : 131017
+da64,Smoked fish/meat;Food intake converted to frequency per day   (Before 1995),C,mean : 0.04 ; min : 0 ; max : 4 ; sd : 0.08; missing values : 131017
+da65,Ice cream;Food intake converted to frequency per day   (Before 1995),C,mean : 0.11 ; min : 0 ; max : 4 ; sd : 0.14; missing values : 131017
+da66,Sweets (chocolate; candy);Food intake converted to frequency per day   (Before 1995),C,mean : 0.21 ; min : 0 ; max : 4 ; sd : 0.28; missing values : 131017
+da67,Sugar; honey;Food intake converted to frequency per day   (Before 1995),C,mean : 0.88 ; min : 0 ; max : 4 ; sd : 1.15; missing values : 131017
+da68,Marmelade; jam (Incorporated in ’sugar; honey’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995),C,mean : 0.27 ; min : 0 ; max : 4 ; sd : 0.35; missing values : 131017
+da69,Cookies; pastry;Food intake converted to frequency per day   (Before 1995),C,mean : 0.26 ; min : 0 ; max : 4 ; sd : 0.34; missing values : 131017
+da70,Chips; salty nuts; popcorn;Food intake converted to frequency per day   (Before 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.1; missing values : 131017
+da71,Milk; 0;5% fat;Food intake converted to frequency per day   (Before 1995),C,mean : 0.31 ; min : 0 ; max : 4 ; sd : 0.74; missing values : 131017
+da72,Milk; sour milk; 1;5% fat;Food intake converted to frequency per day   (Before 1995),C,mean : 0.78 ; min : 0 ; max : 4 ; sd : 0.96; missing values : 131017
+da73,Milk; sour milk; 3% fat;Food intake converted to frequency per day   (Before 1995),C,mean : 0.2 ; min : 0 ; max : 4 ; sd : 0.62; missing values : 131017
+da74,Soft drinks (Incorporated in ’sodas’ in the short FFQ (after 1995));;Food intake converted to frequency per day   (Before 1995),C,mean : 0.27 ; min : 0 ; max : 4 ; sd : 0.48; missing values : 131017
+da75,Sodas (e.g. Coca-cola);Food intake converted to frequency per day   (Before 1995),C,mean : 0.13 ; min : 0 ; max : 4 ; sd : 0.24; missing values : 131017
+da76,Juice (Incorporated in ’sodas’ in the short FFQ (after 1995));Food intake converted to frequency per day   (Before 1995),C,mean : 0.26 ; min : 0 ; max : 4 ; sd : 0.41; missing values : 131017
+da77,Brewed (filtered) coffee;Food intake converted to frequency per day   (Before 1995),C,mean : 1.99 ; min : 0 ; max : 4 ; sd : 1.35; missing values : 131017
+da78,Boilded coffee;Food intake converted to frequency per day   (Before 1995),C,mean : 0.97 ; min : 0 ; max : 4 ; sd : 1.36; missing values : 131017
+da79,Tea;Food intake converted to frequency per day   (Before 1995),C,mean : 0.6 ; min : 0 ; max : 4 ; sd : 0.79; missing values : 131017
+da80,Light beer;Food intake converted to frequency per day   (Before 1995),C,mean : 0.13 ; min : 0 ; max : 4 ; sd : 0.26; missing values : 131017
+da81,Medium beer;Food intake converted to frequency per day   (Before 1995),C,mean : 0.07 ; min : 0 ; max : 4 ; sd : 0.16; missing values : 131017
+da82,Strong beer;Food intake converted to frequency per day   (Before 1995),C,mean : 0.03 ; min : 0 ; max : 1 ; sd : 0.05; missing values : 131017
+da83,Wine;Food intake converted to frequency per day   (Before 1995),C,mean : 0.05 ; min : 0 ; max : 2.5 ; sd : 0.07; missing values : 131017
+da84,Liquor; spirits;Food intake converted to frequency per day   (Before 1995),C,mean : 0.03 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 131017
+dat01,Bregott on bread;Food intake converted to frequency per day   (After 1995),C,mean : 1.07 ; min : 0 ; max : 4 ; sd : 1.17; missing values : 11600
+dat02,Butter on bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.1 ; min : 0 ; max : 4 ; sd : 0.46; missing values : 11600
+dat03,Low fat margarine on bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.71 ; min : 0 ; max : 4 ; sd : 1.1; missing values : 11600
+dat04,Margarine on bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.07 ; min : 0 ; max : 4 ; sd : 0.38; missing values : 11600
+dat05,Butter for cooking;Food intake converted to frequency per day   (After 1995),C,mean : 0.21 ; min : 0 ; max : 4 ; sd : 0.44; missing values : 11600
+dat06,Margarine for cooking;Food intake converted to frequency per day   (After 1995),C,mean : 0.54 ; min : 0 ; max : 4 ; sd : 0.63; missing values : 11600
+dat07,Oil for cooking;Food intake converted to frequency per day   (After 1995),C,mean : 0.36 ; min : 0 ; max : 4 ; sd : 0.51; missing values : 11600
+dat08,Salad dressing with oil;Food intake converted to frequency per day   (After 1995),C,mean : 0.15 ; min : 0 ; max : 4 ; sd : 0.28; missing values : 11600
+dat09,Cream; crème fraiche; sour cream;Food intake converted to frequency per day   (After 1995),C,mean : 0.2 ; min : 0 ; max : 4 ; sd : 0.25; missing values : 11600
+dat10,Whole grain crisp bread ;Food intake converted to frequency per day   (After 1995),C,mean : 1.29 ; min : 0 ; max : 4 ; sd : 1.02; missing values : 11600
+dat11,Whole grain soft bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.62 ; min : 0 ; max : 4 ; sd : 0.7; missing values : 11600
+DAT12,White (soft) bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.46 ; min : 0 ; max : 4 ; sd : 0.58; missing values : 48913
+dat13,Coffee rolls/buns; rusk;Food intake converted to frequency per day   (After 1995),C,mean : 0.29 ; min : 0 ; max : 4 ; sd : 0.41; missing values : 11600
+dat14,Cheese 28% (e.g. Grevè);Food intake converted to frequency per day   (After 1995),C,mean : 0.65 ; min : 0 ; max : 4 ; sd : 0.72; missing values : 11600
+dat15,Cheese 10-17% (e.g. Drabant);Food intake converted to frequency per day   (After 1995),C,mean : 0.27 ; min : 0 ; max : 4 ; sd : 0.53; missing values : 11600
+DAT16,Sausage on bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.25 ; min : 0 ; max : 4 ; sd : 0.38; missing values : 48913
+dat17,Meat on bread;Food intake converted to frequency per day   (After 1995),C,mean : 0.3 ; min : 0 ; max : 4 ; sd : 0.41; missing values : 11600
+DAT18,Whole wheat; rye; or barley porridge;Food intake converted to frequency per day   (After 1995),C,mean : 0.21 ; min : 0 ; max : 4 ; sd : 0.34; missing values : 48913
+dat19,Rosehip; sweet syrup soup;Food intake converted to frequency per day   (After 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.15; missing values : 11600
+dat20,Sour milk; yoghurt; 3% fat;Food intake converted to frequency per day   (After 1995),C,mean : 0.37 ; min : 0 ; max : 4 ; sd : 0.44; missing values : 11600
+dat21,Sour milk; yoghurt; low fat;Food intake converted to frequency per day   (After 1995),C,mean : 0.22 ; min : 0 ; max : 4 ; sd : 0.38; missing values : 11600
+dat22,Fiber cereals (e.g. muesli);Food intake converted to frequency per day   (After 1995),C,mean : 0.3 ; min : 0 ; max : 4 ; sd : 0.41; missing values : 11600
+dat23,Corn flakes;Food intake converted to frequency per day   (After 1995),C,mean : 0.18 ; min : 0 ; max : 4 ; sd : 0.32; missing values : 11600
+dat24,Berries; fresh or frozen;Food intake converted to frequency per day   (After 1995),C,mean : 0.16 ; min : 0 ; max : 4 ; sd : 0.27; missing values : 11600
+DAT25,Apple; pear; peach;Food intake converted to frequency per day   (After 1995),C,mean : 0.9 ; min : 0 ; max : 4 ; sd : 0.88; missing values : 48913
+dat26,Banana;Food intake converted to frequency per day   (After 1995),C,mean : 0.4 ; min : 0 ; max : 4 ; sd : 0.46; missing values : 11600
+dat27,Root vegetables; carrot;Food intake converted to frequency per day   (After 1995),C,mean : 0.46 ; min : 0 ; max : 4 ; sd : 0.49; missing values : 11600
+dat28,Tomato; cucumber;Food intake converted to frequency per day   (After 1995),C,mean : 0.58 ; min : 0 ; max : 4 ; sd : 0.52; missing values : 11600
+DAT29,Lettuce; lettuce cabbage;Food intake converted to frequency per day   (After 1995),C,mean : 0.55 ; min : 0 ; max : 4 ; sd : 0.53; missing values : 48913
+dat30,Boiled or baked potato;Food intake converted to frequency per day   (After 1995),C,mean : 0.54 ; min : 0 ; max : 4 ; sd : 0.43; missing values : 11600
+DAT31,Fried potato;Food intake converted to frequency per day   (After 1995),C,mean : 0.11 ; min : 0 ; max : 4 ; sd : 0.15; missing values : 48913
+dat32,Rice;Food intake converted to frequency per day   (After 1995),C,mean : 0.19 ; min : 0 ; max : 4 ; sd : 0.22; missing values : 11600
+dat33,Pasta;Food intake converted to frequency per day   (After 1995),C,mean : 0.24 ; min : 0 ; max : 4 ; sd : 0.21; missing values : 11600
+dat34,Brown beans; pea soup;Food intake converted to frequency per day   (After 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+DAT35,Pancake; waffle;Food intake converted to frequency per day   (After 1995),C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.09; missing values : 48913
+dat36,Pizza;Food intake converted to frequency per day   (After 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.07; missing values : 11600
+dat37,Minced meat dishes;Food intake converted to frequency per day   (After 1995),C,mean : 0.19 ; min : 0 ; max : 4 ; sd : 0.16; missing values : 11600
+dat38,Meat stew;Food intake converted to frequency per day   (After 1995),C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+dat39,Steak; chop; e.g.;Food intake converted to frequency per day   (After 1995),C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+dat40,Bacon;Food intake converted to frequency per day   (After 1995),C,mean : 0.07 ; min : 0 ; max : 4 ; sd : 0.09; missing values : 11600
+dat41,Sausage as main dish;Food intake converted to frequency per day   (After 1995),C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+dat42,Hamburger;Food intake converted to frequency per day   (After 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.07; missing values : 11600
+dat43,White meat (poultry);Food intake converted to frequency per day   (After 1995),C,mean : 0.12 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+dat44,Lean fish (e.g. perch; bass; cod);Food intake converted to frequency per day   (After 1995),C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.11; missing values : 11600
+dat45,Fatty fish (e.g. (Baltic) herring; whitefish; salmon sik; lax);Food intake converted to frequency per day   (After 1995),C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.11; missing values : 11600
+dat46,Salty fish;Food intake converted to frequency per day   (After 1995),C,mean : 0.02 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 11600
+dat47,Smoked fish/meat;Food intake converted to frequency per day   (After 1995),C,mean : 0.04 ; min : 0 ; max : 4 ; sd : 0.11; missing values : 11600
+dat48,Ice cream;Food intake converted to frequency per day   (After 1995),C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+dat49,Sweets (chocolate; candy);Food intake converted to frequency per day   (After 1995),C,mean : 0.22 ; min : 0 ; max : 4 ; sd : 0.28; missing values : 11600
+DAT50,Sugar; honey;Food intake converted to frequency per day   (After 1995),C,mean : 0.51 ; min : 0 ; max : 4 ; sd : 0.81; missing values : 48913
+dat51,Cookies; pastry;Food intake converted to frequency per day   (After 1995),C,mean : 0.22 ; min : 0 ; max : 4 ; sd : 0.31; missing values : 11600
+dat52,Chips; salty nuts; popcorn;Food intake converted to frequency per day   (After 1995),C,mean : 0.09 ; min : 0 ; max : 4 ; sd : 0.12; missing values : 11600
+dat53,Milk; 0;5% fat;Food intake converted to frequency per day   (After 1995),C,mean : 0.29 ; min : 0 ; max : 4 ; sd : 0.69; missing values : 11600
+dat54,Milk; sour milk; 1;5% fat;Food intake converted to frequency per day   (After 1995),C,mean : 0.73 ; min : 0 ; max : 4 ; sd : 0.91; missing values : 11600
+dat55,Milk; sour milk; 3% fat;Food intake converted to frequency per day   (After 1995),C,mean : 0.15 ; min : 0 ; max : 4 ; sd : 0.51; missing values : 11600
+dat56,Sodas (e.g. Coca-cola);Food intake converted to frequency per day   (After 1995),C,mean : 0.23 ; min : 0 ; max : 4 ; sd : 0.4; missing values : 11600
+dat57,Brewed (filtered) coffee;Food intake converted to frequency per day   (After 1995),C,mean : 1.99 ; min : 0 ; max : 4 ; sd : 1.37; missing values : 11600
+dat58,Boilded coffee;Food intake converted to frequency per day   (After 1995),C,mean : 0.6 ; min : 0 ; max : 4 ; sd : 1.12; missing values : 11600
+dat59,Tea;Food intake converted to frequency per day   (After 1995),C,mean : 0.59 ; min : 0 ; max : 4 ; sd : 0.81; missing values : 11600
+dat60,Light beer;Food intake converted to frequency per day   (After 1995),C,mean : 0.08 ; min : 0 ; max : 4 ; sd : 0.21; missing values : 11600
+dat61,Medium beer;Food intake converted to frequency per day   (After 1995),C,mean : 0.06 ; min : 0 ; max : 4 ; sd : 0.14; missing values : 11600
+dat62,Strong beer;Food intake converted to frequency per day   (After 1995),C,mean : 0.05 ; min : 0 ; max : 4 ; sd : 0.08; missing values : 11600
+dat63,Wine;Food intake converted to frequency per day   (After 1995),C,mean : 0.07 ; min : 0 ; max : 4 ; sd : 0.11; missing values : 11600
+dat64,Liquor; spirits;Food intake converted to frequency per day   (After 1995),C,mean : 0.03 ; min : 0 ; max : 4 ; sd : 0.06; missing values : 11600
+DAT65,Water;Food intake converted to frequency per day   (After 1995),C,mean : 3.08 ; min : 0 ; max : 4 ; sd : 1.1; missing values : 48913
+DAT66, Egg; egg dishes; omelet;Food intake converted to frequency per day   (After 2000),C,mean : 0.22 ; min : 0 ; max : 4 ; sd : 0.24; missing values : 48913
+gramlong1,Bregott on bread;Food intake converted to gram per day   (Before 1995);,C,mean : 9.83 ; min : 0 ; max : 60 ; sd : 12.19; missing values : 131017
+gramlong2,Butter on bread;Food intake converted to gram per day   (Before 1995);,C,mean : 1.79 ; min : 0 ; max : 80 ; sd : 7.67; missing values : 131017
+gramlong3,Low fat margarine on bread;Food intake converted to gram per day   (Before 1995);,C,mean : 8.24 ; min : 0 ; max : 60 ; sd : 11.24; missing values : 131017
+gramlong4,Margarine on bread;Food intake converted to gram per day   (Before 1995);,C,mean : 0.68 ; min : 0 ; max : 60 ; sd : 3.79; missing values : 131017
+gramlong5,Butter for cooking;Food intake converted to gram per day   (Before 1995);,C,mean : 2.27 ; min : 0 ; max : 100 ; sd : 6.64; missing values : 131017
+gramlong6,Margarine for cooking;Food intake converted to gram per day   (Before 1995);,C,mean : 10.27 ; min : 0 ; max : 100 ; sd : 11.66; missing values : 131017
+gramlong7,Oil for cooking;Food intake converted to gram per day   (Before 1995);,C,mean : 2.64 ; min : 0 ; max : 100 ; sd : 5.9; missing values : 131017
+gramlong8,Salad dressing with oil;Food intake converted to gram per day   (Before 1995);,C,mean : 2.31 ; min : 0 ; max : 108 ; sd : 5; missing values : 131017
+gramlong9,Cream; crème fraiche; sour cream;Food intake converted to gram per day   (Before 1995);,C,mean : 4.42 ; min : 0 ; max : 204 ; sd : 6.82; missing values : 131017
+gramlong10,Whole grain crisp bread ;Food intake converted to gram per day   (Before 1995);,C,mean : 31.2 ; min : 0 ; max : 104 ; sd : 22.61; missing values : 131017
+gramlong11,Whole grain soft bread;Food intake converted to gram per day   (Before 1995);,C,mean : 26.6 ; min : 0 ; max : 264 ; sd : 35.96; missing values : 131017
+gramlong12,White (soft) bread;Food intake converted to gram per day   (Before 1995);,C,mean : 24.66 ; min : 0 ; max : 224 ; sd : 30.67; missing values : 131017
+gramlong13,Thin crisp bread (Incorporated in ’white (soft) bread’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 10.25 ; min : 0 ; max : 172 ; sd : 15.57; missing values : 131017
+gramlong14,Coffee rolls/buns; rusk;Food intake converted to gram per day   (Before 1995);,C,mean : 17.9 ; min : 0 ; max : 188 ; sd : 21.35; missing values : 131017
+gramlong15,Cheese 28% (e.g. Grevè);Food intake converted to gram per day   (Before 1995);,C,mean : 13.73 ; min : 0 ; max : 96 ; sd : 15.37; missing values : 131017
+gramlong16,Cheese 10-17% (e.g. Drabant);Food intake converted to gram per day   (Before 1995);,C,mean : 7.55 ; min : 0 ; max : 84 ; sd : 12.3; missing values : 131017
+gramlong17,Soft cheese (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 1 ; min : 0 ; max : 88 ; sd : 3.41; missing values : 131017
+gramlong18,Soft whey cheese (messmör) (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 0.92 ; min : 0 ; max : 60 ; sd : 3.36; missing values : 131017
+gramlong19,Sausage on bread;Food intake converted to gram per day   (Before 1995);,C,mean : 3.47 ; min : 0 ; max : 136 ; sd : 6.82; missing values : 131017
+gramlong20,Meat on bread;Food intake converted to gram per day   (Before 1995);,C,mean : 5.64 ; min : 0 ; max : 128 ; sd : 8.02; missing values : 131017
+gramlong21,Liver pàté on bread (Incorporated in ’sausage on bread’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 2.13 ; min : 0 ; max : 92 ; sd : 3.64; missing values : 131017
+gramlong22,Oatflake porridge (Incorporated in ’whole wheat; rye; or barley porridge’ in the short FFQ);Food intake converted to gram per day   (Before 1995);,C,mean : 28.97 ; min : 0 ; max : 800 ; sd : 50.25; missing values : 131017
+gramlong23,Whole wheat; rye; or barley porridge;Food intake converted to gram per day   (Before 1995);,C,mean : 9.56 ; min : 0 ; max : 800 ; sd : 27.05; missing values : 131017
+gramlong24,Rosehip; sweet syrup soup;Food intake converted to gram per day   (Before 1995);,C,mean : 12.66 ; min : 0 ; max : 1000 ; sd : 24.93; missing values : 131017
+gramlong25,Sour milk; yoghurt; 3% fat;Food intake converted to gram per day   (Before 1995);,C,mean : 99.15 ; min : 0 ; max : 1240 ; sd : 111.68; missing values : 131017
+gramlong26,Sour milk; yoghurt; low fat;Food intake converted to gram per day   (Before 1995);,C,mean : 43.32 ; min : 0 ; max : 1200 ; sd : 84.76; missing values : 131017
+gramlong27,Fiber cereals (e.g. muesli);Food intake converted to gram per day   (Before 1995);,C,mean : 9 ; min : 0 ; max : 180 ; sd : 13.05; missing values : 131017
+gramlong28,Corn flakes;Food intake converted to gram per day   (Before 1995);,C,mean : 3.46 ; min : 0 ; max : 88 ; sd : 5.74; missing values : 131017
+gramlong29,Berries; fresh or frozen;Food intake converted to gram per day   (Before 1995);,C,mean : 8.74 ; min : 0 ; max : 260 ; sd : 14.27; missing values : 131017
+gramlong30,Apple; pear; peach;Food intake converted to gram per day   (Before 1995);,C,mean : 99.44 ; min : 0 ; max : 1280 ; sd : 90.56; missing values : 50357
+gramlong31,Orange; mandarin; grapefruit (Incorportade in ’apple; pear; peach’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 12.32 ; min : 0 ; max : 780 ; sd : 19; missing values : 50357
+gramlong32,Banana;Food intake converted to gram per day   (Before 1995);,C,mean : 33.02 ; min : 0 ; max : 960 ; sd : 40.23; missing values : 50357
+gramlong33,White cabbage (Incorporated in ’lettuce; lettuce cabbage’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 6.73 ; min : 0 ; max : 240 ; sd : 13.19; missing values : 133497
+gramlong34,Root vegetables; carrot;Food intake converted to gram per day   (Before 1995);,C,mean : 26.26 ; min : 0 ; max : 416 ; sd : 36.07; missing values : 133497
+gramlong35,Tomato; cucumber;Food intake converted to gram per day   (Before 1995);,C,mean : 27.71 ; min : 0 ; max : 380 ; sd : 34.14; missing values : 133497
+gramlong36,Lettuce; lettuce cabbage;Food intake converted to gram per day   (Before 1995);,C,mean : 8.92 ; min : 0 ; max : 160 ; sd : 12.84; missing values : 133497
+gramlong37,Spinach; borecole (Incorporated in ’lettuce; lettuce cabbage’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 3.56 ; min : 0 ; max : 375 ; sd : 9.42; missing values : 133497
+gramlong38,Mixed frozen vegetables (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 8.47 ; min : 0 ; max : 400 ; sd : 14.6; missing values : 133497
+gramlong39,Boiled or baked potato;Food intake converted to gram per day   (Before 1995);,C,mean : 142.09 ; min : 0 ; max : 1280 ; sd : 114.38; missing values : 133134
+gramlong40,Fried potato;Food intake converted to gram per day   (Before 1995);,C,mean : 12.96 ; min : 0 ; max : 960 ; sd : 20.95; missing values : 133134
+gramlong41,Pommes frites (Incorporated in ’fried potato’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 4.72 ; min : 0 ; max : 600 ; sd : 7.66; missing values : 133134
+gramlong42,Mashed potato (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 13.21 ; min : 0 ; max : 1200 ; sd : 17.09; missing values : 133134
+gramlong43,Potato salad (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 3.74 ; min : 0 ; max : 760 ; sd : 9.69; missing values : 139086
+gramlong44,Rice;Food intake converted to gram per day   (Before 1995);,C,mean : 26.22 ; min : 0 ; max : 960 ; sd : 32.64; missing values : 133134
+gramlong45,Pasta;Food intake converted to gram per day   (Before 1995);,C,mean : 34.97 ; min : 0 ; max : 1200 ; sd : 36.44; missing values : 133134
+gramlong46,Brown beans; pea soup;Food intake converted to gram per day   (Before 1995);,C,mean : 8.11 ; min : 0 ; max : 800 ; sd : 13.92; missing values : 131017
+gramlong47,Blöta (broth + bread)  (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995);,C,mean : 0.88 ; min : 0 ; max : 320 ; sd : 3.28; missing values : 131017
+gramlong48,Pancake; waffle;Food intake converted to gram per day   (Before 1995);,C,mean : 21.77 ; min : 0 ; max : 1120 ; sd : 21.29; missing values : 133134
+gramlong49,Swedish (potato) dumpling (Incorporated in ’pancake; waffle’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995),C,mean : 12.19 ; min : 0 ; max : 1000 ; sd : 14.23; missing values : 133134
+gramlong50,Pizza;Food intake converted to gram per day   (Before 1995),C,mean : 15.16 ; min : 0 ; max : 1300 ; sd : 18.39; missing values : 131017
+gramlong51,Minced meat dishes;Food intake converted to gram per day   (Before 1995),C,mean : 19.78 ; min : 0 ; max : 500 ; sd : 18.81; missing values : 133316
+gramlong52,Meat stew;Food intake converted to gram per day   (Before 1995),C,mean : 16.92 ; min : 0 ; max : 437.5 ; sd : 16.67; missing values : 133316
+gramlong53,Steak; chop; e.g.;Food intake converted to gram per day   (Before 1995),C,mean : 15.54 ; min : 0 ; max : 375 ; sd : 14.9; missing values : 133316
+gramlong54,Bacon;Food intake converted to gram per day   (Before 1995),C,mean : 3.24 ; min : 0 ; max : 150 ; sd : 4.07; missing values : 133316
+gramlong55,Sausage as main dish;Food intake converted to gram per day   (Before 1995),C,mean : 11.91 ; min : 0 ; max : 500 ; sd : 12.51; missing values : 133316
+gramlong56,Hamburger;Food intake converted to gram per day   (Before 1995),C,mean : 5.74 ; min : 0 ; max : 520 ; sd : 7.47; missing values : 131017
+gramlong57,White meat (poultry);Food intake converted to gram per day   (Before 1995),C,mean : 10.25 ; min : 0 ; max : 750 ; sd : 10.61; missing values : 133316
+gramlong58,Blood-based food (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995),C,mean : 7.54 ; min : 0 ; max : 412.5 ; sd : 9.42; missing values : 131017
+gramlong59,Liver; kidney (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995),C,mean : 2.33 ; min : 0 ; max : 140 ; sd : 4.39; missing values : 131017
+gramlong60,Lean fish (e.g. perch; bass; cod);Food intake converted to gram per day   (Before 1995),C,mean : 11.47 ; min : 0 ; max : 800 ; sd : 12.29; missing values : 133316
+gramlong61,Fatty fish (e.g. (Baltic) herring; whitefish; salmon sik; lax);Food intake converted to gram per day   (Before 1995),C,mean : 6.03 ; min : 0 ; max : 500 ; sd : 9; missing values : 133316
+gramlong62,Shellfish (e.g. shrimps; scallops) (Food item removed in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995),C,mean : 2 ; min : 0 ; max : 224 ; sd : 3.23; missing values : 131017
+gramlong63,Salty fish;Food intake converted to gram per day   (Before 1995),C,mean : 1.18 ; min : 0 ; max : 240 ; sd : 3.1; missing values : 133316
+gramlong64,Smoked fish/meat;Food intake converted to gram per day   (Before 1995),C,mean : 0.92 ; min : 0 ; max : 100 ; sd : 2.06; missing values : 131017
+gramlong65,Ice cream;Food intake converted to gram per day   (Before 1995),C,mean : 7.69 ; min : 0 ; max : 288 ; sd : 9.71; missing values : 131017
+gramlong66,Sweets (chocolate; candy);Food intake converted to gram per day   (Before 1995),C,mean : 5.96 ; min : 0 ; max : 188 ; sd : 8.47; missing values : 131017
+gramlong67,Sugar; honey;Food intake converted to gram per day   (Before 1995),C,mean : 6.31 ; min : 0 ; max : 48 ; sd : 8.69; missing values : 131017
+gramlong68,Marmelade; jam (Incorporated in ’sugar; honey’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995),C,mean : 7.58 ; min : 0 ; max : 136 ; sd : 9.82; missing values : 131017
+gramlong69,Cookies; pastry;Food intake converted to gram per day   (Before 1995),C,mean : 9.91 ; min : 0 ; max : 208 ; sd : 13.79; missing values : 131017
+gramlong70,Chips; salty nuts; popcorn;Food intake converted to gram per day   (Before 1995),C,mean : 1.99 ; min : 0 ; max : 140 ; sd : 3.12; missing values : 131017
+gramlong71,Milk; 0;5% fat;Food intake converted to gram per day   (Before 1995),C,mean : 58.79 ; min : 0 ; max : 1040 ; sd : 141.44; missing values : 131017
+gramlong72,Milk; sour milk; 1;5% fat;Food intake converted to gram per day   (Before 1995),C,mean : 145.24 ; min : 0 ; max : 1040 ; sd : 186.11; missing values : 131017
+gramlong73,Milk; sour milk; 3% fat;Food intake converted to gram per day   (Before 1995),C,mean : 40.97 ; min : 0 ; max : 1400 ; sd : 132.78; missing values : 131017
+gramlong74,Soft drinks (Incorporated in ’sodas’ in the short FFQ (after 1995));;Food intake converted to gram per day   (Before 1995),C,mean : 71.25 ; min : 0 ; max : 1200 ; sd : 129.35; missing values : 131017
+gramlong75,Sodas (e.g. Coca-cola);Food intake converted to gram per day   (Before 1995),C,mean : 35.96 ; min : 0 ; max : 1200 ; sd : 67.81; missing values : 131017
+gramlong76,Juice (Incorporated in ’sodas’ in the short FFQ (after 1995));Food intake converted to gram per day   (Before 1995),C,mean : 50.09 ; min : 0 ; max : 1000 ; sd : 79.78; missing values : 131017
+gramlong77,Brewed (filtered) coffee;Food intake converted to gram per day   (Before 1995),C,mean : 306.05 ; min : 0 ; max : 800 ; sd : 208.46; missing values : 131017
+gramlong78,Boilded coffee;Food intake converted to gram per day   (Before 1995),C,mean : 149.91 ; min : 0 ; max : 800 ; sd : 211.67; missing values : 131017
+gramlong79,Tea;Food intake converted to gram per day   (Before 1995),C,mean : 150 ; min : 0 ; max : 1000 ; sd : 197.97; missing values : 131017
+gramlong80,Light beer;Food intake converted to gram per day   (Before 1995),C,mean : 37.95 ; min : 0 ; max : 1320 ; sd : 80.99; missing values : 131017
+gramlong81,Medium beer;Food intake converted to gram per day   (Before 1995),C,mean : 25.6 ; min : 0 ; max : 2000 ; sd : 56.2; missing values : 131017
+gramlong82,Strong beer;Food intake converted to gram per day   (Before 1995),C,mean : 14.49 ; min : 0 ; max : 900 ; sd : 30.61; missing values : 131017
+gramlong83,Wine;Food intake converted to gram per day   (Before 1995),C,mean : 11.19 ; min : 0 ; max : 687.5 ; sd : 18.94; missing values : 131017
+gramlong84,Liquor; spirits;Food intake converted to gram per day   (Before 1995),C,mean : 2.15 ; min : 0 ; max : 336 ; sd : 4.42; missing values : 131017
+gramshort1,Bregott on bread;Food intake converted to gram per day   (After 1995),C,mean : 8.66 ; min : 0 ; max : 60 ; sd : 9.91; missing values : 48913
+gramshort2,Butter on bread;Food intake converted to gram per day   (After 1995),C,mean : 1.39 ; min : 0 ; max : 80 ; sd : 6.36; missing values : 48913
+gramshort3,Low fat margarine on bread;Food intake converted to gram per day   (After 1995),C,mean : 4.96 ; min : 0 ; max : 60 ; sd : 8.47; missing values : 48913
+gramshort4,Margarine on bread;Food intake converted to gram per day   (After 1995),C,mean : 0.54 ; min : 0 ; max : 40 ; sd : 3.01; missing values : 48913
+gramshort5,Butter for cooking;Food intake converted to gram per day   (After 1995),C,mean : 3.23 ; min : 0 ; max : 100 ; sd : 6.85; missing values : 48913
+gramshort6,Margarine for cooking;Food intake converted to gram per day   (After 1995),C,mean : 6.64 ; min : 0 ; max : 100 ; sd : 8.8; missing values : 48913
+gramshort7,Oil for cooking;Food intake converted to gram per day   (After 1995),C,mean : 5.53 ; min : 0 ; max : 100 ; sd : 7.55; missing values : 48913
+gramshort8,Salad dressing with oil;Food intake converted to gram per day   (After 1995),C,mean : 3.33 ; min : 0 ; max : 108 ; sd : 6; missing values : 48913
+gramshort9,Cream; crème fraiche; sour cream;Food intake converted to gram per day   (After 1995),C,mean : 6.14 ; min : 0 ; max : 160 ; sd : 7.97; missing values : 48913
+gramshort10,Whole grain crisp bread ;Food intake converted to gram per day   (After 1995),C,mean : 23.46 ; min : 0 ; max : 104 ; sd : 20.55; missing values : 48913
+gramshort11,Whole grain soft bread;Food intake converted to gram per day   (After 1995),C,mean : 33.36 ; min : 0 ; max : 264 ; sd : 35.95; missing values : 48913
+gramshort12,White (soft) bread;Food intake converted to gram per day   (After 1995),C,mean : 16.1 ; min : 0 ; max : 198 ; sd : 21.28; missing values : 48913
+gramshort13,Coffee rolls/buns; rusk;Food intake converted to gram per day   (After 1995),C,mean : 9.71 ; min : 0 ; max : 176 ; sd : 14.47; missing values : 48913
+gramshort14,Cheese 28% (e.g. Grevè);Food intake converted to gram per day   (After 1995),C,mean : 10.73 ; min : 0 ; max : 96 ; sd : 12.21; missing values : 48913
+gramshort15,Cheese 10-17% (e.g. Drabant);Food intake converted to gram per day   (After 1995),C,mean : 4 ; min : 0 ; max : 80 ; sd : 8.42; missing values : 48913
+gramshort16,Sausage on bread;Food intake converted to gram per day   (After 1995),C,mean : 4.55 ; min : 0 ; max : 114 ; sd : 7.02; missing values : 48913
+gramshort17,Meat on bread;Food intake converted to gram per day   (After 1995),C,mean : 4.19 ; min : 0 ; max : 92 ; sd : 5.72; missing values : 48913
+gramshort18,Whole wheat; rye; or barley porridge;Food intake converted to gram per day   (After 1995),C,mean : 36.81 ; min : 0 ; max : 800 ; sd : 59.77; missing values : 48913
+gramshort19,Rosehip; sweet syrup soup;Food intake converted to gram per day   (After 1995),C,mean : 8.34 ; min : 0 ; max : 800 ; sd : 24.07; missing values : 48913
+gramshort20,Sour milk; yoghurt; 3% fat;Food intake converted to gram per day   (After 1995),C,mean : 92.03 ; min : 0 ; max : 1240 ; sd : 112.76; missing values : 48913
+gramshort21,Sour milk; yoghurt; low fat;Food intake converted to gram per day   (After 1995),C,mean : 56.61 ; min : 0 ; max : 1200 ; sd : 95.35; missing values : 48913
+gramshort22,Fiber cereals (e.g. muesli);Food intake converted to gram per day   (After 1995),C,mean : 10.54 ; min : 0 ; max : 180 ; sd : 14.43; missing values : 48913
+gramshort23,Corn flakes;Food intake converted to gram per day   (After 1995),C,mean : 3.01 ; min : 0 ; max : 88 ; sd : 5.63; missing values : 48913
+gramshort24,Berries; fresh or frozen;Food intake converted to gram per day   (After 1995),C,mean : 9.69 ; min : 0 ; max : 260 ; sd : 16.37; missing values : 48913
+gramshort25,Apple; pear; peach;Food intake converted to gram per day   (After 1995),C,mean : 103.76 ; min : 0 ; max : 460 ; sd : 100.77; missing values : 48913
+gramshort26,Banana;Food intake converted to gram per day   (After 1995),C,mean : 41.7 ; min : 0 ; max : 420 ; sd : 47.82; missing values : 48913
+gramshort27,Root vegetables; carrot;Food intake converted to gram per day   (After 1995),C,mean : 37.51 ; min : 0 ; max : 416 ; sd : 48.3; missing values : 50130
+gramshort28,Tomato; cucumber;Food intake converted to gram per day   (After 1995),C,mean : 40.22 ; min : 0 ; max : 380 ; sd : 46.06; missing values : 50130
+gramshort29,Lettuce; lettuce cabbage;Food intake converted to gram per day   (After 1995),C,mean : 30.39 ; min : 0 ; max : 333.32 ; sd : 40.02; missing values : 50130
+gramshort30,Boiled or baked potato;Food intake converted to gram per day   (After 1995),C,mean : 99.44 ; min : 0 ; max : 1280 ; sd : 90.56; missing values : 50357
+gramshort31,Fried potato;Food intake converted to gram per day   (After 1995),C,mean : 12.32 ; min : 0 ; max : 780 ; sd : 19; missing values : 50357
+gramshort32,Rice;Food intake converted to gram per day   (After 1995),C,mean : 33.02 ; min : 0 ; max : 960 ; sd : 40.23; missing values : 50357
+gramshort33,Pasta;Food intake converted to gram per day   (After 1995),C,mean : 44.93 ; min : 0 ; max : 1200 ; sd : 45.75; missing values : 50357
+gramshort34,Brown beans; pea soup;Food intake converted to gram per day   (After 1995),C,mean : 13.66 ; min : 0 ; max : 1100 ; sd : 28.49; missing values : 48913
+gramshort35,Pancake; waffle;Food intake converted to gram per day   (After 1995),C,mean : 18.65 ; min : 0 ; max : 1500 ; sd : 21.79; missing values : 50357
+gramshort36,Pizza;Food intake converted to gram per day   (After 1995),C,mean : 14.96 ; min : 0 ; max : 1300 ; sd : 20.31; missing values : 48913
+gramshort37,Minced meat dishes;Food intake converted to gram per day   (After 1995),C,mean : 21.03 ; min : 0 ; max : 800 ; sd : 20.28; missing values : 50502
+gramshort38,Meat stew;Food intake converted to gram per day   (After 1995),C,mean : 17.99 ; min : 0 ; max : 1200 ; sd : 21.53; missing values : 50502
+gramshort39,Steak; chop; e.g.;Food intake converted to gram per day   (After 1995),C,mean : 15.76 ; min : 0 ; max : 800 ; sd : 17.6; missing values : 50502
+gramshort40,Bacon;Food intake converted to gram per day   (After 1995),C,mean : 4.05 ; min : 0 ; max : 420 ; sd : 5.73; missing values : 50502
+gramshort41,Sausage as main dish;Food intake converted to gram per day   (After 1995),C,mean : 11.89 ; min : 0 ; max : 800 ; sd : 13.69; missing values : 50502
+gramshort42,Hamburger;Food intake converted to gram per day   (After 1995),C,mean : 7.24 ; min : 0 ; max : 480 ; sd : 8.77; missing values : 48913
+gramshort43,White meat (poultry);Food intake converted to gram per day   (After 1995),C,mean : 18.6 ; min : 0 ; max : 1200 ; sd : 22.63; missing values : 50502
+gramshort44,Lean fish (e.g. perch; bass; cod);Food intake converted to gram per day   (After 1995),C,mean : 11.81 ; min : 0 ; max : 800 ; sd : 14.75; missing values : 50502
+gramshort45,Fatty fish (e.g. (Baltic) herring; whitefish; salmon sik; lax);Food intake converted to gram per day   (After 1995),C,mean : 8.77 ; min : 0 ; max : 800 ; sd : 12.39; missing values : 50502
+gramshort46,Salty fish;Food intake converted to gram per day   (After 1995),C,mean : 1.19 ; min : 0 ; max : 250 ; sd : 3.69; missing values : 50502
+gramshort47,Smoked fish/meat;Food intake converted to gram per day   (After 1995),C,mean : 1.1 ; min : 0 ; max : 100 ; sd : 2.8; missing values : 48913
+gramshort48,Ice cream;Food intake converted to gram per day   (After 1995),C,mean : 5.79 ; min : 0 ; max : 288 ; sd : 7.51; missing values : 48913
+gramshort49,Sweets (chocolate; candy);Food intake converted to gram per day   (After 1995),C,mean : 5.25 ; min : 0 ; max : 188 ; sd : 6.7; missing values : 48913
+gramshort50,Sugar; honey;Food intake converted to gram per day   (After 1995),C,mean : 8.87 ; min : 0 ; max : 92 ; sd : 14.44; missing values : 48913
+gramshort51,Cookies; pastry;Food intake converted to gram per day   (After 1995),C,mean : 7.56 ; min : 0 ; max : 184 ; sd : 11.05; missing values : 48913
+gramshort52,Chips; salty nuts; popcorn;Food intake converted to gram per day   (After 1995),C,mean : 2.87 ; min : 0 ; max : 140 ; sd : 4.08; missing values : 48913
+gramshort53,Milk; 0;5% fat;Food intake converted to gram per day   (After 1995),C,mean : 51.03 ; min : 0 ; max : 1040 ; sd : 121.64; missing values : 48913
+gramshort54,Milk; sour milk; 1;5% fat;Food intake converted to gram per day   (After 1995),C,mean : 126.25 ; min : 0 ; max : 1040 ; sd : 161.14; missing values : 48913
+gramshort55,Milk; sour milk; 3% fat;Food intake converted to gram per day   (After 1995),C,mean : 25.03 ; min : 0 ; max : 1400 ; sd : 88.45; missing values : 48913
+gramshort56,Sodas (e.g. Coca-cola);Food intake converted to gram per day   (After 1995),C,mean : 63.37 ; min : 0 ; max : 1066.68 ; sd : 105.02; missing values : 48913
+gramshort57,Brewed (filtered) coffee;Food intake converted to gram per day   (After 1995),C,mean : 299.63 ; min : 0 ; max : 800 ; sd : 205.87; missing values : 48913
+gramshort58,Boilded coffee;Food intake converted to gram per day   (After 1995),C,mean : 73.57 ; min : 0 ; max : 800 ; sd : 151.56; missing values : 48913
+gramshort59,Tea;Food intake converted to gram per day   (After 1995),C,mean : 145.79 ; min : 0 ; max : 1000 ; sd : 203.2; missing values : 48913
+gramshort60,Light beer;Food intake converted to gram per day   (After 1995),C,mean : 19.97 ; min : 0 ; max : 1320 ; sd : 57.22; missing values : 48913
+gramshort61,Medium beer;Food intake converted to gram per day   (After 1995),C,mean : 17.68 ; min : 0 ; max : 1400 ; sd : 42.8; missing values : 48913
+gramshort62,Strong beer;Food intake converted to gram per day   (After 1995),C,mean : 19.84 ; min : 0 ; max : 2000 ; sd : 38.11; missing values : 48913
+gramshort63,Wine;Food intake converted to gram per day   (After 1995),C,mean : 20.68 ; min : 0 ; max : 1100 ; sd : 30.25; missing values : 48913
+gramshort64,Liquor; spirits;Food intake converted to gram per day   (After 1995),C,mean : 2.21 ; min : 0 ; max : 336 ; sd : 5.12; missing values : 48913
+ensum1,Total energy intake (kcal/day)  ,C,mean : 1725.59 ; min : 23.08 ; max : 25537.67 ; sd : 681.91; missing values : 16892
+protsum1,Protein (g/day),C,mean : 63.44 ; min : 0.96 ; max : 1275.09 ; sd : 26.73; missing values : 16892
+protsum1_anim,Animal based protein (g/day),C,mean : 45.31 ; min : 0.13 ; max : 1018.27 ; sd : 21.36; missing values : 16892
+protsum1_veg,Plant based protein (g/day),C,mean : 18.15 ; min : 0.15 ; max : 258.2 ; sd : 8.43; missing values : 16102
+kolhsum1,Carbohydrates (g/day),C,mean : 203.85 ; min : 2.23 ; max : 2661.25 ; sd : 85.44; missing values : 16892
+sacksum1,Sucrose (g/day),C,mean : 26.91 ; min : 0.11 ; max : 376.01 ; sd : 17.91; missing values : 16892
+DISAsum1,Disaccharides (g/day),C,mean : 49.11 ; min : 0.45 ; max : 542.7 ; sd : 24.97; missing values : 16892
+MOSAsum1,Monosaccharides (g/day),C,mean : 24.5 ; min : 0.2 ; max : 258.67 ; sd : 12.97; missing values : 16892
+fibesum1,Fibre (g/day),C,mean : 18.42 ; min : 0.18 ; max : 239.18 ; sd : 8.22; missing values : 16892
+FULLKsum1,Whole grain (g/day),C,mean : 66.09 ; min : 0 ; max : 553.26 ; sd : 37.54; missing values : 16892
+alkosum1,Alcohol (g/day),C,mean : 4.24 ; min : 0 ; max : 325.86 ; sd : 5.11; missing values : 11600
+fettsum1,Fat (g/day),C,mean : 68.09 ; min : 0.94 ; max : 1080.14 ; sd : 32.09; missing values : 16892
+mfetsum1,Saturated fat (g/day),C,mean : 28.51 ; min : 0.39 ; max : 401.72 ; sd : 14.44; missing values : 16892
+MONOsum1,Monounsaturated fat (g/day),C,mean : 23.25 ; min : 0.32 ; max : 402.52 ; sd : 11.18; missing values : 16892
+POLYsum1,Polyunsaturated fat (g/day),C,mean : 10.79 ; min : 0.1 ; max : 201.37 ; sd : 6.02; missing values : 16892
+TRANSsum1,Trans fat (g/day),C,mean : 1.65 ; min : 0.01 ; max : 40.83 ; sd : 1.24; missing values : 16892
+kolesum1,Cholesterol (g/day),C,mean : 0.2 ; min : 0 ; max : 4.47 ; sd : 0.1; missing values : 16892
+FA140_sum1,Formic acid (g/day),C,mean : 3.24 ; min : 0.04 ; max : 42.67 ; sd : 1.87; missing values : 16892
+FA160_sum1,Palmitic acid (g/day),C,mean : 14.43 ; min : 0.18 ; max : 221.13 ; sd : 6.99; missing values : 16892
+FA182_sum1,Linoleic acid (g/day),C,mean : 7.82 ; min : 0.07 ; max : 139.49 ; sd : 4.74; missing values : 16892
+FA183_sum1,Linolenic acid (g/day),C,mean : 1.58 ; min : 0.01 ; max : 26.8 ; sd : 0.84; missing values : 16892
+FA204_sum1,Arachidonic acid (g/day),C,mean : 0.09 ; min : 0 ; max : 6.02 ; sd : 0.06; missing values : 16368
+FA205_sum1,Eicosapentaenoic acid; EPA (g/day),C,mean : 0.07 ; min : 0 ; max : 5.52 ; sd : 0.08; missing values : 16892
+FA226_sum1,Docosahexaenoic acid; DHA (g/day),C,mean : 0.15 ; min : 0 ; max : 10.64 ; sd : 0.16; missing values : 16892
+FA150_sum1,Pentadecanoic acid (g/day),C,mean : 0.23 ; min : 0 ; max : 2.74 ; sd : 0.16; missing values : 23856
+FA170_sum1,Heptadecanoic acid (g/day),C,mean : 0.13 ; min : 0 ; max : 1.59 ; sd : 0.09; missing values : 23856
+MAGNsum1,Magnesium (mg/day),C,mean : 285.27 ; min : 2.97 ; max : 3657.33 ; sd : 105.99; missing values : 16892
+NATRsum1,Sodium (mg/day),C,mean : 2051.54 ; min : 38.33 ; max : 51667.92 ; sd : 964.13; missing values : 16892
+FOSFsum1,Phosphate (mg/day),C,mean : 1154.09 ; min : 14.28 ; max : 17523.35 ; sd : 472.14; missing values : 16892
+selesum1,Selenium (µg/day),C,mean : 15.03 ; min : 0.23 ; max : 322.08 ; sd : 6.75; missing values : 16892
+ZINCsum1,Zinc (mg/day),C,mean : 22.92 ; min : 0.38 ; max : 611.55 ; sd : 11.35; missing values : 16892
+retisum1,Retinol; vitamin A (µg/day),C,mean : 8.09 ; min : 0.09 ; max : 128.79 ; sd : 3.31; missing values : 16892
+karosum1,Beta-carotene (µg/day),C,mean : 0.6 ; min : 0 ; max : 8.53 ; sd : 0.36; missing values : 16892
+TIAMsum1,Tiamin (mg/day),C,mean : 4.24 ; min : 0.01 ; max : 52.51 ; sd : 4.69; missing values : 16892
+Folasum1,Folic acid (folate) (µg/day),C,mean : 1.19 ; min : 0.01 ; max : 16.08 ; sd : 0.49; missing values : 16892
+B2sum1,Riboflavin; vitamin B2 (mg/day),C,mean : 229.53 ; min : 2.42 ; max : 3243.96 ; sd : 104.71; missing values : 16892
+NIACsum1,Niacin; nicotinic acid; vitamin B3 (mg/day),C,mean : 1.41 ; min : 0.02 ; max : 18.81 ; sd : 0.61; missing values : 16892
+B6sum1,Vitamin B6 (mg/day),C,mean : 1.88 ; min : 0.02 ; max : 34.04 ; sd : 0.8; missing values : 16892
+B12sum1,Vitamin B12 (µg/day),C,mean : 4.67 ; min : 0.03 ; max : 104.91 ; sd : 2.55; missing values : 16892
+askosum1,Ascorbite acid; vitamin C (mg/day),C,mean : 72.62 ; min : 0.45 ; max : 816.6 ; sd : 48.76; missing values : 16892
+Dsum1,Vitamin D (µg/day),C,mean : 5.32 ; min : 0.07 ; max : 119.43 ; sd : 2.62; missing values : 16892
+tokosum1,Tocopherol; vitamin E (mg/day),C,mean : 6.25 ; min : 0.08 ; max : 95.72 ; sd : 2.74; missing values : 16892
+VITKsum1,Vitamin K (µg/day),C,mean : 3.8 ; min : 0 ; max : 70.88 ; sd : 2.54; missing values : 16892
+jernsum1,Iron (mg/day),C,mean : 12.03 ; min : 0.18 ; max : 230.16 ; sd : 5.37; missing values : 16892
+JODIsum1,Iodine (µg/day),C,mean : 122.19 ; min : 1.87 ; max : 2918.85 ; sd : 64.26; missing values : 16892
+kalcsum1,Calcium (mg/day),C,mean : 765.83 ; min : 7.52 ; max : 7104.62 ; sd : 379.42; missing values : 16892
+KALIsum1,Potassium (mg/day),C,mean : 3118.3 ; min : 30.04 ; max : 40451.29 ; sd : 1199.97; missing values : 16892
+l2a1,Have not taken supplements during the past year,D,0 : 1 ; 1 : 85044 ; missing values : 83285
+l2b1,Have not taken supplements during the past 14 days,D,1 : 29129 ; 7 : 1 ; missing values : 139200
+l2a2,Have you taken multivitamins during the past year?,D,0 : 1 ; 1 : 10110 ; missing values : 158219
+l2b2,Have you taken multivitamins during the last 14 days?,D,0 : 1 ; 1 : 9096 ; missing values : 159233
+l2a3,Have you taken multiminerals during the past year?,D,1 : 4156 ; 5 : 1 ; missing values : 164173
+l2b3,Have you taken multiminerals during the last 14 days?,D,0 : 1 ; 1 : 19127 ; missing values : 149202
+l2a4,Have you taken iron supplements during the past year?,D,0 : 1 ; 1 : 90543 ; missing values : 77786
+l2b4,Have you taken iron supplements during the last 14 days?,D,1 : 16966 ; 2 : 1 ; missing values : 151363
+l2a5,Have you taken selenium supplements during the past year?,D,1 : 6644 ; 5 : 1 ; missing values : 161685
+l2b5,Have you taken selenium supplements during the last 14 days?,D,1 : 3454 ; 5 : 1 ; missing values : 164875
+l2a6,Have you taken other supplements during the past year?,D,1 : 2474 ; missing values : 165856
+l2b6,Have you taken other supplements during the last 14 days?,D,0 : 1 ; 1 : 16494 ; missing values : 151835
+l1,Breakfast habits (0-6):;0=only coffee/tea; 1=coffee/tea and sandwich; 2= coffee/tea and wheat buns or rusk; 3=sour milk; cereals; w/o sandwich; 4=porridge; w/o sandwich; 5=gruel; w/o sandwich; 6=do not eat breakfast at all NOTE! Alt. 0 is only available in the short FFQ; i.e. from 1996,D,0 : 5973 ; 1 : 64238 ; 2 : 3006 ; 3 : 48264 ; 4 : 16695 ; 5 : 2008 ; 6 : 5129 ; 9 : 115 ; missing values : 22902
+l2,Do you usually eat lunch? ;(1=yes; 2=no),D,1 : 25496 ; 2 : 3300 ; missing values : 139534
+l3,Do you usually eat dinner? ;(1=yes; 2=no),D,1 : 41036 ; 2 : 1372 ; 3 : 201 ; 9 : 6 ; missing values : 125715
+l5a,Do you usually eat breakfast? ;(1=yes; 2=no) from 2000 (only available in DietVIP),D,0 : 1 ; 1 : 77711 ; 2 : 8791 ; 3 : 15 ; 4 : 3 ; 9 : 12 ; missing values : 81797
+l5b,Do you usually eat lunch? ;(1=yes; 2=no) from 2000 (only available in DietVIP),D,1 : 82718 ; 2 : 4914 ; 3 : 11 ; 4 : 6 ; 9 : 9 ; missing values : 80672
+l5c,Do you usually eat dinner? ;(1=yes; 2=no) from 2000 (only available in DietVIP),D,1 : 86758 ; 2 : 1741 ; 3 : 6 ; 4 : 7 ; 9 : 2 ; missing values : 79816
+,,,
+,*measured different before and after 2009-09-01; variable “efter_090901” is missing; so probably variable “datum” will have to be used,,
