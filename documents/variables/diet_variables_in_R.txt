@@ -1,0 +1,71 @@
+#diet
+glacier.pheno$mufa <- glacier.pheno$MONOsum1
+glacier.pheno$pufa <- glacier.pheno$POLYsum1
+glacier.pheno$carboh <- glacier.pheno$kolhsum1
+glacier.pheno$sugar <- glacier.pheno$sacksum1
+glacier.pheno$protein <- glacier.pheno$protsum1
+glacier.pheno$tei <- glacier.pheno$ensum1
+glacier.pheno$satfat <- glacier.pheno$mfetsum1
+glacier.pheno$totfat <- glacier.pheno$fettsum1
+glacier.pheno$fiber <- glacier.pheno$fibesum1
+glacier.pheno$n3 <- glacier.pheno$FA183_sum1 + glacier.pheno$FA205_sum1 + glacier.pheno$FA226_sum1 
+glacier.pheno$n6 <- glacier.pheno$FA182_sum1 + glacier.pheno$FA204_sum1
+glacier.pheno$fa <- glacier.pheno$n3 + glacier.pheno$n6
+glacier.pheno$alc <- glacier.pheno$alkosum1
+glacier.pheno$salt <- glacier.pheno$NATRsum1 
+glacier.pheno$vitA <- glacier.pheno$retisum1
+glacier.pheno$vitD <- glacier.pheno$Dsum1
+glacier.pheno$vitE <- glacier.pheno$tokosum1
+glacier.pheno$thia <- glacier.pheno$TIAMsum1
+glacier.pheno$ribo <- glacier.pheno$B2sum1
+glacier.pheno$niac <- glacier.pheno$NIACsum1
+glacier.pheno$vitB6 <- glacier.pheno$B6sum1
+glacier.pheno$folate <- glacier.pheno$Folasum1
+glacier.pheno$vitB12 <- glacier.pheno$B12sum1
+glacier.pheno$vitC <- glacier.pheno$askosum1
+glacier.pheno$calc <- glacier.pheno$kalcsum1
+glacier.pheno$phosp <- glacier.pheno$FOSFsum1
+glacier.pheno$pota <- glacier.pheno$KALIsum1
+glacier.pheno$magn <- glacier.pheno$MAGNsum1
+glacier.pheno$iron <- glacier.pheno$jernsum1
+glacier.pheno$zinc <- glacier.pheno$ZINCsum1
+glacier.pheno$iodine <- glacier.pheno$JODIsum1
+glacier.pheno$selenium <- glacier.pheno$selesum1
+glacier.pheno$enk[glacier.pheno$enkver2 == "shor"] <- 0
+glacier.pheno$enk[glacier.pheno$enkver2 == "apri"] <- 1
+glacier.pheno$enk[glacier.pheno$enkver2 == "long"] <- 1
+
+#exclusions for diet variables (exclude==1 and tei lower than 500 or higher than 4500) Other exclusion based on FIL should be applied
+glacier.pheno$mufa[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$pufa[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$carboh[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$sugar[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$protein[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$satfat[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$totfat[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$fiber[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$n3[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$n6[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$fa[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$alc[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$salt[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$vitA[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$vitD[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$vitE[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$thia[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$ribo[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$niac[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$vitB6[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$folate[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$vitB12[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$vitC[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$calc[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$phosp[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$pota[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$magn[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$iron[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$zinc[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$iodine[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$selenium[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$enk[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA
+glacier.pheno$tei[glacier.pheno$exclude==1 | glacier.pheno$tei < 500 | glacier.pheno$tei > 4500] = NA

@@ -7,9 +7,6 @@ subjects_dates={}
 #read only the first three columns(Subject_id, enummer, datum)
 VIP_data=pandas.read_csv('VIP_161102.csv', low_memory=False,usecols=[0,1,2])
 
-#working size
-#VIP_data=pandas.read_csv('VIP_161102.csv', low_memory=False,usecols=[0,1,2],nrows=1000)
-
 #get the list of subjects with at least two visits
 subjects_2plus_visits=pandas.read_csv('Subject_ids_2plus_visits', low_memory=False, header=None)
 subjects_2plus_visits=list(subjects_2plus_visits[0])
