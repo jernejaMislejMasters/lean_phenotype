@@ -1,0 +1,136 @@
+#VIP
+
+#IMPORT FILE
+vip <- read.table ("/Volumes/DISCOENCR/BMI_bimodality/VIP/VIP_161102.csv", header=TRUE, sep=',', fileEncoding="latin1")
+summary(vip)
+vip$date <- as.Date(vip$datum, format="%m/%d/%Y")
+
+#remove duplicated individuals (keep only the examination from the first visit)
+attach(vip)
+vipsort <- vip[order(Subject_id,date),]
+detach(vip)
+vipclean<-subset(vipsort, !duplicated(Subject_id))
+rownames(vipclean) <- vipclean$Row.names #reset rownames
+vipclean$Row.names <- NULL #remove added rownames col 
+
+#ADAPT THE DATASET
+#Change numbers for NA on phenotypes
+#create a list of phenotypes to change
+variablelist <- as.vector(c("fasta_enk", "civil", "utbild", "sambo", "skiftarbete", "sjukskriven", "ansttyp_a", "ansttyp_b", "ansttyp_c", "ansttyp_d", "ansttyp_e", "ansttyp_f", "ansttyp_g", "ansttyp_h", "ansttyp_i",
+                        "ursprungsland", "halsojf", "halsoal", "halsoar", "hjartinf_foraldrar_syskon", "diab_foraldrar_syskon", "beskbltr", "med_C5a", "med_C5b", "med_C5c", "med_C5d", "med_C5e", "med_C5f",
+                        "smartmed", "andra_mediciner", "diabet", "diabetesbehandling_a", "diabetesbehandling_b", "diabetesbehandling_c", "diabetesbehandling_d", "graviditetsdiabetes", "infarkt_sjukhus", "infarkt_sjukhus_ar", "sf_1", 
+                        "sf_2", "sf_3a", "sf_3b", "sf_3c", "sf_3d", "sf_3e", "sf_3f", "sf_3g", "sf_3h", "sf_3i", "sf_3j", "sf_4a", "sf_4b", "sf_4c", "sf_4d", "sf_5a", "sf_5b", "sf_5c", "sf_6", "sf_7", "sf_8", "sf_9a", "sf_9b", "sf_9c", "sf_9d", 
+                        "sf_9e", "sf_9f", "sf_9g", "sf_9h", "sf_9i", "sf_10", "sf_11a", "sf_11b", "sf_11c", "sf_11d", "livskvalitet_d1", "livskvalitet_d2", "livskvalitet_d3", "livskvalitet_d4", "livskvalitet_d5", "livskvalitet_d6", 
+                        "livskvalitet_d7", "livskvalitet_d8", "livskvalitet_d9", "livskvalitet_d10", "livskvalitet_d11", "livskvalitet_d12", "livskvalitet_d13", "livskvalitet_d14", "livskvalitet_d15", "livskvalitet_d16", "livskvalitet_d17", 
+                        "sockont", "socsam", "soclago", "sochem", "soctala", "socstod", "socnara", "soclyck", "socanfo", "soctrost", "socupps", "soclana", "sochelp", "socdelta", "socofta", "socforening_a", "socforening_b", "socforening_c",
+                        "socforening_d", "socforening_e", "arbfys", "arbfort", "arbpsyk", "arbhin", "arbkrav", "arbnytt", "arbski",  "arbide", "arbrut", "arbhur", "arbvad", "arbtala", "arblamna", "arbkontakt", "arbfritid", "arbbesok",
+                        "g1_a", "g1_b", "g1_c", "g1_d", "g2_a", "g2_b", "g2_c", "g2_d", "g2_e", "g3_a","g3_b", "g3_c", "g3_d", "g3_e", "g3_f", "g3_g", "g4", "g5", "g6", "g7", "g8", "g9", "g10", "g11a_h", "g11a_m", "g11a_ej", "g11b_h",
+                        "g11b_m", "g11b_ej", "motion", "motion2", "sleep_h7a", "sleep_h7b", "sleep_h7c", "sleep_h7d", "sleep_h7e", "sleep_h7f", "sleep_h7g", "sleep_h7h", "sleep_h8a", "sleep_h8b", "i1", "i2", "i3", "i4", "i5", "j1", "j2",
+                        "j3", "j4", "j5", "j6", "j7", "j8", "j9", "j10", "sm_status", "sm_cig_groups", "sm_num_cig", "sm_num_cigar", "sm_gr_tobacco", "sm_how_often", "sm_start", "sm_stop", "sm_duration", "sm_whystop_1", "sm_whystop_2", 
+                        "sm_whystop_3", "sm_whystop_4", "sm_whystop_5", "sn_status", "sn_quantity", "sn_time", "sn_stopsmoke_a", "sn_stopsmoke_b", "sn_nicotine_replace", "sm_nicotine_replace", "nicotine_replace", "sm_yes_no", "sn_yes_no"))
+#loop to change to NA numbers higher or equal to 5555
+for(k in variablelist)
+{ vipclean[k][vipclean[k] >= 5555] = NA }
+
+#Define categorical variables#
+vipclean[,variablelist] <- lapply(vipclean[,variablelist] , factor)
+
+#CORRECT PHENOTYPES VALUES
+#correct for change in measurement method on blood pressure traits and lipid traits
+#create new blood pressure and lipids variables
+vipclean$sbpc <- vipclean$sbt
+vipclean$dbpc <- vipclean$dbt
+vipclean$cholc <- vipclean$skol
+vipclean$tryglc <- vipclean$stg
+
+#create variable efter_090901
+vipclean$efter_090901[vipclean$date >"2009-09-01"] <- 1
+vipclean$efter_090901[vipclean$date <="2009-09-01"] <- 0
+vipclean$efter_090901 <- as.factor(vipclean$efter_090901)
+summary(vipclean)
+#sbp change from sitting to supine
+#there are no formulas to convert values from sitting to supine position for individuals <=35 years or > 65 years. For them, I have use the formula closest to their age in order not to lose participants but we may need to delete them
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 1 & !is.na(vipclean$sbt)] <- 24.595 + (0.792*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age <= 35  & vipclean$gender == 1 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age >35   & vipclean$age <= 45 & vipclean$gender == 1 & !is.na(vipclean$sbt)] <- 24.595 + (0.792*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 35  & vipclean$age <= 45 & vipclean$gender == 1 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age >45   & vipclean$age <= 55 & vipclean$gender == 1 & !is.na(vipclean$sbt)] <- 9.850 + (0.910*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 45  & vipclean$age <= 55 & vipclean$gender == 1 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age >55   & vipclean$age <= 65 & vipclean$gender == 1 & !is.na(vipclean$sbt)] <- 7.763 + (0.936*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 55  & vipclean$age <= 65 & vipclean$gender == 1 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 1 & !is.na(vipclean$sbt)] <- 7.763 + (0.936*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 65  & vipclean$gender == 1 & !is.na(vipclean$sbt)])
+
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 2 & !is.na(vipclean$sbt)] <- 8.669 + (0.919*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 2 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age >35   & vipclean$age <= 45 & vipclean$gender == 2 & !is.na(vipclean$sbt)] <- 8.669 + (0.919*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 35  & vipclean$age <= 45 & vipclean$gender == 2 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age >45   & vipclean$age <= 55 & vipclean$gender == 2 & !is.na(vipclean$sbt)] <- 16.051 + (0.859*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 45  & vipclean$age <= 55 & vipclean$gender == 2 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age >55   & vipclean$age <= 65 & vipclean$gender == 2 & !is.na(vipclean$sbt)] <- 9.999 + (0.914*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 55  & vipclean$age <= 65 & vipclean$gender == 2 & !is.na(vipclean$sbt)])
+vipclean$sbpc [vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 2 & !is.na(vipclean$sbt)] <- 9.999 + (0.914*vipclean$sbt[vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 2 & !is.na(vipclean$sbt)])
+
+#dbp change from sitting to supine
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 1 & !is.na(vipclean$dbt)] <- 17.282 + (0.753*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 1 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age >35   & vipclean$age <= 45 & vipclean$gender == 1 & !is.na(vipclean$dbt)] <- 17.282 + (0.753*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 35  & vipclean$age <= 45 & vipclean$gender == 1 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age >45   & vipclean$age <= 55 & vipclean$gender == 1 & !is.na(vipclean$dbt)] <- 12.363 + (0.812*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 45  & vipclean$age <= 55 & vipclean$gender == 1 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age >55   & vipclean$age <= 65 & vipclean$gender == 1 & !is.na(vipclean$dbt)] <- 9.029 + (0.864*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 55  & vipclean$age <= 65 & vipclean$gender == 1 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 1 & !is.na(vipclean$dbt)] <-  9.029 + (0.864*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 1 & !is.na(vipclean$dbt)])
+
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 2 & !is.na(vipclean$dbt)] <- 5.784 + (0.890*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age <= 35 & vipclean$gender == 2 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age >35   & vipclean$age <= 45 & vipclean$gender == 2 & !is.na(vipclean$dbt)] <- 5.784 + (0.890*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 35  & vipclean$age <= 45 & vipclean$gender == 2 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age >45   & vipclean$age <= 55 & vipclean$gender == 2 & !is.na(vipclean$dbt)] <- 13.566 + (0.798*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 45  & vipclean$age <= 55 & vipclean$gender == 2 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age >55   & vipclean$age <= 65 & vipclean$gender == 2 & !is.na(vipclean$dbt)] <- 7.992 + (0.870*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 55  & vipclean$age <= 65 & vipclean$gender == 2 & !is.na(vipclean$dbt)])
+vipclean$dbpc [vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 2 & !is.na(vipclean$dbt)] <-  7.992 + (0.870*vipclean$dbt[vipclean$efter_090901 == 1  & vipclean$age > 65 & vipclean$gender == 2 & !is.na(vipclean$dbt)])
+
+vipclean$sbpc <- round(vipclean$sbpc, digits=0)
+vipclean$dbpc <- round(vipclean$dbpc, digits=0)
+
+#chol change from laboratory to reflotron
+vipclean$cholc [vipclean$efter_090901 == 1 & !is.na(vipclean$skol)] <- 0.170 + (0.939*vipclean$skol[vipclean$efter_090901 == 1 & !is.na(vipclean$skol)])
+
+#trygl change from laboratory to reflotron
+vipclean$tryglc [vipclean$efter_090901 == 1 & !is.na(vipclean$stg)] <- 0.177 + (0.932*vipclean$stg[vipclean$efter_090901 == 1 & !is.na(vipclean$stg)])
+
+vipclean$cholc <- round(vipclean$cholc, digits=2)
+vipclean$tryglc <- round(vipclean$tryglc, digits=2)
+
+# correct for medication on blood pressure and lipid traits 
+#medication blood pressure
+vipclean$medibl <- vipclean$med_C5a
+vipclean$medibl = as.character(vipclean$medibl)
+vipclean$medibl[is.na(vipclean$medibl)] = 0
+vipclean$sbp [vipclean$medibl == 1]  <- vipclean$sbpc [vipclean$medibl == 1] +15
+vipclean$sbp [vipclean$medibl == 0] <- vipclean$sbpc [vipclean$medibl == 0]
+vipclean$dbp [vipclean$medibl == 1] <- vipclean$dbpc [vipclean$medibl == 1] +10
+vipclean$dbp [vipclean$medibl == 0] <- vipclean$dbpc [vipclean$medibl == 0] 
+
+#medication lipids 
+#Use Friedewall formula to calculate ldl in individuals in which we don't have the data
+vipclean$ldlf <- vipclean$ldl
+vipclean$ldlf[is.na(vipclean$ldl)] <- vipclean$cholc[is.na(vipclean$ldl)] - vipclean$hdl[is.na(vipclean$ldl)] - (vipclean$tryglc[is.na(vipclean$ldl)]/2.2)
+#correct ldl to not have a negative value
+vipclean$ldlf [vipclean$ldlf < 0] <- NA
+
+vipclean$medilip <- vipclean$med_C5e
+vipclean$medilip = as.character(vipclean$medilip)
+vipclean$medilip[is.na(vipclean$medilip)] = 0
+vipclean$chol [vipclean$medilip == 1]  <- vipclean$cholc [vipclean$medilip == 1] +1.347
+vipclean$chol [vipclean$medilip == 0] <- vipclean$cholc [vipclean$medilip == 0]
+vipclean$chdl [vipclean$medilip == 1] <- vipclean$hdl [vipclean$medilip == 1] -0.060
+vipclean$chdl [vipclean$medilip == 0] <- vipclean$hdl [vipclean$medilip == 0] 
+vipclean$tryg [vipclean$medilip == 1] <- vipclean$tryglc [vipclean$medilip == 1] +0.208
+vipclean$tryg [vipclean$medilip == 0] <- vipclean$tryglc [vipclean$medilip == 0] 
+vipclean$cldl [vipclean$medilip == 1] <- vipclean$ldlf [vipclean$medilip == 1] +1.290
+vipclean$cldl [vipclean$medilip == 0] <- vipclean$ldlf [vipclean$medilip == 0] 
+
+#exclude individuals outside limit values
+vipclean$langdm <- vipclean$langd /100
+vipclean$bmi <- vipclean$vikt / (vipclean$langdm*vipclean$langdm)
+vipclean$bmi[vipclean$bmi < 15 | vipclean$bmi > 70 ] = NA
+vipclean$bmi[vipclean$langd < 130 | vipclean$langd > 210 ] = NA
+vipclean$bmi[vipclean$vikt < 35] = NA
+vipclean$langd[vipclean$langd < 130 | vipclean$langd > 210 ] = NA
+vipclean$vikt[vipclean$vikt < 35] = NA
+vipclean$midja[vipclean$midja < 60 | vipclean$midja > 160 ] = NA
+vipclean$chol[vipclean$chol < 0.5 | vipclean$chol > 15 ] = NA
+vipclean$chdl[vipclean$chdl < 0.15 | vipclean$chdl > 7 ] = NA
+vipclean$tryg[vipclean$tryg < 0.8 | vipclean$tryg > 20 ] = NA
+vipclean$blods0[vipclean$blods0 < 2 | vipclean$blods0 > 25 ] = NA
+vipclean$blods2[vipclean$blods2 < 1 | vipclean$blods2 > 35 ] = NA
+vipclean$sbp[vipclean$sbp < 20 | vipclean$sbp > 300 ] = NA
+vipclean$dbp[vipclean$dbp < 20 | vipclean$dbp > 250 ] = NA
+
+summary(vipclean)
