@@ -115,23 +115,29 @@ VIP_data$cldl [VIP_data$medilip == 0] <- VIP_data$ldlf [VIP_data$medilip == 0]
 #exclude individuals outside limit values
 VIP_data$langdm <- VIP_data$langd /100
 VIP_data$bmi <- VIP_data$vikt / (VIP_data$langdm*VIP_data$langdm)
-VIP_data$bmi[VIP_data$bmi < 15 | VIP_data$bmi > 70 ] = NA
-VIP_data$bmi[VIP_data$langd < 130 | VIP_data$langd > 210 ] = NA
-VIP_data$bmi[VIP_data$vikt < 35] = NA
-VIP_data$langd[VIP_data$langd < 130 | VIP_data$langd > 210 ] = NA
-VIP_data$vikt[VIP_data$vikt < 35] = NA
-VIP_data$midja[VIP_data$midja < 60 | VIP_data$midja > 160 ] = NA
-VIP_data$chol[VIP_data$chol < 0.5 | VIP_data$chol > 15 ] = NA
-VIP_data$chdl[VIP_data$chdl < 0.15 | VIP_data$chdl > 7 ] = NA
-VIP_data$tryg[VIP_data$tryg < 0.8 | VIP_data$tryg > 20 ] = NA
-VIP_data$blods0[VIP_data$blods0 < 2 | VIP_data$blods0 > 25 ] = NA
-VIP_data$blods2[VIP_data$blods2 < 1 | VIP_data$blods2 > 35 ] = NA
-VIP_data$sbp[VIP_data$sbp < 20 | VIP_data$sbp > 300 ] = NA
-VIP_data$dbp[VIP_data$dbp < 20 | VIP_data$dbp > 250 ] = NA
+VIP_data$bmi[VIP_data$bmi < 15 | VIP_data$bmi > 70 ] = NA#49
+VIP_data$bmi[VIP_data$langd < 130 | VIP_data$langd > 210 ] = NA#22
+VIP_data$bmi[VIP_data$vikt < 35] = NA#5
+VIP_data$langd[VIP_data$langd < 130 | VIP_data$langd > 210 ] = NA#22
+VIP_data$vikt[VIP_data$vikt < 35] = NA#5
+VIP_data$midja[VIP_data$midja < 60 | VIP_data$midja > 160 ] = NA#97
+VIP_data$chol[VIP_data$chol < 0.5 | VIP_data$chol > 15 ] = NA#7
+VIP_data$chdl[VIP_data$chdl < 0.15 | VIP_data$chdl > 7 ] = NA#400
+VIP_data$tryg[VIP_data$tryg < 0.8 | VIP_data$tryg > 20 ] = NA#9769
+VIP_data$blods0[VIP_data$blods0 < 2 | VIP_data$blods0 > 25 ] = NA#56
+VIP_data$blods2[VIP_data$blods2 < 1 | VIP_data$blods2 > 35 ] = NA#1028
+VIP_data$sbp[VIP_data$sbp < 20 | VIP_data$sbp > 300 ] = NA#0
+VIP_data$dbp[VIP_data$dbp < 20 | VIP_data$dbp > 250 ] = NA#1
 
 #----------------------------ALAITZ---------------------------------------------------
 
 #----------------------------JERNEJA---------------------------------------------------
+
+#remove the auxilliar varibles/columns
+VIP_data <- within(VIP_data, rm(medilip, ldlf, sbpc, dbpc, medibl,cholc,tryglc,langdm,ldl,hdl,sbt,dbt,skol,stg))
+
+#rename the corrected version, to have the same name as in the variable description
+colnames(VIP_data)[604:609]<-c("sbt","dbt","skol","hdl","stg","ldl")
 
 
 #exclude based on the insufficient diet data
@@ -139,14 +145,17 @@ VIP_data$dbp[VIP_data$dbp < 20 | VIP_data$dbp > 250 ] = NA
 VIP_data<-VIP_data[VIP_data$exclude!=1,]
 
 #CAREFUL DONT DO THIS TWICE!
-#exclude the bottom 5% (7441 subjects in the original(VIP_161102) dataset, maybe a few less in the new one(VIP_170206))
+#exclude the bottom 5% (7441 subjects in VIP_170206)
 VIP_data<-VIP_data[order(VIP_data$FIL),][-c(1:round(5*length(VIP_data$FIL[!is.na(VIP_data$FIL)])/100)),]
 
-#and the top 2.5% (3720 subjects in the original(VIP_161102) dataset, maybe a few less in the new one(VIP_170206))
+#and the top 2.5% (3534 subjects in VIP_170206)
 VIP_data<-VIP_data[order(-VIP_data$FIL),][-c(1:round(2.5*length(VIP_data$FIL[!is.na(VIP_data$FIL)])/100)),]
 
+
+#final number of subjects is 154009
+
 #save the final file
-write.csv(VIP_data, "VIP_170206_cleaned.csv", row.names=FALSE, na="")
+write.csv(VIP_data, "../VIP_data/VIP_170206_cleaned.csv", row.names=FALSE, na="")
 
 #----------------------------JERNEJA---------------------------------------------------
 

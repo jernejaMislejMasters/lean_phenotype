@@ -122,15 +122,13 @@ enummers_9_11_year_difference<-rbind(enummers_9_11_year_difference,
 write.csv(enummers_9_11_year_difference, "Visit1_Visit2_enummers.csv", row.names=FALSE, na="")
 
 
-#subset the data and keep only the wanted variables and name back the variables to original name
+#subset the data and remove besok and besok2 as only besok1 should be used
 VIP_data_subset<-rbind(VIP_data[VIP_data$enummer %in% enummers_9_11_year_difference[,1],],
 		VIP_data[VIP_data$enummer %in% enummers_9_11_year_difference[,2],])
 
-VIP_data_subset <- within(VIP_data_subset, rm(medilip, ldlf, sbpc, dbpc, medibl,besok,besok2,cholc,tryglc,langdm,ldl,hdl,sbt,dbt,skol,stg))
-
-colnames(VIP_data_subset)[600:607]<-c("besok","efter_090901","sbt","dbt","skol","hdl","stg","ldl")
+VIP_data_subset <- within(VIP_data_subset, rm(besok,besok2))
 
 #still having 2 more variables, which are the date and efter_090901, which might be good to keep
 #save the subset
-write.csv(VIP_data_subset, "VIP_170206_cleaned_subset.csv", row.names=FALSE, na="")
+write.csv(VIP_data_subset, "../VIP_data/VIP_170206_cleaned_subset.csv", row.names=FALSE, na="")
 
