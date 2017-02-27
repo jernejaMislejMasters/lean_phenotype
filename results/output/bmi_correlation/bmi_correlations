@@ -1,0 +1,75 @@
+#CONTINUOUS
+
+#significant
+B12sum1 	rho=0.1110198
+protsum1 	rho=0.1104115
+Dsum1 		rho=0.1098356
+protsum1_anim 	rho=0.1017519
+sacksum1 	rho=-0.1011804
+TRANSsum1 	rho=-0.09825799
+NIACsum1 	rho=0.09774769
+selesum1 	rho=0.09524266
+MONOsum1 	rho=0.080504
+NATRsum1 	rho=0.07778171
+kolhsum1 	rho=-0.07445578
+POLYsum1 	rho=0.0621343
+ZINCsum1 	rho=0.05596313
+kolesum1 	rho=0.04594404
+MOSAsum1 	rho=-0.04583853
+B6sum1 		rho=0.04428888
+TIAMsum1 	rho=0.04201075
+acids 		rho=0.04186043
+JODIsum1 	rho=0.04049402
+FOSFsum1 	rho=0.04044035
+fettsum1 	rho=0.03746012
+B2sum1 		rho=0.03708617
+DISAsum1 	rho=-0.0361327
+ensum1 		rho=0.03496249
+tokosum1 	rho=0.03490098
+askosum1 	rho=0.02752643
+KALIsum1 	rho=0.02196
+jernsum1 	rho=0.02131119
+FULLKsum1 	rho=-0.02037195
+alkosum1 	rho=0.01393805
+MAGNsum1 	rho=0.0123008
+mfetsum1 	rho=-0.01108597
+protsum1_veg 	rho=0.01034498
+kalcsum1 	rho=0.009696931
+
+
+#insignificant
+fibesum1 
+retisum1
+Folasum1
+sm_num_cig
+
+
+
+#DISCRETE
+
+#significant
+g9 		rho=-0.1747286
+j2 		rho=0.1491896
+j3 		rho=0.1474156
+kottport 	rho=0.1452288
+g10 		rho=0.135556
+g1_a 		rho=-0.1295925
+sm_how_often 	rho=-0.1292649
+g1_c 		rho=-0.1241885
+g1_b 		rho=-0.1222565
+g1_d 		rho=-0.1169256
+utbild 		rho=-0.1104258
+g5 		rho=-0.1032225
+g3_b 		rho=-0.09505581
+g6 		rho=-0.08229296
+sm_cig_groups 	rho=0.07617783
+j1 		rho=-0.07085787
+potport 	rho=0.05960789
+g8 		rho=0.05759676
+g3_a 		rho=-0.04762979
+g7 		rho=-0.03473615
+g4 		rho=-0.02662917
+gronport 	rho=-0.02652593
+
+
+

@@ -1,4 +1,4 @@
-VIP_data <- read.csv("VIP_170206_cleaned.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
+VIP_data <- read.csv("VIP_data/VIP_170206_cleaned.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
 
 #get only those that have the besok1 value
 VIP_data_all_besok1<-VIP_data[!is.na(VIP_data$besok1),]
@@ -122,11 +122,16 @@ enummers_9_11_year_difference<-rbind(enummers_9_11_year_difference,
 write.csv(enummers_9_11_year_difference, "Visit1_Visit2_enummers.csv", row.names=FALSE, na="")
 
 
-#subset the data and remove besok and besok2 as only besok1 should be used
+#subset the data and remove besok and besok2 as only besok1 should be used, add a variable visit, so we know which visit is 
+#regarded as the first and which second
 VIP_data_subset<-rbind(VIP_data[VIP_data$enummer %in% enummers_9_11_year_difference[,1],],
 		VIP_data[VIP_data$enummer %in% enummers_9_11_year_difference[,2],])
 
 VIP_data_subset <- within(VIP_data_subset, rm(besok,besok2))
+
+#add extra variable visit
+VIP_data_subset$visit<-1
+VIP_data_subset$visit[VIP_data_subset$enummer %in% enummers_9_11_year_difference[,2]]<-2
 
 #still having 2 more variables, which are the date and efter_090901, which might be good to keep
 #save the subset

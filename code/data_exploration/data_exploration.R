@@ -1,12 +1,12 @@
 
 
 
-VIP_data <- read.csv("VIP_161102.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
+VIP_data <- read.csv("VIP_data/VIP_170206_cleaned_subset.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
 VIP_data_copy<-VIP_data
 
 #VIP_data_working_size=VIP_data[1:1000,]
 
-for (variable in c(4,6:length(colnames(VIP_data)))) {
+for (variable in c(581:length(colnames(VIP_data)))) {
 
 	if (length(levels(factor(VIP_data_copy[,variable])))<20) {
 		missing_values=length(VIP_data[is.na(VIP_data[,variable]),1])
@@ -18,23 +18,23 @@ for (variable in c(4,6:length(colnames(VIP_data)))) {
 				missing_values=missing_values+variable_value_counts[2][variable_value_counts[1]==variable_class]
 			}else{
 
-				cat(paste(variable_class,":",variable_value_counts[2][variable_value_counts[1]==variable_class],", "))
+				cat(paste(variable_class,":",variable_value_counts[2][variable_value_counts[1]==variable_class],"; "))
 			}
 			
 		}
 		message(paste("missing values :",missing_values))
 	}else{
 
-		message("\n")
+		message("")
 	}
 }
 
 
-for (variable in c(4,6:length(colnames(VIP_data)))) {
+for (variable in 7) {
 
 	if (length(levels(factor(VIP_data_copy[,variable])))>5 && colnames(VIP_data)[variable]!='ursprungsland_vilket' && colnames(VIP_data)[variable]!='enkver') {
 		missing_values=length(VIP_data[is.na(VIP_data[,variable]),1])
-		message(paste(colnames(VIP_data)[variable],":"))
+		#message(paste(colnames(VIP_data)[variable],":"))
 		variable_values=na.omit(VIP_data[,variable])
 		variable_values=variable_values[variable_values!='8888']
 		variable_values=variable_values[variable_values!='9999']
@@ -49,11 +49,11 @@ for (variable in c(4,6:length(colnames(VIP_data)))) {
 			}
 			
 		}
-		cat(paste("mean :",round(mean(variable_values),2),", min :",round(min(variable_values),2),", max :",round(max(variable_values),2),", sd :",round(sd(variable_values),2)))
-		message(paste(", missing values :",missing_values))
+		cat(paste("mean :",round(mean(variable_values),2),"; min :",round(min(variable_values),2),"; max :",round(max(variable_values),2),"; sd :",round(sd(variable_values),2)))
+		message(paste("; missing values :",missing_values))
 	}else{
 
-		message("\n")
+		message("")
 	}
 }
 

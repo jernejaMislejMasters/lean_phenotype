@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.8.29)  17 JAN 2017 14:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.8.29)  28 JAN 2017 20:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,16 +326,20 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 85.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] [2]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 90--92
+
+ []
+
+[2]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 109.
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <11.25> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 109.
-
+ [3]
 Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
@@ -345,27 +349,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
-
- []
-
-[3]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -397,11 +380,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 155.
 Here is how much of TeX's memory you used:
  5105 strings out of 495028
  74236 string characters out of 6181497
- 155463 words of memory out of 5000000
+ 158465 words of memory out of 5000000
  8291 multiletter control sequences out of 15000+600000
  17070 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 30i,10n,43p,1329b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,10n,43p,2277b,391s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home
 /jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/jerneja/
 .texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/jerneja/.texmf-va
@@ -412,9 +395,9 @@ ec/eccc1200.600pk> </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx17
 28.600pk> </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk>
  </home/jerneja/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on project_plan.pdf (4 pages, 108095 bytes).
+Output written on project_plan.pdf (4 pages, 108787 bytes).
 PDF statistics:
- 413 PDF objects out of 1000 (max. 8388607)
+ 415 PDF objects out of 1000 (max. 8388607)
  107 compressed objects within 2 object streams
  18 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
