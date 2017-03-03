@@ -1,0 +1,375 @@
+#look at the distribution and the association and do spearmans rank correlation
+
+png("Results/environment_risk_score/variable_distributions/POLYsum1_distribution.png",width=2000, height=1000)
+hist(PUFAE)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_POLYsum1.png",width=2000, height=1000)
+plot(bmi~PUFAE,main=paste("spearman rank corr =",cor.test(bmi,PUFAE,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,PUFAE,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,PUFAE,method="spearman", exact=FALSE)
+# significant rho=0.0621343
+
+
+png("Results/environment_risk_score/variable_distributions/MONOsum1_distribution.png",width=2000, height=1000)
+hist(MUFAE)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_MONOsum1.png",width=2000, height=1000)
+plot(bmi~MUFAE,main=paste("spearman rank corr =",cor.test(bmi,MUFAE,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,MUFAE,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,MUFAE,method="spearman", exact=FALSE)
+# significant rho=0.080504
+
+
+
+png("Results/environment_risk_score/variable_distributions/mfetsum1_distribution.png",width=2000, height=1000)
+hist(SATFAT)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_mfetsum1.png",width=2000, height=1000)
+plot(bmi~SATFAT,main=paste("spearman rank corr =",cor.test(bmi,SATFAT,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,SATFAT,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,SATFAT,method="spearman", exact=FALSE)
+# significant rho=-0.01108597
+
+png("Results/environment_risk_score/variable_distributions/fettsum1_distribution.png",width=2000, height=1000)
+hist(TOTFAT)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_fettsum1.png",width=2000, height=1000)
+plot(bmi~TOTFAT,main=paste("spearman rank corr =",cor.test(bmi,TOTFAT,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,TOTFAT,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,TOTFAT,method="spearman", exact=FALSE)
+# significant rho=0.03746012
+
+
+#look at the distribution and the association and do spearmans rank correlation
+
+png("Results/environment_risk_score/variable_distributions/fibesum1_distribution.png",width=2000, height=1000)
+hist(fibesum1)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_fibesum1.png",width=2000, height=1000)
+plot(bmi~fibesum1,main=paste("spearman rank corr =",cor.test(bmi,fibesum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,fibesum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,fibesum1,method="spearman", exact=FALSE)
+# insignificant(p-value = 0.05462) rho=0.007723332
+
+
+
+
+png("Results/environment_risk_score/variable_distributions/acids_distribution.png",width=2000, height=1000)
+hist(FA)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_acids.png",width=2000, height=1000)
+plot(bmi~FA,main=paste("spearman rank corr =",cor.test(bmi,FA,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,FA,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,FA,method="spearman", exact=FALSE)
+# significant rho=0.04186043
+
+
+
+png("Results/environment_risk_score/variable_distributions/NATRsum1_distribution.png",width=2000, height=1000)
+hist(NATRsum1)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_NATRsum1.png",width=2000, height=1000)
+plot(bmi~NATRsum1,main=paste("spearman rank corr =",cor.test(bmi,NATRsum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,NATRsum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,NATRsum1,method="spearman", exact=FALSE)
+# significant rho=0.07778171
+
+
+
+png("Results/environment_risk_score/variable_distributions/kolhsum1_distribution.png",width=2000, height=1000)
+hist(CARBOHYDRATES)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_kolhsum1.png",width=2000, height=1000)
+plot(bmi~CARBOHYDRATES,main=paste("spearman rank corr =",cor.test(bmi,CARBOHYDRATES,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,CARBOHYDRATES,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,CARBOHYDRATES,method="spearman", exact=FALSE)
+# significant rho=-0.07445578
+
+
+
+png("Results/environment_risk_score/variable_distributions/sacksum1_distribution.png",width=2000, height=1000)
+hist(SUGAR)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_sacksum1.png",width=2000, height=1000)
+plot(bmi~SUGAR,main=paste("spearman rank corr =",cor.test(bmi,SUGAR,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,SUGAR,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,SUGAR,method="spearman", exact=FALSE)
+# significant rho=-0.1011804
+
+
+png("Results/environment_risk_score/variable_distributions/protsum1_distribution.png",width=2000, height=1000)
+hist(PROTEIN)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_protsum1.png",width=2000, height=1000)
+plot(bmi~PROTEIN,main=paste("spearman rank corr =",cor.test(bmi,PROTEIN,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,PROTEIN,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,PROTEIN,method="spearman", exact=FALSE)
+# significant rho=0.1104115
+
+#Dsum1(VitD)
+#VIP_data_subset$Dsum1_score<-0
+#look at the distribution and the association and do spearmans rank correlation
+
+png("Results/environment_risk_score/variable_distributions/Dsum1_distribution.png",width=2000, height=1000)
+hist(Dsum1)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_Dsum1.png",width=2000, height=1000)
+plot(bmi~Dsum1,main=paste("spearman rank corr =",cor.test(bmi,Dsum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,Dsum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,Dsum1,method="spearman", exact=FALSE)
+# significant rho=0.1098356
+
+#VIP_data_subset$Dsum1_score[(Dsum1 >= 10) & (Dsum1 <= 100) ]<-1
+
+#tokosum1(VitE)
+#VIP_data_subset$tokosum1_score<-0
+#look at the distribution and the association and do spearmans rank correlation
+
+png("Results/environment_risk_score/variable_distributions/tokosum1_distribution.png",width=2000, height=1000)
+hist(tokosum1)
+dev.off()
+png("Results/environment_risk_score/bmi_scatterplots/bmi_vs_tokosum1.png",width=2000, height=1000)
+plot(bmi~tokosum1,main=paste("spearman rank corr =",cor.test(bmi,tokosum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,tokosum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+cor.test(bmi,tokosum1,method="spearman", exact=FALSE)
+# significant rho=0.03490098
+
+#VIP_data_subset$tokosum1_score[(gender==1) & (tokosum1 >= 10) & (tokosum1<= 300)]<-1
+#VIP_data_subset$tokosum1_score[(gender==2) & (tokosum1 >= 8) & (tokosum1<= 300)]<-1
+
+#TIAMsum1
+#VIP_data_subset$TIAMsum1_score<-0
+#VIP_data_subset$TIAMsum1_score[(gender==1) & (TIAMsum1 >= 1.3)]<-1
+#VIP_data_subset$TIAMsum1_score[(gender==2) & (TIAMsum1 >= 1.1)]<-1
+
+#B2sum1
+#VIP_data_subset$B2sum1_score<-0
+#VIP_data_subset$B2sum1_score[(gender==1) & (B2sum1 >= 1.5)]<-1
+#VIP_data_subset$B2sum1_score[(gender==2) & (B2sum1 >= 1.2)]<-1
+
+#NIACsum1
+#VIP_data_subset$NIACsum1_score<-0
+#VIP_data_subset$NIACsum1_score[(gender==1) & (NIACsum1 >= 18) & (NIACsum1 <= 900)]<-1
+#VIP_data_subset$NIACsum1_score[(gender==2) & (NIACsum1 >= 14) & (NIACsum1 <= 900)]<-1
+
+#B6sum1
+#VIP_data_subset$B6sum1_score<-0
+#VIP_data_subset$B6sum1_score[(gender==1) & (B6sum1 >= 1.5) & (B6sum1 <= 25)]<-1
+#VIP_data_subset$B6sum1_score[(gender==2) & (B6sum1 >= 1.2) & (B6sum1 <= 25)]<-1
+
+#Folasum1
+#VIP_data_subset$Folasum1_score<-0
+#VIP_data_subset$Folasum1_score[(Folasum1 >= 300) & (Folasum1 <= 1000) ]<-1
+
+#B12sum1
+#VIP_data_subset$B12sum1_score<-0
+#VIP_data_subset$B12sum1_score[B12sum1 >= 2]<-1
+
+#askosum1(VitC)
+#VIP_data_subset$askosum1_score<-0
+#VIP_data_subset$askosum1_score[(askosum1 >= 75) & (askosum1 <= 1000) ]<-1
+
+#kalcsum1
+#VIP_data_subset$kalcsum1_score<-0
+#VIP_data_subset$kalcsum1_score[(kalcsum1 >= 800) & (kalcsum1 <= 2500) ]<-1
+
+#FOSFsum1
+#VIP_data_subset$kalcsum1_score<-0
+#VIP_data_subset$kalcsum1_score[(kalcsum1 >= 600) & (kalcsum1 <= 3000) ]<-1
+
+#KALIsum1
+#VIP_data_subset$KALIsum1_score<-0
+#VIP_data_subset$KALIsum1_score[(gender==1) & (KALIsum1 >= 3500) & (KALIsum1 <= 3700)]<-1
+#VIP_data_subset$KALIsum1_score[(gender==2) & (KALIsum1 >= 3100) & (KALIsum1 <= 3700)]<-1
+
+#MAGNsum1
+#VIP_data_subset$MAGNsum1_score<-0
+#VIP_data_subset$MAGNsum1_score[(gender==1) & (MAGNsum1 >= 350)]<-1
+#VIP_data_subset$MAGNsum1_score[(gender==2) & (MAGNsum1 >= 280)]<-1
+
+#jernsum1
+#VIP_data_subset$jernsum1_score<-0
+#VIP_data_subset$jernsum1_score[(jernsum1 >= 9) & (jernsum1 <= 25) ]<-1
+
+#ZINCsum1
+#VIP_data_subset$ZINCsum1_score<-0
+#VIP_data_subset$ZINCsum1_score[(gender==1) & (ZINCsum1 >= 9) & (ZINCsum1 <= 25)]<-1
+#VIP_data_subset$ZINCsum1_score[(gender==2) & (ZINCsum1 >= 7) & (ZINCsum1 <= 25)]<-1
+
+#JODIsum1
+#VIP_data_subset$JODIsum1_score<-0
+#VIP_data_subset$JODIsum1_score[(JODIsum1 >= 150) & (JODIsum1 <= 600) ]<-1
+
+#selesum1
+#VIP_data_subset$selesum1_score<-0
+#VIP_data_subset$selesum1_score[(gender==1) & (selesum1 >= 60) & (selesum1 <= 300)]<-1
+#VIP_data_subset$selesum1_score[(gender==2) & (selesum1 >= 50) & (selesum1 <= 300)]<-1
+
+
+#check other variables
+
+#discrete
+png("Results/environment_risk_score/other_variables/bmi_vs_utbild.png",width=2000, height=1000)
+boxplot(bmi~utbild)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g1a.png",width=2000, height=1000)
+boxplot(bmi~g1_a)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g1b.png",width=2000, height=1000)
+boxplot(bmi~g1_b)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g1c.png",width=2000, height=1000)
+boxplot(bmi~g1_c)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g1d.png",width=2000, height=1000)
+boxplot(bmi~g1_d)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g2a.png",width=2000, height=1000)
+boxplot(bmi~g2_a)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g2b.png",width=2000, height=1000)
+boxplot(bmi~g2_b)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g2c.png",width=2000, height=1000)
+boxplot(bmi~g2_c)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g2d.png",width=2000, height=1000)
+boxplot(bmi~g2_d)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g2e.png",width=2000, height=1000)
+boxplot(bmi~g2_e)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g3a.png",width=2000, height=1000)
+boxplot(bmi~g3_a)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g3b.png",width=2000, height=1000)
+boxplot(bmi~g3_b)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g3c.png",width=2000, height=1000)
+boxplot(bmi~g3_c)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g3d.png",width=2000, height=1000)
+boxplot(bmi~g3_d)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g3e.png",width=2000, height=1000)
+boxplot(bmi~g3_e)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g3f.png",width=2000, height=1000)
+boxplot(bmi~g3_f)
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g3g.png",width=2000, height=1000)
+boxplot(bmi~g3_g)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g4.png",width=2000, height=1000)
+boxplot(bmi~g4)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g5.png",width=2000, height=1000)
+boxplot(bmi~g5)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g6.png",width=2000, height=1000)
+boxplot(bmi~g6)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g7.png",width=2000, height=1000)
+boxplot(bmi~g7)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g8.png",width=2000, height=1000)
+boxplot(bmi~g8)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g9.png",width=2000, height=1000)
+boxplot(bmi~g9)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_g10.png",width=2000, height=1000)
+boxplot(bmi~g10)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_potport.png",width=2000, height=1000)
+boxplot(bmi~potport)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_kottport.png",width=2000, height=1000)
+boxplot(bmi~kottport)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_gronport.png",width=2000, height=1000)
+boxplot(bmi~gronport)
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_gronport.png",width=2000, height=1000)
+boxplot(bmi~gronport)
+dev.off()
+
+
+#continuous
+png("Results/environment_risk_score/other_variables/bmi_vs_g11ah.png",width=2000, height=1000)
+plot(bmi~g11a_h,main=paste("spearman rank corr =",cor.test(bmi,g11a_h,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,g11a_h,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_g11am.png",width=2000, height=1000)
+plot(bmi~g11a_m,main=paste("spearman rank corr =",cor.test(bmi,g11a_m,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,g11a_m,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+png("Results/environment_risk_score/other_variables/bmi_vs_ensum1.png",width=2000, height=1000)
+plot(bmi~ensum1,main=paste("spearman rank corr =",cor.test(bmi,ensum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,ensum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_protsum1.png",width=2000, height=1000)
+plot(bmi~protsum1,main=paste("spearman rank corr =",cor.test(bmi,protsum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,protsum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_protsum1_anim.png",width=2000, height=1000)
+plot(bmi~protsum1_anim,main=paste("spearman rank corr =",cor.test(bmi,protsum1_anim,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,protsum1_anim,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_protsum1_veg.png",width=2000, height=1000)
+plot(bmi~protsum1_veg,main=paste("spearman rank corr =",cor.test(bmi,protsum1_veg,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,protsum1_veg,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_FULLKsum1.png",width=2000, height=1000)
+plot(bmi~FULLKsum1,main=paste("spearman rank corr =",cor.test(bmi,FULLKsum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,FULLKsum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_alkosum1.png",width=2000, height=1000)
+plot(bmi~alkosum1,main=paste("spearman rank corr =",cor.test(bmi,alkosum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,alkosum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_TRANSsum1.png",width=2000, height=1000)
+plot(bmi~TRANSsum1,main=paste("spearman rank corr =",cor.test(bmi,TRANSsum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,TRANSsum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+png("Results/environment_risk_score/other_variables/bmi_vs_kolesum1.png",width=2000, height=1000)
+plot(bmi~kolesum1,main=paste("spearman rank corr =",cor.test(bmi,kolesum1,method="spearman", exact=FALSE)$estimate," with p-value ",cor.test(bmi,kolesum1,method="spearman", exact=FALSE)$p.value))
+dev.off()
+
+nutrients <- as.vector(c("PUFAE", "MUFAE", "SATFAT", "TOTFAT", "NATRsum1", "SUGAR", "CARBOHYDRATES", "PROTEIN", "TRANFAT", "FA", "B12sum1", "protsum1", "protsum1_anim", 
+				"NIACsum1", "ZINCsum1", "B6sum1", "TIAMsum1","B2sum1","tokosum1","askosum1","KALIsum1","jernsum1","MAGNsum1","kalcsum1","protsum1_veg","FULLKsum1"))
+
+
+all_variables<-cbind(age,agesq,gender,year,ffq,PUFAE, MUFAE, SATFAT, TOTFAT, NATRsum1, SUGAR, CARBOHYDRATES, PROTEIN, TRANFAT,
+		TRANFAT, FA, B12sum1, protsum1, protsum1_anim, NIACsum1, ZINCsum1, B6sum1, TIAMsum1,B2sum1,tokosum1,
+		askosum1,KALIsum1,jernsum1,MAGNsum1,kalcsum1,protsum1_veg,FULLKsum1)
+
+
+#VIP_data_subset$retisum1_score<-2
+#VIP_data_subset$retisum1_score[(gender==1) & (retisum1 >= 0.900) & (retisum1 <= 3.000)]<-1
+#VIP_data_subset$retisum1_score[(gender==2) & (retisum1 >= 0.700) & (retisum1 <= 3.000)]<-1
+#VIP_data_subset$retisum1_score[retisum1 > 3.000]<-0
+
+
+#normalize the diet score data, to be within 0 and 1
+#VIP_data_subset$normalized_diet_score_all<-(VIP_data_subset$diet_score_all)/max(VIP_data_subset$diet_score_all)
+VIP_data_subset$normalized_diet_score_macro_nutrient<-(VIP_data_subset$diet_score_macro_nutrient)/max(VIP_data_subset$diet_score_macro_nutrient)
+
