@@ -373,3 +373,93 @@ all_variables<-cbind(age,agesq,gender,year,ffq,PUFAE, MUFAE, SATFAT, TOTFAT, NAT
 #VIP_data_subset$normalized_diet_score_all<-(VIP_data_subset$diet_score_all)/max(VIP_data_subset$diet_score_all)
 VIP_data_subset$normalized_diet_score_macro_nutrient<-(VIP_data_subset$diet_score_macro_nutrient)/max(VIP_data_subset$diet_score_macro_nutrient)
 
+
+
+#variables used for obesity associated unhealthy environment
+
+attach(VIP_data)
+#get subject ids where any of the variables have na
+exclude_subject_id<-VIP_data[is.na(gender) | is.na(age) | is.na(g6) | is.na(enkver) | is.na(enkver2) | is.na(exclude) | is.na(ensum1) | 
+				is.na(protsum1) | is.na(kolhsum1) | is.na(sacksum1) | is.na(fibesum1) | is.na(alkosum1) | is.na(fettsum1) | is.na(mfetsum1) | 
+				is.na(MONOsum1) | is.na(POLYsum1) | is.na(FA182_sum1) | is.na(FA183_sum1) | is.na(FA204_sum1) | is.na(FA205_sum1) | is.na(FA226_sum1)
+				| is.na(MAGNsum1) | is.na(NATRsum1) | is.na(FOSFsum1) | is.na(selesum1) | is.na(ZINCsum1) | is.na(retisum1) | is.na(TIAMsum1) | 
+				is.na(Folasum1) | is.na(B2sum1) | is.na(NIACsum1) | is.na(B6sum1) | is.na(B12sum1) | is.na(askosum1) | is.na(Dsum1) | 
+				is.na(tokosum1) | is.na(jernsum1) | is.na(JODIsum1) | is.na(kalcsum1) | is.na(KALIsum1) | is.na(besok1) | is.na(efter_090901) 
+				| is.na(sm_status) | is.na(datum) | is.na(vikt) | is.na(bmi) | is.na(alkosum1),c("Subject_id")]
+
+#exclude those subjects, even if in the other visit all the values are there
+VIP_data_subset<-VIP_data[!(Subject_id %in% exclude_subject_id),]
+
+detach(VIP_data)
+
+
+
+#try making SALT and FA into tertiles
+#SALT
+SALT_tertiles_visit1<-quantile(SALT[!is.na(SALT) & visit==1], prob = c(0.33, 0.66, 1),na.rm=TRUE)
+SALT_tertiles_visit2<-quantile(SALT[!is.na(SALT) & visit==2], prob = c(0.33, 0.66, 1),na.rm=TRUE)
+
+VIP_data$SALT_score[!is.na(SALT) & visit==1]<-0
+
+VIP_data$SALT_score[!is.na(SALT) & visit==1 & SALT>=SALT_tertiles_visit1[[1]] & SALT<SALT_tertiles_visit1[[2]]]<-1
+
+VIP_data$SALT_score[!is.na(SALT) & visit==1 & SALT>=SALT_tertiles_visit1[[2]]]<-2
+
+
+VIP_data$SALT_score[!is.na(SALT) & visit==2]<-0
+
+VIP_data$SALT_score[!is.na(SALT) & visit==2 & SALT>=SALT_tertiles_visit2[[1]] & SALT<SALT_tertiles_visit2[[2]] ]<-1
+
+VIP_data$SALT_score[!is.na(SALT) & visit==2 & SALT>=SALT_tertiles_visit2[[2]]]<-2
+
+#FA
+ACIDS_tertiles_visit1<-quantile(FA[!is.na(FA) & visit==1], prob = c(0.33, 0.66, 1),na.rm=TRUE)
+ACIDS_tertiles_visit2<-quantile(FA[!is.na(FA) & visit==2], prob = c(0.33, 0.66, 1),na.rm=TRUE)
+
+VIP_data$ACIDS_score[!is.na(FA) & visit==1]<-0
+
+VIP_data$ACIDS_score[!is.na(FA) & visit==1 & FA>=ACIDS_tertiles_visit1[[1]] & FA<ACIDS_tertiles_visit1[[2]]]<-1
+
+VIP_data$ACIDS_score[!is.na(FA) & visit==1 & FA>=ACIDS_tertiles_visit1[[2]]]<-2
+
+
+VIP_data$ACIDS_score[!is.na(FA) & visit==2]<-0
+
+VIP_data$ACIDS_score[!is.na(FA) & visit==2 & FA>=ACIDS_tertiles_visit2[[1]] & FA<ACIDS_tertiles_visit2[[2]] ]<-1
+
+VIP_data$ACIDS_score[!is.na(FA) & visit==2 & FA>=ACIDS_tertiles_visit2[[2]]]<-2
+
+
+VIP_data$diet_score<-apply(VIP_data[,c(613,614,615,617,619,620,621,623,624)], 1, FUN=sum)
+
+
+
+
+VIP_data$travel_to_work[(g1_a==3 | g1_a==4) & !is.na(g1_a)]<-1
+VIP_data$travel_to_work[(g1_b==3 | g1_b==4) & !is.na(g1_b)]<-VIP_data$travel_to_work[(g1_b==3 | g1_b==4) & !is.na(g1_b)]+1
+VIP_data$travel_to_work[(g1_c==3 | g1_c==4) & !is.na(g1_c)]<-VIP_data$travel_to_work[(g1_c==3 | g1_c==4) & !is.na(g1_c)]+1
+VIP_data$travel_to_work[(g1_d==3 | g1_d==4) & !is.na(g1_d)]<-VIP_data$travel_to_work[(g1_d==3 | g1_d==4) & !is.na(g1_d)]+1
+
+#PA_frequency
+VIP_data$PA_frequency<-0
+VIP_data$PA_frequency[g6==3]<-1
+VIP_data$PA_frequency[g6==4 | g6==5]<-2
+
+
+#alcohol score
+VIP_data$ALKO_score<-0
+VIP_data$ALKO_score[(gender==1) & (alkosum1 < 20) ]<-1
+VIP_data$ALKO_score[(gender==2) & (alkosum1 < 10) ]<-1
+
+
+#smoking score
+#years from smoking stop
+time_from_sm_stop<-(age-sm_stop)
+VIP_data$SMOKING_score<-0
+VIP_data$SMOKING_score[(sm_status==3) | ((sm_status==2) & (!is.na(time_from_sm_stop)) & (time_from_sm_stop>=10)) |
+				((sm_status==5) & (!is.na(time_from_sm_stop)) & (time_from_sm_stop>=10))]<-1
+
+
+#final_environment_score, 1. with all diet score and 2. with only macro nutrients
+VIP_data$environment_score1<-apply(VIP_data[,c(640,642:644)], 1, FUN=sum)
+VIP_data$environment_score2<-apply(VIP_data[,c(641:644)], 1, FUN=sum)
