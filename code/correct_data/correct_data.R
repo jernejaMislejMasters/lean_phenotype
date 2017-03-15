@@ -5,7 +5,7 @@
 #IMPORT FILE
 #VIP_data <- read.csv("VIP_161102.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
 #NEW FILE
-VIP_data <- read.csv("VIP_170206.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
+VIP_data <- read.csv("VIP_data/VIP_170206.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
 
 VIP_data$date <- as.Date(VIP_data$datum, format="%m/%d/%Y")
 
@@ -142,7 +142,7 @@ colnames(VIP_data)[604:609]<-c("sbt","dbt","skol","hdl","stg","ldl")
 
 #exclude based on the insufficient diet data
 #exclude those that have exclude 1 (3343)
-VIP_data<-VIP_data[VIP_data$exclude!=1,]
+VIP_data<-VIP_data[!(!is.na(VIP_data$exclude) & VIP_data$exclude==1),]
 
 #CAREFUL DONT DO THIS TWICE!
 #exclude the bottom 5% (7441 subjects in VIP_170206)
@@ -154,8 +154,58 @@ VIP_data<-VIP_data[order(-VIP_data$FIL),][-c(1:round(2.5*length(VIP_data$FIL[!is
 
 #final number of subjects is 154009
 
+#correct the missing ursprungsland variable if it is present in other visits and if more visits have different information for ursprungsland, than set it it NA
+#work with data where besok1 is avaialbe
+VIP_data<-VIP_data[order(Subject_id),]
+attach(VIP_data)
+
+#those that have besok1==4 have either besok1 missing for the first visit or have all 4 besok1 and all the same information for the rest, except the first is missing, the value is
+# always 1, so I just hard coded this one
+VIP_data[Subject_id %in% Subject_id[!is.na(besok1) & besok1==4] & is.na(ursprungsland),c("ursprungsland")]<-1
+
+#those that have besok1==3 ursprungsland and have either besok1 == 1 or 2 ursprungsland missing
+VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==3] & is.na(ursprungsland) & !is.na(besok1) & besok1==1,c("ursprungsland")]<-
+		VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==3 & Subject_id %in% Subject_id[is.na(ursprungsland) & !is.na(besok1) & besok1==1],c("ursprungsland")]
+
+VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==3] & is.na(ursprungsland) & !is.na(besok1) & besok1==2,c("ursprungsland")]<-
+		VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==3 & Subject_id %in% Subject_id[is.na(ursprungsland) & !is.na(besok1) & besok1==2],c("ursprungsland")]
+
+#those that have besok1==2 and have either besok1 == 1 or 3 missing
+VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==2] & is.na(ursprungsland) & !is.na(besok1) & besok1==1,c("ursprungsland")]<-
+		VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==2 & Subject_id %in% Subject_id[is.na(ursprungsland) & !is.na(besok1) & besok1==1],c("ursprungsland")]
+
+VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==2] & is.na(ursprungsland) & !is.na(besok1) & besok1==3,c("ursprungsland")]<-
+		VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==2 & Subject_id %in% Subject_id[is.na(ursprungsland) & !is.na(besok1) & besok1==3],c("ursprungsland")]
+
+#those that have besok1==1 and have either besok1 == 2 or 3 missing
+VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==1] & is.na(ursprungsland) & !is.na(besok1) & besok1==2,c("ursprungsland")]<-
+		VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==1 & Subject_id %in% Subject_id[is.na(ursprungsland) & !is.na(besok1) & besok1==2],c("ursprungsland")]
+
+VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==1] & is.na(ursprungsland) & !is.na(besok1) & besok1==3,c("ursprungsland")]<-
+		VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==1 & Subject_id %in% Subject_id[is.na(ursprungsland) & !is.na(besok1) & besok1==3],c("ursprungsland")]
+
+#check those that have mixed information, for besok1==4 there arent any
+
+#those that have besok1==3 ursprungsland and have either besok1 == 1 or 2 ursprungsland different
+besok13_subjects<-VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==3 & Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==1],c("Subject_id")]
+besok13_subjects<-besok13_subjects[VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==3] & !is.na(ursprungsland) & !is.na(besok1) & besok1==1,c("ursprungsland")]!=
+				VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==3 & Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==1],c("ursprungsland")]]
+VIP_data[Subject_id %in% besok13_subjects,c("ursprungsland")]<-NA
+
+besok23_subjects<-VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==3 & Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==2],c("Subject_id")]
+besok23_subjects<-besok23_subjects[VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==3] & !is.na(ursprungsland) & !is.na(besok1) & besok1==2,c("ursprungsland")]!=
+				VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==3 & Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==2],c("ursprungsland")]]
+VIP_data[Subject_id %in% besok23_subjects,c("ursprungsland")]<-NA
+
+#those that have besok1==2 ursprungsland and have besok1 == 1 ursprungsland different
+besok12_subjects<-VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==2 & Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==1],c("Subject_id")]
+besok12_subjects<-besok12_subjects[VIP_data[Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==2] & !is.na(ursprungsland) & !is.na(besok1) & besok1==1,c("ursprungsland")]!=
+				VIP_data[!is.na(ursprungsland) & !is.na(besok1) & besok1==2 & Subject_id %in% Subject_id[!is.na(ursprungsland) & !is.na(besok1) & besok1==1],c("ursprungsland")]]
+VIP_data[Subject_id %in% besok12_subjects,c("ursprungsland")]<-NA
+detach(VIP_data)
+
 #save the final file
-write.csv(VIP_data, "../VIP_data/VIP_170206_cleaned.csv", row.names=FALSE, na="")
+write.csv(VIP_data, "VIP_data/VIP_170206_cleaned.csv", row.names=FALSE, na="")
 
 #----------------------------JERNEJA---------------------------------------------------
 
