@@ -135,5 +135,5 @@ VIP_data_subset$visit[VIP_data_subset$enummer %in% enummers_9_11_year_difference
 
 #still having 2 more variables, which are the date and efter_090901, which might be good to keep
 #save the subset
-write.csv(VIP_data_subset, "../VIP_data/VIP_170206_cleaned_subset.csv", row.names=FALSE, na="")
+write.csv(VIP_data_subset, "VIP_data/VIP_170206_cleaned_subset.csv", row.names=FALSE, na="")
 

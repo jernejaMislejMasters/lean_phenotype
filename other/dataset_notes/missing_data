@@ -1,0 +1,70 @@
+missing in our subset
+
+
+#no missing gender
+#no missing age
+#141 missing vikt
+#101 missing langd
+#no missing enkver
+#no missing enkver2
+#no missing exclude
+#1977 missing ensum1....all the rest of *sum1 variables missing are the same as for the ensum1
+#1977 missing protsum1
+#1977 missing kolhsum1
+#1977 missing sacksum1
+#1977 missing fibesum1
+#1977 missing fettsum1
+#1977 missing MONOsum1
+#1977 missing POLYsum1
+#1977 missing FA183_sum1
+#1977 missing FA182_sum1
+#1977 missing FA205_sum1
+#1977 missing FA226_sum1
+#1768 missing FA204_sum1....except these, which are a subset
+#1977 missing MAGNsum1
+#1977 missing NATRsum1
+#1977 missing FOSFsum1
+#1977 missing selesum1
+#1977 missing ZINCsum1
+#1977 missing retisum1
+#1977 missing TIAMsum1
+#1977 missing POLYsum1
+#1977 missing Folasum1
+#1977 missing B2sum1
+#1977 missing B6sum1
+#1977 missing NIACsum1
+#1977 missing B12sum1
+#1977 missing askosum1
+#1977 missing Dsum1
+#1977 missing tokosum1
+#1977 missing jernsum1
+#1977 missing JODIsum1
+#1977 missing kalcsum1
+#1977 missing KALIsum1
+
+
+#805 missing sm_status
+#161 missing bmi
+#no missing alkosum1
+#936 missing g6
+#51334 missing all daN  
+#0 missing all datN except these:
+#DAT12
+#DAT16
+#DAT18
+#DAT25
+#DAT29
+#DAT31
+#DAT35
+#DAT50
+#DAT65
+#DAT66
+# missing 17656
+
+#4770 missing g1_a
+#5306 missing g1_b
+#4923 missing g1_c
+#4868 missing g1_d
+#2645 missing g3_a
+#12453 missing g3_b
+

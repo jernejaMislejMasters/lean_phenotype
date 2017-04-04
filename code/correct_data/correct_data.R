@@ -145,14 +145,14 @@ colnames(VIP_data)[604:609]<-c("sbt","dbt","skol","hdl","stg","ldl")
 VIP_data<-VIP_data[!(!is.na(VIP_data$exclude) & VIP_data$exclude==1),]
 
 #CAREFUL DONT DO THIS TWICE!
-#exclude the bottom 5% (7441 subjects in VIP_170206)
+#exclude the bottom 5% (7441 entries in VIP_170206)
 VIP_data<-VIP_data[order(VIP_data$FIL),][-c(1:round(5*length(VIP_data$FIL[!is.na(VIP_data$FIL)])/100)),]
 
-#and the top 2.5% (3534 subjects in VIP_170206)
+#and the top 2.5% (3534 entries in VIP_170206)
 VIP_data<-VIP_data[order(-VIP_data$FIL),][-c(1:round(2.5*length(VIP_data$FIL[!is.na(VIP_data$FIL)])/100)),]
 
 
-#final number of subjects is 154009
+#final number of entries is 154009, corresponding to 104378 unique subjects
 
 #correct the missing ursprungsland variable if it is present in other visits and if more visits have different information for ursprungsland, than set it it NA
 #work with data where besok1 is avaialbe

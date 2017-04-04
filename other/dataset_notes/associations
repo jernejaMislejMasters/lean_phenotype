@@ -1,441 +1,40 @@
-#load cleaned subset of subjects with the right two visits and first extract those that have all the values for the right variables
-VIP_data <- read.csv("VIP_data/VIP_170206_cleaned_subset.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
+#---------------------------------------------DIET SCORES----------------------------------------------------------------
+#create different scores ans compare the final outcome
 
-
-attach(VIP_data)
-
-
-#no missing gender
-#no missing age
-#141 missing vikt
-#101 missing langd
-#no missing enkver
-#no missing enkver2
-#no missing exclude
-#1977 missing ensum1....all the rest of *sum1 variables missing are the same as for the ensum1
-#1977 missing protsum1
-#1977 missing kolhsum1
-#1977 missing sacksum1
-#1977 missing fibesum1
-#1977 missing fettsum1
-#1977 missing MONOsum1
-#1977 missing POLYsum1
-#1977 missing FA183_sum1
-#1977 missing FA182_sum1
-#1977 missing FA205_sum1
-#1977 missing FA226_sum1
-#1768 missing FA204_sum1....except these, which are a subset
-#1977 missing MAGNsum1
-#1977 missing NATRsum1
-#1977 missing FOSFsum1
-#1977 missing selesum1
-#1977 missing ZINCsum1
-#1977 missing retisum1
-#1977 missing TIAMsum1
-#1977 missing POLYsum1
-#1977 missing Folasum1
-#1977 missing B2sum1
-#1977 missing B6sum1
-#1977 missing NIACsum1
-#1977 missing B12sum1
-#1977 missing askosum1
-#1977 missing Dsum1
-#1977 missing tokosum1
-#1977 missing jernsum1
-#1977 missing JODIsum1
-#1977 missing kalcsum1
-#1977 missing KALIsum1
-
-
-#805 missing sm_status
-#161 missing bmi
-#no missing alkosum1
-#936 missing g6
-#51334 missing all daN  
-#0 missing all datN except these:
-#DAT12
-#DAT16
-#DAT18
-#DAT25
-#DAT29
-#DAT31
-#DAT35
-#DAT50
-#DAT65
-#DAT66
-# missing 17656
-
-#4770 missing g1_a
-#5306 missing g1_b
-#4923 missing g1_c
-#4868 missing g1_d
-#2645 missing g3_a
-#12453 missing g3_b
-
-
-#explore the unhealthy, obesogenic environment, using all of the variables 
-
-#create factor for the questionare
-VIP_data$ffq<-0
-VIP_data$ffq[enkver2=="long"]<-1
-VIP_data$ffq[enkver2=="apri"]<-1
-VIP_data$ffq<-as.factor(VIP_data$ffq)
-
-#age squared
-VIP_data$agesq<-age*age
-
-#factorize gender and visit
-VIP_data$gender<-as.factor(VIP_data$gender)
-VIP_data$visit<-as.factor(VIP_data$visit)
-
-
-#explore the diet
-detach(VIP_data)
-attach(VIP_data)
-
-#create new values for some, others stay the same
-
-#POLYsum1
-PUFAE<-(100*9*POLYsum1)/ensum1
-
-#MONOsum1
-MUFAE<-(100*9*MONOsum1)/ensum1
-
-#mfetsum1
-SATFAT<-(100*9*mfetsum1)/ensum1
-
-#fettsum1
-TOTFAT<-(100*9*fettsum1)/ensum1
-
-#acids
-FA<-FA183_sum1 + FA205_sum1 + FA226_sum1 + FA182_sum1 + FA204_sum1
-FA<-(100*9*FA)/ensum1
-
-#kolhsum1
-CARBOHYDRATES<-(100*4*kolhsum1)/ensum1
-
-#sacksum1
-SUGAR<-(100*4*sacksum1)/ensum1
-
-#protsum1
-PROTEIN<-(100*4*protsum1)/ensum1
-
-#TRANSsum1
-TRANFAT<-(100*9*TRANSsum1)/ensum1
-
-#protsum1_anim
-PROTEIN_ANIMAL<-(100*4*protsum1_anim)/ensum1
-
-#kolesum1
-CHOLESTEROL<-(100*4*kolesum1)/ensum1
-
-#FULLKsum1
-WHOLEGRAIN<-(100*4*FULLKsum1)/ensum1
-
-#NATRsum1
-SALT<-NATRsum1/1000
-
-#check the directions of the associations:
-
-#combined
-#associations<-glm(log(bmi)~age + agesq + gender + year + ffq + visit+ PUFAE+ MUFAE + SATFAT + TOTFAT + SUGAR + CARBOHYDRATES + PROTEIN 
-#	+ TRANFAT + FA + PROTEIN_ANIMAL + CHOLESTEROL + WHOLEGRAIN + SALT, family = gaussian(link = "identity"))
-
-
-#-------------------------------------------------------------------------------------------------------------------------------
-
-#> summary(associations)
-
-#Call:
-#glm(formula = log(bmi) ~ age + agesq + gender + year + ffq + 
-#    visit + PUFAE + MUFAE + SATFAT + TOTFAT + SUGAR + CARBOHYDRATES + 
-#    PROTEIN + TRANFAT + FA + PROTEIN_ANIMAL + CHOLESTEROL + WHOLEGRAIN + 
-#    SALT, family = gaussian(link = "identity"))
-
-#Deviance Residuals: 
-#     Min        1Q    Median        3Q       Max  
-#-0.57945  -0.09263  -0.01152   0.07955   1.04229  
-
-#Coefficients:
-#                 Estimate Std. Error t value Pr(>|t|)    
-#(Intercept)     1.484e+00  4.077e-01   3.641 0.000272 ***
-#age             4.986e-03  7.255e-04   6.873 6.36e-12 ***
-#agesq          -3.696e-05  7.693e-06  -4.804 1.56e-06 ***
-#gender2        -3.955e-02  1.298e-03 -30.477  < 2e-16 ***
-#year            5.883e-04  2.031e-04   2.896 0.003776 ** 
-#ffq1           -6.250e-03  2.183e-03  -2.863 0.004202 ** 
-#visit2          1.129e-02  1.887e-03   5.983 2.21e-09 ***
-#PUFAE           1.026e-02  1.596e-03   6.429 1.29e-10 ***
-#MUFAE           1.534e-03  5.716e-04   2.685 0.007262 ** 
-#SATFAT         -8.434e-03  6.328e-04 -13.329  < 2e-16 ***
-#TOTFAT          7.620e-03  5.475e-04  13.919  < 2e-16 ***
-#SUGAR          -1.771e-03  3.034e-04  -5.836 5.38e-09 ***
-#CARBOHYDRATES   4.351e-03  3.134e-04  13.884  < 2e-16 ***
-#PROTEIN         1.939e-03  1.126e-03   1.722 0.085022 .  
-#TRANFAT        -1.218e-02  2.108e-03  -5.779 7.54e-09 ***
-#FA             -1.375e-02  1.421e-03  -9.681  < 2e-16 ***
-#PROTEIN_ANIMAL  8.071e-03  1.018e-03   7.927 2.28e-15 ***
-#CHOLESTEROL    -5.056e-01  1.092e-01  -4.632 3.64e-06 ***
-#WHOLEGRAIN     -8.234e-04  1.018e-04  -8.086 6.27e-16 ***
-#SALT            1.108e-02  9.130e-04  12.133  < 2e-16 ***
-#---
-#Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-#(Dispersion parameter for gaussian family taken to be 0.0192282)
-
-#    Null deviance: 1397.7  on 66854  degrees of freedom
-#Residual deviance: 1285.1  on 66835  degrees of freedom
-#  (2135 observations deleted due to missingness)
-#AIC: -74421
-
-#Number of Fisher Scoring iterations: 2
-#-------------------------------------------------------------------------------------------------------------------------------
-
-
-##baseline
-#VIP_data_baseline<-VIP_data[visit==1,]
-#detach(VIP_data)
-#attach(VIP_data_baseline)
-#
-##POLYsum1
-#PUFAE<-(100*9*POLYsum1)/ensum1
-#
-##MONOsum1
-#MUFAE<-(100*9*MONOsum1)/ensum1
-#
-##mfetsum1
-#SATFAT<-(100*9*mfetsum1)/ensum1
-#
-##fettsum1
-#TOTFAT<-(100*9*fettsum1)/ensum1
-#
-##acids
-#FA<-FA183_sum1 + FA205_sum1 + FA226_sum1 + FA182_sum1 + FA204_sum1
-#FA<-(100*9*FA)/ensum1
-#
-##kolhsum1
-#CARBOHYDRATES<-(100*4*kolhsum1)/ensum1
-#
-##sacksum1
-#SUGAR<-(100*4*sacksum1)/ensum1
-#
-##protsum1
-#PROTEIN<-(100*4*protsum1)/ensum1
-#
-##TRANSsum1
-#TRANFAT<-(100*9*TRANSsum1)/ensum1
-#
-##protsum1_anim
-#PROTEIN_ANIMAL<-(100*4*protsum1_anim)/ensum1
-#
-##kolesum1
-#CHOLESTEROL<-(100*4*kolesum1)/ensum1
-#
-##FULLKsum1
-#WHOLEGRAIN<-(100*4*FULLKsum1)/ensum1
-#
-##NATRsum1
-#SALT<-NATRsum1/1000
-#
-#
-#associations<-glm(log(bmi)~age + agesq + gender + year + ffq + PUFAE+ MUFAE + SATFAT + TOTFAT + SUGAR + CARBOHYDRATES + PROTEIN 
-#				+ TRANFAT + FA + PROTEIN_ANIMAL + CHOLESTEROL + WHOLEGRAIN + SALT, family = gaussian(link = "identity"))
-#
-##-------------------------------------------------------------------------------------------------------------------------------
-#
-##> summary(associations)
-##
-##Call:
-##		glm(formula = log(bmi) ~ age + agesq + gender + year + ffq + 
-##						PUFAE + MUFAE + SATFAT + TOTFAT + SUGAR + CARBOHYDRATES + 
-##						PROTEIN + TRANFAT + FA + PROTEIN_ANIMAL + CHOLESTEROL + WHOLEGRAIN + 
-##						SALT, family = gaussian(link = "identity"))
-##
-##Deviance Residuals: 
-##		Min        1Q    Median        3Q       Max  
-##-0.45529  -0.08976  -0.01186   0.07588   1.05180  
-##
-##Coefficients:
-##		Estimate Std. Error t value Pr(>|t|)    
-##		(Intercept)     6.951e-02  7.952e-01   0.087 0.930344    
-##		age            -5.259e-03  1.592e-03  -3.303 0.000956 ***
-##		agesq           8.766e-05  1.875e-05   4.676 2.94e-06 ***
-##		gender2        -4.372e-02  1.933e-03 -22.614  < 2e-16 ***
-##		year            1.455e-03  3.976e-04   3.661 0.000252 ***
-##		ffq1           -2.381e-03  2.885e-03  -0.825 0.409324    
-##		PUFAE           9.862e-03  2.155e-03   4.577 4.73e-06 ***
-##		MUFAE           1.612e-03  7.261e-04   2.220 0.026451 *  
-##		SATFAT         -8.117e-03  8.706e-04  -9.323  < 2e-16 ***
-##		TOTFAT          5.799e-03  7.876e-04   7.363 1.84e-13 ***
-##		SUGAR          -6.924e-04  4.021e-04  -1.722 0.085082 .  
-##		CARBOHYDRATES   2.860e-03  4.723e-04   6.056 1.41e-09 ***
-##		PROTEIN         5.166e-03  1.646e-03   3.139 0.001698 ** 
-##		TRANFAT        -9.193e-03  2.417e-03  -3.804 0.000143 ***
-##		FA             -1.233e-02  1.904e-03  -6.475 9.60e-11 ***
-##		PROTEIN_ANIMAL  4.363e-03  1.509e-03   2.892 0.003832 ** 
-##		CHOLESTEROL    -5.330e-01  1.406e-01  -3.793 0.000149 ***
-##		WHOLEGRAIN     -7.730e-04  1.355e-04  -5.707 1.16e-08 ***
-##		SALT            8.505e-03  1.215e-03   6.999 2.63e-12 ***
-##		---
-##		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-##
-##(Dispersion parameter for gaussian family taken to be 0.01767671)
-##
-##Null deviance: 628.02  on 33160  degrees of freedom
-##Residual deviance: 585.84  on 33142  degrees of freedom
-##(1334 observations deleted due to missingness)
-##AIC: -39694
-##
-##Number of Fisher Scoring iterations: 2
-##
-##> 
-##		
-##-------------------------------------------------------------------------------------------------------------------------------
-#
-#
-##follow up
-#detach(VIP_data_baseline)
-#attach(VIP_data)
-#VIP_data_follow<-VIP_data[visit==2,]
-#detach(VIP_data)
-#attach(VIP_data_follow)
-#
-##POLYsum1
-#PUFAE<-(100*9*POLYsum1)/ensum1
-#
-##MONOsum1
-#MUFAE<-(100*9*MONOsum1)/ensum1
-#
-##mfetsum1
-#SATFAT<-(100*9*mfetsum1)/ensum1
-#
-##fettsum1
-#TOTFAT<-(100*9*fettsum1)/ensum1
-#
-##acids
-#FA<-FA183_sum1 + FA205_sum1 + FA226_sum1 + FA182_sum1 + FA204_sum1
-#FA<-(100*9*FA)/ensum1
-#
-##kolhsum1
-#CARBOHYDRATES<-(100*4*kolhsum1)/ensum1
-#
-##sacksum1
-#SUGAR<-(100*4*sacksum1)/ensum1
-#
-##protsum1
-#PROTEIN<-(100*4*protsum1)/ensum1
-#
-##TRANSsum1
-#TRANFAT<-(100*9*TRANSsum1)/ensum1
-#
-##protsum1_anim
-#PROTEIN_ANIMAL<-(100*4*protsum1_anim)/ensum1
-#
-##kolesum1
-#CHOLESTEROL<-(100*4*kolesum1)/ensum1
-#
-##FULLKsum1
-#WHOLEGRAIN<-(100*4*FULLKsum1)/ensum1
-#
-##NATRsum1
-#SALT<-NATRsum1/1000
-#
-#
-#associations<-glm(log(bmi)~age + agesq + gender + year + ffq + PUFAE+ MUFAE + SATFAT + TOTFAT + SUGAR + CARBOHYDRATES + PROTEIN 
-#				+ TRANFAT + FA + PROTEIN_ANIMAL + CHOLESTEROL + WHOLEGRAIN + SALT, family = gaussian(link = "identity"))
-#
-##-------------------------------------------------------------------------------------------------------------------------------
-##> summary(associations)
-##
-##Call:
-##		glm(formula = log(bmi) ~ age + agesq + gender + year + ffq + 
-##						PUFAE + MUFAE + SATFAT + TOTFAT + SUGAR + CARBOHYDRATES + 
-##						PROTEIN + TRANFAT + FA + PROTEIN_ANIMAL + CHOLESTEROL + WHOLEGRAIN + 
-##						SALT, family = gaussian(link = "identity"))
-##
-##Deviance Residuals: 
-##		Min        1Q    Median        3Q       Max  
-##-0.57579  -0.09590  -0.01131   0.08316   0.98868  
-##
-##Coefficients:
-##		Estimate Std. Error t value Pr(>|t|)    
-##		(Intercept)     1.897e+00  5.732e-01   3.309 0.000938 ***
-##		age             1.815e-03  1.830e-03   0.992 0.321311    
-##		agesq          -8.120e-06  1.779e-05  -0.456 0.648050    
-##		gender2        -3.560e-02  1.884e-03 -18.897  < 2e-16 ***
-##		year            3.797e-04  2.861e-04   1.327 0.184458    
-##		ffq1            1.859e-02  1.731e-02   1.074 0.282924    
-##		PUFAE           9.444e-03  2.470e-03   3.823 0.000132 ***
-##		MUFAE           3.307e-03  1.176e-03   2.812 0.004921 ** 
-##		SATFAT         -8.258e-03  1.055e-03  -7.829 5.07e-15 ***
-##		TOTFAT          8.315e-03  8.828e-04   9.419  < 2e-16 ***
-##		SUGAR          -3.103e-03  4.770e-04  -6.506 7.84e-11 ***
-##		CARBOHYDRATES   5.711e-03  4.309e-04  13.253  < 2e-16 ***
-##		PROTEIN         1.331e-04  1.594e-03   0.084 0.933436    
-##		TRANFAT        -1.320e-02  5.599e-03  -2.357 0.018418 *  
-##		FA             -1.351e-02  2.252e-03  -5.999 2.01e-09 ***
-##		PROTEIN_ANIMAL  1.009e-02  1.412e-03   7.145 9.19e-13 ***
-##		CHOLESTEROL    -3.940e-01  1.745e-01  -2.258 0.023962 *  
-##		WHOLEGRAIN     -9.997e-04  1.554e-04  -6.432 1.27e-10 ***
-##		SALT            1.306e-02  1.381e-03   9.456  < 2e-16 ***
-##		---
-##		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-##
-##(Dispersion parameter for gaussian family taken to be 0.02066975)
-##
-##Null deviance: 737.47  on 33693  degrees of freedom
-##Residual deviance: 696.05  on 33675  degrees of freedom
-##(801 observations deleted due to missingness)
-##AIC: -35061
-##
-##Number of Fisher Scoring iterations: 2
-##
-##> 
-##-------------------------------------------------------------------------------------------------------------------------------
-#
-#
-#detach(VIP_data_follow)
-#attach(VIP_data)
-
-#Sat fat, trans fat, sugar and cholesterol have a unsensible direction of association in all and protein total is insignificant in the combined and in the follow up,
-#	not sure if it could be due to also including the animal protein which contains subinformation, if I exclude the animal protein then the protein
-#	positevly associated and significant
-
-
-#take the ones which are sensible and significant
+#first take only the sensible and significant in the subset and leave the rest out, create the score with the cutpoints
 
 #construct the diet score, look at the upper limit only, since we are focusing on the obesogenic unhealthy environment
 #if no limit cutpoints given, make tertiles and rank accordingly
 
 
 #POLYsum1
-VIP_data$POLYsum1_score[!is.na(PUFAE)]<-0
-VIP_data$POLYsum1_score[!is.na(PUFAE) & (PUFAE >= 5) & (PUFAE <= 10) ]<-1
-VIP_data$POLYsum1_score[!is.na(PUFAE) & PUFAE > 10]<-2
+VIP_data_subset$POLYsum1_score[!is.na(PUFAE)]<-0
+VIP_data_subset$POLYsum1_score[!is.na(PUFAE) & (PUFAE >= 5) & (PUFAE <= 10) ]<-1
+VIP_data_subset$POLYsum1_score[!is.na(PUFAE) & PUFAE > 10]<-2
 
 #MONOsum1
-VIP_data$MONOsum1_score[!is.na(MUFAE)]<-0
-VIP_data$MONOsum1_score[!is.na(MUFAE) & (MUFAE >= 10) & (MUFAE <= 20) ]<-1
-VIP_data$MONOsum1_score[!is.na(MUFAE) & MUFAE > 20]<-2
+VIP_data_subset$MONOsum1_score[!is.na(MUFAE)]<-0
+VIP_data_subset$MONOsum1_score[!is.na(MUFAE) & (MUFAE >= 10) & (MUFAE <= 20) ]<-1
+VIP_data_subset$MONOsum1_score[!is.na(MUFAE) & MUFAE > 20]<-2
 
 #fettsum1
-VIP_data$fettsum1_score[!is.na(TOTFAT)]<-2
-VIP_data$fettsum1_score[!is.na(TOTFAT) & (TOTFAT >= 25) & (TOTFAT <= 40) ]<-1
-VIP_data$fettsum1_score[!is.na(TOTFAT) & TOTFAT > 40]<-0
+VIP_data_subset$fettsum1_score[!is.na(TOTFAT)]<-2
+VIP_data_subset$fettsum1_score[!is.na(TOTFAT) & (TOTFAT >= 25) & (TOTFAT <= 40) ]<-1
+VIP_data_subset$fettsum1_score[!is.na(TOTFAT) & TOTFAT > 40]<-0
 
 #NATRsum1
-VIP_data$NATRsum1_score[!is.na(NATRsum1)]<-1
+VIP_data_subset$NATRsum1_score[!is.na(NATRsum1)]<-1
 SALT<-NATRsum1/1000
-VIP_data$NATRsum1_score[!is.na(NATRsum1) & SALT <= 6]<-0
+VIP_data_subset$NATRsum1_score[!is.na(NATRsum1) & SALT <= 6]<-0
 
 #kolhsum1
-VIP_data$kolhsum1_score[!is.na(CARBOHYDRATES)]<-0
-VIP_data$kolhsum1_score[!is.na(CARBOHYDRATES) & (CARBOHYDRATES >= 45) & (CARBOHYDRATES <= 60) ]<-1
-VIP_data$kolhsum1_score[!is.na(CARBOHYDRATES) & CARBOHYDRATES > 60]<-2
+VIP_data_subset$kolhsum1_score[!is.na(CARBOHYDRATES)]<-0
+VIP_data_subset$kolhsum1_score[!is.na(CARBOHYDRATES) & (CARBOHYDRATES >= 45) & (CARBOHYDRATES <= 60) ]<-1
+VIP_data_subset$kolhsum1_score[!is.na(CARBOHYDRATES) & CARBOHYDRATES > 60]<-2
 
 #FA
-VIP_data$FA_score[!is.na(FA)]<-1
-VIP_data$FA_score[!is.na(FA) & FA < 3]<-0
+VIP_data_subset$FA_score[!is.na(FA)]<-1
+VIP_data_subset$FA_score[!is.na(FA) & FA < 3]<-0
 
 #> 
 #		> length(PUFAE[!is.na(SALT) & SALT<=6])
@@ -1298,4 +897,5 @@ dev.off()
 png("boxplot_visit2_bmi_vs_score2.png",width=2000, height=1000)
 boxplot(bmi[visit==2]~environment_score2[visit==2])
 dev.off()
+
 
