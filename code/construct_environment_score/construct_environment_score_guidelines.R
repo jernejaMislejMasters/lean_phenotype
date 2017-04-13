@@ -24,40 +24,58 @@ detach(VIP_data_all)
 
 #------------------------------INDEPENDANT DATA--------------------------------------------------------------------
 
-source(file="Code/load_indp_variables.R")
+source(file="Code/load_indp_variables_MAD_based.R")
 
-#run several different regressions 
+# pairwise correlations
 
-# check all the paired correlations for filtered bmi4 and filtered nutrients
-rcorr( cbind(bmi_4SD,POLYsum1_transformed_4SD,MONOsum1_transformed_4SD,mfetsum1_transformed_4SD,fettsum1_transformed_4SD,sacksum1_transformed_4SD,kolhsum1_transformed_4SD,FA_transformed_4SD,protsum1_transformed_4SD,fibesum1_transformed_4SD,NATRsum1_transformed_4SD),type="pearson")
+#original
 
-# check all the paired correlations for filtered bmi4 and filtered nutrients expressed in % of TEI
-rcorr( cbind(bmi_4SD,POLYsum1_ofTEI_transformed,MONOsum1_ofTEI_transformed,mfetsum1_ofTEI_transformed,fettsum1_ofTEI_transformed,sacksum1_ofTEI_transformed,kolhsum1_ofTEI_transformed,FA_ofTEI_transformed,protsum1_ofTEI_transformed,fibesum1_ofTEI_transformed,NATRsum1_ofTEI_transformed),type="pearson")
+# continuous
+rcorr( cbind(bmi_norm_sd,POLYsum1_norm_sd,MONOsum1_norm_sd,mfetsum1_norm_sd,fettsum1_norm_sd,sacksum1_norm_sd,kolhsum1_norm_sd,FA_norm_sd,protsum1_norm_sd,fibesum1_norm_sd,NATRsum1_norm_sd),type="pearson")
 
-# check all the paired correlations for filtered bmi4 and filtered nutrients expressed in % of TEI and categorized
-rcorr( cbind(bmi_4SD,POLYsum1_ofTEI_categorized_g,MONOsum1_ofTEI_categorized_g,mfetsum1_ofTEI_categorized_g,fettsum1_ofTEI_categorized_g,sacksum1_ofTEI_categorized_g,kolhsum1_ofTEI_categorized_g,FA_ofTEI_categorized_g,protsum1_ofTEI_categorized_g,fibesum1_categorized_g,NATRsum1_categorized_g),type="pearson")
+# % of TEI
+rcorr( cbind(bmi_norm_sd,POLYsum1_ofTEI_norm_sd,MONOsum1_ofTEI_norm_sd,mfetsum1_ofTEI_norm_sd,fettsum1_ofTEI_norm_sd,sacksum1_ofTEI_norm_sd,kolhsum1_ofTEI_norm_sd,FA_ofTEI_norm_sd,protsum1_ofTEI_norm_sd,fibesum1_ofTEI_norm_sd,NATRsum1_ofTEI_norm_sd),type="pearson")
+
+# % of TEI and categorized
+rcorr( cbind(bmi_norm_sd,POLYsum1_ofTEI_categorized_g,MONOsum1_ofTEI_categorized_g,mfetsum1_ofTEI_categorized_g,fettsum1_ofTEI_categorized_g,sacksum1_ofTEI_categorized_g,kolhsum1_ofTEI_categorized_g,FA_ofTEI_categorized_g,protsum1_ofTEI_categorized_g,fibesum1_categorized_g,NATRsum1_categorized_g),type="pearson")
+
+
+#filtered
+
+# continuous
+rcorr( cbind(bmi_3MAD_norm_sd,POLYsum1_3MAD_norm_sd,MONOsum1_3MAD_norm_sd,mfetsum1_3MAD_norm_sd,fettsum1_3MAD_norm_sd,sacksum1_3MAD_norm_sd,kolhsum1_3MAD_norm_sd,FA_3MAD_norm_sd,protsum1_3MAD_norm_sd,fibesum1_3MAD_norm_sd,NATRsum1_3MAD_norm_sd),type="pearson")
+
+# % of TEI
+rcorr( cbind(bmi_3MAD_norm_sd,POLYsum1_ofTEI_3MAD_norm_sd,MONOsum1_ofTEI_3MAD_norm_sd,mfetsum1_ofTEI_3MAD_norm_sd,fettsum1_ofTEI_3MAD_norm_sd,sacksum1_ofTEI_3MAD_norm_sd,kolhsum1_ofTEI_norm_sd,FA_ofTEI_3MAD_norm_sd,protsum1_ofTEI_3MAD_norm_sd,fibesum1_ofTEI_3MAD_norm_sd,NATRsum1_ofTEI_3MAD_norm_sd),type="pearson")
+
+# % of TEI and categorized
+rcorr( cbind(bmi_3MAD_norm_sd,POLYsum1_ofTEI_3MAD_categorized_g,MONOsum1_ofTEI_3MAD_categorized_g,mfetsum1_ofTEI_3MAD_categorized_g,fettsum1_ofTEI_categorized_g,sacksum1_ofTEI_3MAD_categorized_g,kolhsum1_ofTEI_3MAD_categorized_g,FA_ofTEI_3MAD_categorized_g,protsum1_ofTEI_3MAD_categorized_g,fibesum1_3MAD_categorized_g,NATRsum1_3MAD_categorized_g),type="pearson")
 
 
 
-#for raw continous, fitted together
+# regressions 
 
-#filtered bmi and other variables with cutpoint 4SD and log transformed with other variables being standardized also (BMI AND NUTRIENTS)
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_transformed_4SD + MONOsum1_transformed_4SD + mfetsum1_transformed_4SD + fettsum1_transformed_4SD + sacksum1_transformed_4SD
-				+ kolhsum1_transformed_4SD + FA_transformed_4SD + protsum1_transformed_4SD + fibesum1_transformed_4SD + NATRsum1_transformed_4SD, family = gaussian(link = "identity"))
+#original
+
+# continuous
+
+#together
+associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_norm_sd + MONOsum1_norm_sd + mfetsum1_norm_sd + fettsum1_norm_sd + sacksum1_norm_sd
+				+ kolhsum1_norm_sd + FA_norm_sd + protsum1_norm_sd + fibesum1_norm_sd + NATRsum1_norm_sd, family = gaussian(link = "identity"))
 
 summary(associations)
 vif(associations)
 
-#r² filtered bmi and other variables with cutpoint 4SD and log transformed with other variables being standardized also (BMI AND NUTRIENTS)
-all_variables<-c("POLYsum1_transformed_4SD","MONOsum1_transformed_4SD","mfetsum1_transformed_4SD","fettsum1_transformed_4SD","sacksum1_transformed_4SD",
-		"kolhsum1_transformed_4SD","FA_transformed_4SD","protsum1_transformed_4SD","fibesum1_transformed_4SD","NATRsum1_transformed_4SD")
+#r²
+all_variables<-c("POLYsum1_norm_sd","MONOsum1_norm_sd","mfetsum1_norm_sd","fettsum1_norm_sd","sacksum1_norm_sd",
+		"kolhsum1_norm_sd","FA_norm_sd","protsum1_norm_sd","fibesum1_norm_sd","NATRsum1_norm_sd")
 
-independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_4SD_sd",all_variables)])
+independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_norm_sd",all_variables)])
 
 variable_count<-1
 for (variable in all_variables){
 	
-	partial_corr<-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c(variable)],
+	partial_corr<-pcor.test(independant_no_missing$bmi_norm_sd,independant_no_missing[,c(variable)],
 			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
 	message(variable)
 	message(round(partial_corr[[1]]*partial_corr[[1]],6))
@@ -68,63 +86,10 @@ for (variable in all_variables){
 }
 
 
-#for raw continous, fitted separately
-for (variable in all_variables){
-
-	associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
-	associations_summary<-summary(associations)
-
-	message(variable)
-	message(round(associations_summary$coefficients[[7]],7))
-	message(round(associations_summary$coefficients[[28]],7))
-	
-}
-
-#r²
+#separately
 for (variable in all_variables){
 	
-	partial_corr<-pcor.test(bmi_4SD_sd[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
-			VIP_data_independant[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
-	message(variable)
-	message(round(partial_corr[[1]]*partial_corr[[1]],6))
-	message(partial_corr[[2]])
-		
-}
-
-
-
-
-
-# for continuous expressed in % of TEI, fitted together
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_ofTEI_transformed + MONOsum1_ofTEI_transformed + mfetsum1_ofTEI_transformed + fettsum1_ofTEI_transformed + sacksum1_ofTEI_transformed
-				+ kolhsum1_ofTEI_transformed + FA_ofTEI_transformed + protsum1_ofTEI_transformed + fibesum1_ofTEI_transformed + NATRsum1_ofTEI_transformed, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-all_variables<-c("POLYsum1_ofTEI_transformed","MONOsum1_ofTEI_transformed","mfetsum1_ofTEI_transformed","fettsum1_ofTEI_transformed","sacksum1_ofTEI_transformed",
-		"kolhsum1_ofTEI_transformed","FA_ofTEI_transformed","protsum1_ofTEI_transformed","fibesum1_ofTEI_transformed","NATRsum1_ofTEI_transformed")
-
-independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_4SD_sd",all_variables)])
-
-#r²
-variable_count<-1
-for (variable in all_variables){
-	
-	partial_corr<-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c(variable)],
-			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
-	message(variable)
-	message(round(partial_corr[[1]]*partial_corr[[1]],6))
-	message(partial_corr[[2]])
-	
-	variable_count<-variable_count+1
-	
-}
-
-# for continuous expressed in % of TEI, fitted separately
-for (variable in all_variables){
-	
-	associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
+	associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
 	associations_summary<-summary(associations)
 	
 	message(variable)
@@ -136,8 +101,62 @@ for (variable in all_variables){
 #r²
 for (variable in all_variables){
 	
-	partial_corr<-pcor.test(bmi_4SD_sd[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
-			VIP_data_independant[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
+	partial_corr<-pcor.test(bmi_norm_sd[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
+			VIP_data_independant[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+}
+
+
+
+# % of TEI
+
+#together
+associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_ofTEI_norm_sd + MONOsum1_ofTEI_norm_sd + mfetsum1_ofTEI_norm_sd + fettsum1_ofTEI_norm_sd + sacksum1_ofTEI_norm_sd
+				+ kolhsum1_ofTEI_norm_sd + FA_ofTEI_norm_sd + protsum1_ofTEI_norm_sd + fibesum1_ofTEI_norm_sd + NATRsum1_ofTEI_norm_sd, family = gaussian(link = "identity"))
+
+summary(associations)
+vif(associations)
+
+all_variables<-c("POLYsum1_ofTEI_norm_sd","MONOsum1_ofTEI_norm_sd","mfetsum1_ofTEI_norm_sd","fettsum1_ofTEI_norm_sd","sacksum1_ofTEI_norm_sd",
+		"kolhsum1_ofTEI_norm_sd","FA_ofTEI_norm_sd","protsum1_ofTEI_norm_sd","fibesum1_ofTEI_norm_sd","NATRsum1_ofTEI_norm_sd")
+
+independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_norm_sd",all_variables)])
+
+#r²
+variable_count<-1
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(independant_no_missing$bmi_norm_sd,independant_no_missing[,c(variable)],
+			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+	variable_count<-variable_count+1
+	
+}
+
+
+#separately
+for (variable in all_variables){
+	
+	associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
+	associations_summary<-summary(associations)
+	
+	message(variable)
+	message(round(associations_summary$coefficients[[7]],7))
+	message(round(associations_summary$coefficients[[28]],7))
+	
+}
+
+#r²
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(bmi_norm_sd[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
+			VIP_data_independant[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
 	message(variable)
 	message(round(partial_corr[[1]]*partial_corr[[1]],6))
 	message(partial_corr[[2]])
@@ -150,8 +169,8 @@ for (variable in all_variables){
 
 
 
-# categorized based on guidelines, fitted together
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_ofTEI_categorized_g + MONOsum1_ofTEI_categorized_g + mfetsum1_ofTEI_categorized_g + fettsum1_ofTEI_categorized_g + sacksum1_ofTEI_categorized_g
+#  % of TEI and categorized
+associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_ofTEI_categorized_g + MONOsum1_ofTEI_categorized_g + mfetsum1_ofTEI_categorized_g + fettsum1_ofTEI_categorized_g + sacksum1_ofTEI_categorized_g
 				+ kolhsum1_ofTEI_categorized_g + FA_ofTEI_categorized_g + protsum1_ofTEI_categorized_g + fibesum1_categorized_g + NATRsum1_categorized_g, family = gaussian(link = "identity"))
 
 summary(associations)
@@ -160,13 +179,13 @@ vif(associations)
 all_variables<-c("POLYsum1_ofTEI_categorized_g","MONOsum1_ofTEI_categorized_g","mfetsum1_ofTEI_categorized_g","fettsum1_ofTEI_categorized_g","sacksum1_ofTEI_categorized_g",
 		"kolhsum1_ofTEI_categorized_g","FA_ofTEI_categorized_g","protsum1_ofTEI_categorized_g","fibesum1_categorized_g","NATRsum1_categorized_g")
 
-independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_4SD_sd",all_variables)])
+independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_norm_sd",all_variables)])
 
 #r²
 variable_count<-1
 for (variable in all_variables){
 	
-	partial_corr<-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c(variable)],
+	partial_corr<-pcor.test(independant_no_missing$bmi_norm_sd,independant_no_missing[,c(variable)],
 			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
 	message(variable)
 	message(round(partial_corr[[1]]*partial_corr[[1]],6))
@@ -177,10 +196,10 @@ for (variable in all_variables){
 }
 
 
-# categorized based on guidelines, fitted separately
+# separately
 for (variable in all_variables){
 	
-	associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
+	associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
 	associations_summary<-summary(associations)
 	
 	message(variable)
@@ -192,215 +211,185 @@ for (variable in all_variables){
 #r²
 for (variable in all_variables){
 	
-	partial_corr<-pcor.test(bmi_4SD_sd[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
-			VIP_data_independant[(!is.na(bmi_4SD_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
+	partial_corr<-pcor.test(bmi_norm_sd[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
+			VIP_data_independant[(!is.na(bmi_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
 	message(variable)
 	message(round(partial_corr[[1]]*partial_corr[[1]],6))
 	message(partial_corr[[2]])
 	
 }
 
-#try several models with sugar:
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD, family = gaussian(link = "identity"))
+
+
+
+
+#filtered
+
+
+
+# continuous
+
+#together
+associations<-glm(bmi_3MAD_norm_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_3MAD_norm_sd + MONOsum1_3MAD_norm_sd + mfetsum1_3MAD_norm_sd + fettsum1_3MAD_norm_sd + sacksum1_3MAD_norm_sd
+				+ kolhsum1_3MAD_norm_sd + FA_3MAD_norm_sd + protsum1_3MAD_norm_sd + fibesum1_3MAD_norm_sd + NATRsum1_3MAD_norm_sd, family = gaussian(link = "identity"))
 
 summary(associations)
 vif(associations)
 
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
+#r²
+all_variables<-c("POLYsum1_3MAD_norm_sd","MONOsum1_3MAD_norm_sd","mfetsum1_3MAD_norm_sd","fettsum1_3MAD_norm_sd","sacksum1_3MAD_norm_sd",
+		"kolhsum1_3MAD_norm_sd","FA_3MAD_norm_sd","protsum1_3MAD_norm_sd","fibesum1_3MAD_norm_sd","NATRsum1_3MAD_norm_sd")
+
+independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_3MAD_norm_sd",all_variables)])
+
+variable_count<-1
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(independant_no_missing$bmi_3MAD_norm_sd,independant_no_missing[,c(variable)],
+			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+	variable_count<-variable_count+1
+	
+}
+
+
+#separately
+for (variable in all_variables){
+	
+	associations<-glm(bmi_3MAD_norm_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
+	associations_summary<-summary(associations)
+	
+	message(variable)
+	message(round(associations_summary$coefficients[[7]],7))
+	message(round(associations_summary$coefficients[[28]],7))
+	
+}
+
+#r²
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(bmi_3MAD_norm_sd[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
+			VIP_data_independant[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+}
+
+
+
+# % of TEI
+
+#together
+associations<-glm(bmi_3MAD_norm_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_ofTEI_3MAD_norm_sd + MONOsum1_ofTEI_3MAD_norm_sd + mfetsum1_ofTEI_3MAD_norm_sd + fettsum1_ofTEI_3MAD_norm_sd + sacksum1_ofTEI_3MAD_norm_sd
+				+ kolhsum1_ofTEI_3MAD_norm_sd + FA_ofTEI_3MAD_norm_sd + protsum1_ofTEI_3MAD_norm_sd + fibesum1_ofTEI_3MAD_norm_sd + NATRsum1_ofTEI_3MAD_norm_sd, family = gaussian(link = "identity"))
 
 summary(associations)
 vif(associations)
 
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + fibesum1_transformed_4SD, family = gaussian(link = "identity"))
+all_variables<-c("POLYsum1_ofTEI_3MAD_norm_sd","MONOsum1_ofTEI_3MAD_norm_sd","mfetsum1_ofTEI_3MAD_norm_sd","fettsum1_ofTEI_3MAD_norm_sd","sacksum1_ofTEI_3MAD_norm_sd",
+		"kolhsum1_ofTEI_3MAD_norm_sd","FA_ofTEI_3MAD_norm_sd","protsum1_ofTEI_3MAD_norm_sd","fibesum1_ofTEI_3MAD_norm_sd","NATRsum1_ofTEI_3MAD_norm_sd")
+
+independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_3MAD_norm_sd",all_variables)])
+
+#r²
+variable_count<-1
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(independant_no_missing$bmi_3MAD_norm_sd,independant_no_missing[,c(variable)],
+			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+	variable_count<-variable_count+1
+	
+}
+
+
+#separately
+for (variable in all_variables){
+	
+	associations<-glm(bmi_3MAD_norm_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
+	associations_summary<-summary(associations)
+	
+	message(variable)
+	message(round(associations_summary$coefficients[[7]],7))
+	message(round(associations_summary$coefficients[[28]],7))
+	
+}
+
+#r²
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(bmi_3MAD_norm_sd[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
+			VIP_data_independant[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+}
+
+
+
+
+
+
+
+#  % of TEI and categorized
+associations<-glm(bmi_3MAD_norm_sd~age + agesq + gender_factor + year + ffq_factor + POLYsum1_ofTEI_3MAD_categorized_g + MONOsum1_ofTEI_3MAD_categorized_g + mfetsum1_ofTEI_3MAD_categorized_g + fettsum1_ofTEI_3MAD_categorized_g + sacksum1_ofTEI_3MAD_categorized_g
+				+ kolhsum1_ofTEI_3MAD_categorized_g + FA_ofTEI_3MAD_categorized_g + protsum1_ofTEI_3MAD_categorized_g + fibesum1_categorized_g + NATRsum1_categorized_g, family = gaussian(link = "identity"))
 
 summary(associations)
 vif(associations)
 
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + mfetsum1_transformed_4SD, family = gaussian(link = "identity"))
+all_variables<-c("POLYsum1_ofTEI_3MAD_categorized_g","MONOsum1_ofTEI_3MAD_categorized_g","mfetsum1_ofTEI_3MAD_categorized_g","fettsum1_ofTEI_3MAD_categorized_g","sacksum1_ofTEI_3MAD_categorized_g",
+		"kolhsum1_ofTEI_3MAD_categorized_g","FA_ofTEI_3MAD_categorized_g","protsum1_ofTEI_3MAD_categorized_g","fibesum1_categorized_g","NATRsum1_categorized_g")
+
+independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_3MAD_norm_sd",all_variables)])
+
+#r²
+variable_count<-1
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(independant_no_missing$bmi_3MAD_norm_sd,independant_no_missing[,c(variable)],
+			independant_no_missing[,c("age","agesq","year","ffq","gender",all_variables[-variable_count])])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+	variable_count<-variable_count+1
+	
+}
+
+
+# separately
+for (variable in all_variables){
+	
+	associations<-glm(bmi_3MAD_norm_sd~age + agesq + gender_factor + year + ffq_factor + VIP_data_independant[,c(variable)], family = gaussian(link = "identity"))
+	associations_summary<-summary(associations)
+	
+	message(variable)
+	message(round(associations_summary$coefficients[[7]],7))
+	message(round(associations_summary$coefficients[[28]],7))
+	
+}
+
+#r²
+for (variable in all_variables){
+	
+	partial_corr<-pcor.test(bmi_3MAD_norm_sd[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)]))],VIP_data_independant[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c(variable)],
+			VIP_data_independant[(!is.na(bmi_3MAD_norm_sd) & !is.na(VIP_data_independant[,c(variable)])),c("age","agesq","year","ffq","gender")])
+	message(variable)
+	message(round(partial_corr[[1]]*partial_corr[[1]],6))
+	message(partial_corr[[2]])
+	
+}
 
-summary(associations)
-vif(associations)
 
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + fettsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ kolhsum1_transformed_4SD + sacksum1_transformed_4SD*kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ fibesum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ fibesum1_transformed_4SD + sacksum1_transformed_4SD*fibesum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ mfetsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ fettsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ mfetsum1_transformed_4SD + sacksum1_transformed_4SD*mfetsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ fettsum1_transformed_4SD + sacksum1_transformed_4SD*fettsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ mfetsum1_transformed_4SD + fibesum1_transformed_4SD + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ fettsum1_transformed_4SD + fibesum1_transformed_4SD + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD+ mfetsum1_transformed_4SD+ fettsum1_transformed_4SD + fibesum1_transformed_4SD + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor + sacksum1_transformed_4SD + fibesum1_transformed_4SD + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd~age + agesq + gender_factor + year + ffq_factor  + fibesum1_transformed_4SD + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor + fettsum1_transformed_4SD  + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor + fettsum1_transformed_4SD  + fibesum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor  + kolhsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor + fettsum1_transformed_4SD , family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor  + fibesum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor + mfetsum1_transformed_4SD , family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor + kolhsum1_transformed_4SD  + fibesum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor + kolhsum1_transformed_4SD  + fibesum1_transformed_4SD + fettsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(sacksum1_transformed_4SD~age + agesq + gender_factor + year + ffq_factor  + kolhsum1_transformed_4SD + fettsum1_transformed_4SD, family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-all_variables<-c("sacksum1_transformed_4SD","kolhsum1_transformed_4SD","fibesum1_transformed_4SD")
-
-independant_no_missing<-na.omit(VIP_data_independant[,c("age","agesq","year","ffq","gender","bmi_4SD_sd",all_variables)])
-
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("sacksum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("sacksum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","kolhsum1_transformed_4SD","fibesum1_transformed_4SD")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("sacksum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","kolhsum1_transformed_4SD")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("sacksum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","fibesum1_transformed_4SD")])
-
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("fibesum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("fibesum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","kolhsum1_transformed_4SD","sacksum1_transformed_4SD")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("fibesum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","kolhsum1_transformed_4SD")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("fibesum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","sacksum1_transformed_4SD")])
-
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("kolhsum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("kolhsum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","sacksum1_transformed_4SD","fibesum1_transformed_4SD")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("kolhsum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","sacksum1_transformed_4SD")])
-pcor.test(independant_no_missing$bmi_4SD_sd,independant_no_missing[,c("kolhsum1_transformed_4SD")],independant_no_missing[,c("age","agesq","year","ffq","gender","fibesum1_transformed_4SD")])
-
-#fit sugar against bmi in stratified carbs
-
-associations<-glm(bmi_4SD_sd[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0]~age[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0] + agesq[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0] + gender_factor[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0] + year[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0] + ffq_factor[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0] + sacksum1_transformed_4SD[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==0], family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-
-associations<-glm(bmi_4SD_sd[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1]~age[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1] + agesq[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1] + gender_factor[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1] + year[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1] + ffq_factor[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1] + sacksum1_transformed_4SD[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==1], family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
-
-
-associations<-glm(bmi_4SD_sd[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2]~age[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2] + agesq[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2] + gender_factor[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2] + year[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2] + ffq_factor[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2] + sacksum1_transformed_4SD[!is.na(kolhsum1_ofTEI_categorized_g) & kolhsum1_ofTEI_categorized_g==2], family = gaussian(link = "identity"))
-
-summary(associations)
-vif(associations)
 
 
 
