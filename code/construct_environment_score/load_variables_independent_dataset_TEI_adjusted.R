@@ -1,0 +1,69 @@
+attach(VIP_data_independant)
+
+#create factor for the questionare
+VIP_data_independant$ffq<-0
+VIP_data_independant$ffq[enkver2=="long"]<-1
+VIP_data_independant$ffq[enkver2=="apri"]<-1
+VIP_data_independant$ffq_factor<-as.factor(VIP_data_independant$ffq)
+
+#age squared
+VIP_data_independant$agesq<-age*age
+
+#factorize gender
+VIP_data_independant$gender_factor<-as.factor(VIP_data_independant$gender)
+
+#make a log transformed bmi, making sure it is really normal then standardize it
+VIP_data_independant$bmi_norm<-log(bmi)
+VIP_data_independant$bmi_norm_sd[!is.na(bmi)]<-(VIP_data_independant$bmi_norm[!is.na(bmi)] - mean(VIP_data_independant$bmi_norm[!is.na(bmi)]))/(sd(VIP_data_independant$bmi_norm[!is.na(bmi)]))
+
+
+
+# create several new "transformed" variables, either just log transformed and standaridized or adjusted for TEI, by obtaining the
+# residuals
+
+macronutrients<-c("POLYsum1","MONOsum1","mfetsum1","fettsum1","sacksum1","kolhsum1","FA","protsum1","protsum1_anim","protsum1_veg",
+		"fibesum1","DISAsum1","MOSAsum1","TRANSsum1")
+
+micronutrients<-c("NATRsum1","MAGNsum1","FOSFsum1","selesum1","ZINCsum1","retisum1","karosum1","TIAMsum1","Folasum1","B2sum1","NIACsum1",
+"B6sum1","B12sum1","askosum1","Dsum1","tokosum1","VITKsum1","jernsum1","JODIsum1","kalcsum1","KALIsum1")
+
+other<-c("FULLKsum1","kolesum1","alkosum1")
+
+VIP_data_independant$FA<-FA183_sum1 + FA205_sum1 + FA226_sum1 + FA182_sum1 + FA204_sum1 #essential fatty acids
+# add little to ensure no zeros
+VIP_data_independant[,c(macronutrients, micronutrients, other)]<-VIP_data_independant[,c(macronutrients, micronutrients, other)]+0.000001
+
+#standardize ensum1
+VIP_data_independant$ensum1_norm_sd<-log(ensum1)
+VIP_data_independant$ensum1_norm_sd[!is.na(ensum1)]<-(VIP_data_independant$ensum1_norm_sd[!is.na(ensum1)]-mean(VIP_data_independant$ensum1_norm_sd[!is.na(ensum1)]))/
+		(sd(VIP_data_independant$ensum1_norm_sd[!is.na(ensum1)]))
+
+detach(VIP_data_independant)
+attach(VIP_data_independant)
+
+
+for (nutrient in c(macronutrients, micronutrients, other)){
+	
+	#original
+	#continuous log transformed and standardized
+	transformed_nutrient<-log(VIP_data_independant[,c(nutrient)])
+
+	transformed_nutrient[!is.na(transformed_nutrient)]<-(transformed_nutrient[!is.na(transformed_nutrient)] -
+				mean(transformed_nutrient[!is.na(transformed_nutrient)]))/(sd(transformed_nutrient[!is.na(transformed_nutrient)]))
+	
+	
+	VIP_data_independant<-cbind(VIP_data_independant,transformed_nutrient)
+	colnames(VIP_data_independant)[length(colnames(VIP_data_independant))]<-paste0(nutrient,"_norm_sd")
+	
+	
+	# adjusted for TEI
+	nutrient_residuals_of_TEI<-transformed_nutrient+ensum1	
+	nutrient_residuals_of_TEI[!is.na(transformed_nutrient) & !is.na(ensum1_norm_sd)]<-lm(transformed_nutrient~ensum1_norm_sd)$residuals
+	
+	VIP_data_independant<-cbind(VIP_data_independant,nutrient_residuals_of_TEI)
+	colnames(VIP_data_independant)[length(colnames(VIP_data_independant))]<-paste0(nutrient,"_TEI_adjusted_norm_sd")
+	
+}
+
+detach(VIP_data_independant)
+attach(VIP_data_independant)

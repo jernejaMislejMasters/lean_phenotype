@@ -1,31 +1,3 @@
-library(ppcor)
-library(Hmisc)
-library(car)
-library(glmulti)
-
-#load entire cleaned data (154009 subjects)
-VIP_data_all <- read.csv("VIP_data/VIP_170206_cleaned.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
-
-#load the subset
-VIP_data_subset <- read.csv("VIP_data/VIP_170206_cleaned_subset.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
-attach(VIP_data_subset)
-#extract only swedish....66228 (33114 for each visit)
-#get those that have the ursprungsland in both visits and the value is 1 for Swedish
-VIP_data_subset<-VIP_data_subset[!is.na(ursprungsland[visit==1]) & !is.na(ursprungsland[visit==2]),]
-VIP_data_subset<-VIP_data_subset[VIP_data_subset$ursprungsland==1,]
-detach(VIP_data_subset)
-
-#create the independant dataset of the first visit that is not in the subset already with Swedish only
-attach(VIP_data_all)
-VIP_data_independant<-VIP_data_all[!is.na(besok1) & besok1==1 & !(Subject_id %in% VIP_data_subset$Subject_id) & !is.na(ursprungsland) & ursprungsland==1, ]
-detach(VIP_data_all)
-#length(VIP_data_independant[,1])#....47107
-
-# run separate regression to get the association effect sizes for bmi, check they have the same direction and use the ones from the "independant" dataset to multiply the scores
-# for the subset
-
-#------------------------------INDEPENDANT DATA--------------------------------------------------------------------
-
 source(file="Code/load_indp_variables_MAD_based.R")
 
 # pairwise correlations
@@ -561,7 +533,7 @@ weightable(model_selection)
 # check partial model, exclude the individual fatts, leave only total fat, oterwise there is too much multicolinearity, exclude also carbs, since there is correlation with sugar
 # fiber
 partial_model<-glm(basic_residuals~fettsum1_3MAD_norm_sd + sacksum1_3MAD_norm_sd
-				 + protsum1_3MAD_norm_sd + fibesum1_3MAD_norm_sd + NATRsum1_3MAD_norm_sd, family = gaussian(link = "identity"))
+				+ protsum1_3MAD_norm_sd + fibesum1_3MAD_norm_sd + NATRsum1_3MAD_norm_sd, family = gaussian(link = "identity"))
 
 model_selection <- glmulti(partial_model, level = 1, crit="aicc")
 
@@ -646,12 +618,12 @@ basic_residuals<-bmi_norm_sd
 basic_residuals[!is.na(bmi_norm_sd)]<-basic_model$residuals
 
 DSA_model<-DSA(basic_residuals~POLYsum1_norm_sd + MONOsum1_norm_sd + mfetsum1_norm_sd + fettsum1_norm_sd + sacksum1_norm_sd
-			+ kolhsum1_norm_sd + FA_norm_sd + protsum1_norm_sd + fibesum1_norm_sd + NATRsum1_norm_sd, data=VIP_data_independant, maxsumofpow = 1, maxsize=10, 
-			maxorderint = 1, nsplits=1,vfold=10)
+				+ kolhsum1_norm_sd + FA_norm_sd + protsum1_norm_sd + fibesum1_norm_sd + NATRsum1_norm_sd, data=VIP_data_independant, maxsumofpow = 1, maxsize=10, 
+		maxorderint = 1, nsplits=1,vfold=10)
 
-	
-	
-	
+
+
+
 #	
 #	Model selected:
 #			basic_residuals ~ I(POLYsum1_norm_sd^1) + I(MONOsum1_norm_sd^1) + 
@@ -768,8 +740,8 @@ vif(associations)
 #r²
 
 partial_corr<-pcor.test(bmi[!is.na(bmi) & !is.na(sugar_food)],sugar_food[!is.na(bmi) & !is.na(sugar_food)],
-			VIP_data_independant[!is.na(bmi) & !is.na(sugar_food),c("age","agesq","year","ffq","gender")])
-	
+		VIP_data_independant[!is.na(bmi) & !is.na(sugar_food),c("age","agesq","year","ffq","gender")])
+
 partial_corr[[1]]	
 
 round(partial_corr[[1]]*partial_corr[[1]],4)
