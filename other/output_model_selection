@@ -1,0 +1,94 @@
+#LASSO
+coef(model_selection_macronutrients_lasso)
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.0007306138
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0728009294
+#mfetsum1_TEI_adjusted_norm_sd      -0.0231155965
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd       .           
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd            -0.0317505005
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.0994903407
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0798699548
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd      -0.0376917352
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0116777017
+#TRANSsum1_TEI_adjusted_norm_sd     -0.1167359988
+#NATRsum1_TEI_adjusted_norm_sd       0.0793255752
+#kolesum1_TEI_adjusted_norm_sd      -0.0521793922
+#ensum1_norm_sd                      0.0531255570
+
+
+
+#ELASTIC NET
+coef(model_selection_macronutrients_elastic_net)
+
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.0007287506
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0453352935
+#mfetsum1_TEI_adjusted_norm_sd      -0.0119214821
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd       .           
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd            -0.0169671588
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.0862256003
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0681246438
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd      -0.0259269777
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0131121405
+#TRANSsum1_TEI_adjusted_norm_sd     -0.1165449872
+#NATRsum1_TEI_adjusted_norm_sd       0.0784602385
+#kolesum1_TEI_adjusted_norm_sd      -0.0216244928
+#ensum1_norm_sd                      0.0504983738
+
+
+#RIDGE REGRESSION
+coef(model_selection_macronutrients_ridge_regression)
+
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.0007152195
+#POLYsum1_TEI_adjusted_norm_sd      -0.0011944041
+#MONOsum1_TEI_adjusted_norm_sd       0.0596807896
+#mfetsum1_TEI_adjusted_norm_sd      -0.0466166732
+#fettsum1_TEI_adjusted_norm_sd       0.0030098874
+#sacksum1_TEI_adjusted_norm_sd      -0.0113215753
+#kolhsum1_TEI_adjusted_norm_sd      -0.0070601911
+#FA_TEI_adjusted_norm_sd            -0.0234766251
+#protsum1_TEI_adjusted_norm_sd       0.0426667918
+#protsum1_anim_TEI_adjusted_norm_sd  0.0587276449
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0630041323
+#fibesum1_TEI_adjusted_norm_sd      -0.0111087265
+#DISAsum1_TEI_adjusted_norm_sd      -0.0289615465
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0151484553
+#TRANSsum1_TEI_adjusted_norm_sd     -0.0845824888
+#NATRsum1_TEI_adjusted_norm_sd       0.0637516969
+#kolesum1_TEI_adjusted_norm_sd      -0.0313831282
+#ensum1_norm_sd                      0.0444360874
+
+
+
+
+GLMULTI GENETIC ALGORITHM
+
+
+
+GLMULTI EXHAUSTIVE SEARCH
+
+
+
+GLMULTI BRANCH AND BOUND
+
+
+
+
+DSA
+
+
+

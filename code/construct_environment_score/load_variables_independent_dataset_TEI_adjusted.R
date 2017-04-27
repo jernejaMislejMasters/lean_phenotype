@@ -16,7 +16,10 @@ VIP_data_independant$gender_factor<-as.factor(VIP_data_independant$gender)
 VIP_data_independant$bmi_norm<-log(bmi)
 VIP_data_independant$bmi_norm_sd[!is.na(bmi)]<-(VIP_data_independant$bmi_norm[!is.na(bmi)] - mean(VIP_data_independant$bmi_norm[!is.na(bmi)]))/(sd(VIP_data_independant$bmi_norm[!is.na(bmi)]))
 
-
+#obtain the residuals from the basic covariates
+basic_model<-glm(VIP_data_independant$bmi_norm_sd~age + VIP_data_independant$agesq + VIP_data_independant$gender_factor + year + VIP_data_independant$ffq_factor, family = gaussian(link = "identity"))
+VIP_data_independant$basic_residuals_bmi<-VIP_data_independant$bmi_norm_sd
+VIP_data_independant$basic_residuals_bmi[!is.na(VIP_data_independant$bmi_norm_sd)]<-basic_model$residuals
 
 # create several new "transformed" variables, either just log transformed and standaridized or adjusted for TEI, by obtaining the
 # residuals
