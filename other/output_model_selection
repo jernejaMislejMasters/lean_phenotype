@@ -1,4 +1,6 @@
-#LASSO
+#LASSO 
+#variables excluded : POLYsum1, fettsum1, sacksum1, kolhsum1, protsum1, fibesum1
+
 coef(model_selection_macronutrients_lasso)
 #18 x 1 sparse Matrix of class "dgCMatrix"
 #1
@@ -23,7 +25,9 @@ coef(model_selection_macronutrients_lasso)
 
 
 
-#ELASTIC NET
+#ELASTIC NET alpha=0.5
+#variables excluded : POLYsum1, fettsum1, sacksum1, kolhsum1, protsum1, fibesum1
+
 coef(model_selection_macronutrients_elastic_net)
 
 #18 x 1 sparse Matrix of class "dgCMatrix"
@@ -46,6 +50,121 @@ coef(model_selection_macronutrients_elastic_net)
 #NATRsum1_TEI_adjusted_norm_sd       0.0784602385
 #kolesum1_TEI_adjusted_norm_sd      -0.0216244928
 #ensum1_norm_sd                      0.0504983738
+
+
+
+
+#ELASTIC NET alpha=0.4
+#variables excluded : POLYsum1, fettsum1, sacksum1, kolhsum1, protsum1, fibesum1
+
+coef(model_selection_macronutrients_elastic_net)
+#
+#1
+#(Intercept)                        -0.0007281705
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0445139811
+#mfetsum1_TEI_adjusted_norm_sd      -0.0127523459
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd       .           
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd            -0.0162314686
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.0853306743
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0672951041
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd      -0.0253180628
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0134314756
+#TRANSsum1_TEI_adjusted_norm_sd     -0.1157566640
+#NATRsum1_TEI_adjusted_norm_sd       0.0779555469
+#kolesum1_TEI_adjusted_norm_sd      -0.0195415060
+#ensum1_norm_sd                      0.0502026958
+
+
+
+#ELASTIC NET alpha=0.3
+#variables excluded : POLYsum1, fettsum1, sacksum1, kolhsum1, protsum1, fibesum1
+
+coef(model_selection_macronutrients_elastic_net)
+#
+#1
+#(Intercept)                        -0.0007279347
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0549283994
+#mfetsum1_TEI_adjusted_norm_sd      -0.0202957322
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd       .           
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd            -0.0213894674
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.0888888177
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0710592545
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd      -0.0291271688
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0138399510
+#TRANSsum1_TEI_adjusted_norm_sd     -0.1143626149
+#NATRsum1_TEI_adjusted_norm_sd       0.0775132090
+#kolesum1_TEI_adjusted_norm_sd      -0.0281506194
+#ensum1_norm_sd                      0.0508709183
+
+
+
+
+#ELASTIC NET alpha=0.2
+#variables excluded : POLYsum1, fettsum1, sacksum1, kolhsum1, protsum1, fibesum1
+
+coef(model_selection_macronutrients_elastic_net)
+#
+#1
+#(Intercept)                        -0.0007285847
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0803123511
+#mfetsum1_TEI_adjusted_norm_sd      -0.0364826016
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd       .           
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd            -0.0348621831
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.0986743705
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0817543690
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd      -0.0392399089
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0144515469
+#TRANSsum1_TEI_adjusted_norm_sd     -0.1126444605
+#NATRsum1_TEI_adjusted_norm_sd       0.0777992061
+#kolesum1_TEI_adjusted_norm_sd      -0.0520940445
+#ensum1_norm_sd                      0.0530635620
+
+
+
+
+#ELASTIC NET alpha=0.1
+#variables excluded : POLYsum1, fettsum1, kolhsum1, protsum1, fibesum1
+
+coef(model_selection_macronutrients_elastic_net)
+
+#
+#1
+#(Intercept)                        -0.0007246366
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0609471122
+#mfetsum1_TEI_adjusted_norm_sd      -0.0329784402
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd      -0.0028340403
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd            -0.0234593980
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.0864610430
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0717876322
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd      -0.0290478547
+#MOSAsum1_TEI_adjusted_norm_sd      -0.0154610112
+#TRANSsum1_TEI_adjusted_norm_sd     -0.1079571213
+#NATRsum1_TEI_adjusted_norm_sd       0.0753101264
+#kolesum1_TEI_adjusted_norm_sd      -0.0269254118
+#ensum1_norm_sd                      0.0499528173
+
+
+
 
 
 #RIDGE REGRESSION
@@ -75,20 +194,98 @@ coef(model_selection_macronutrients_ridge_regression)
 
 
 
-GLMULTI GENETIC ALGORITHM
+GLMULTI GENETIC ALGORITHM.....since not setting the confsetsize, it was set to defualt 100, meaning only 100 possible models were being looked at out of 131072, i can try again, passing more possible models
+#variables excluded : MONOsum1, protsum1, TRANSsum1, DISAsum1, fibesum1
+
+#$bestmodel
+#[1] "basic_residuals_bmi ~ 1 + POLYsum1_TEI_adjusted_norm_sd + mfetsum1_TEI_adjusted_norm_sd + "
+#[2] "    fettsum1_TEI_adjusted_norm_sd + sacksum1_TEI_adjusted_norm_sd + "                      
+#[3] "    kolhsum1_TEI_adjusted_norm_sd + FA_TEI_adjusted_norm_sd + "                            
+#[4] "    protsum1_anim_TEI_adjusted_norm_sd + protsum1_veg_TEI_adjusted_norm_sd + "             
+#[5] "    MOSAsum1_TEI_adjusted_norm_sd + NATRsum1_TEI_adjusted_norm_sd + "                      
+#[6] "    kolesum1_TEI_adjusted_norm_sd + ensum1_norm_sd"                                        
+#
+#$bestic
+#[1] 126738.2
+
+#$confsetsize
+#[1] 100
+#
+#$generations
+#[1] 1080
 
 
 
-GLMULTI EXHAUSTIVE SEARCH
+
+GLMULTI BRANCH AND BOUND.....same model was chosen for setting the confset size to 100, 1000, 10000, 20000, too much memory was used to try with more possible models
+#variables excluded : POLYsum1, MONOsum1, kolhsum1, protsum1, TRANSsum1, DISAsum1, fibesum1, ensum1, kolesum1
+#$bestmodel
+#[1] "basic_residuals_bmi ~ 1 + mfetsum1_TEI_adjusted_norm_sd + fettsum1_TEI_adjusted_norm_sd + "
+#[2] "    sacksum1_TEI_adjusted_norm_sd + FA_TEI_adjusted_norm_sd + "                            
+#[3] "    protsum1_anim_TEI_adjusted_norm_sd + protsum1_veg_TEI_adjusted_norm_sd + "             
+#[4] "    MOSAsum1_TEI_adjusted_norm_sd + NATRsum1_TEI_adjusted_norm_sd"                         
+
+$bestic
+[1] -2735.745
 
 
 
-GLMULTI BRANCH AND BOUND
+GLMULTI EXHAUSTIVE SEARCH.....possible number of models was set to all combinations, but too much memory was used to finish so it was put on hold at 46600 tried models, where this model was being chosen as best for over 
+# 10000 models
+#variables excluded : MONOsum1, protsum1, fibesum1, ensum1, kolesum1
+
+#After 46600 models:
+#		Best model: basic_residuals_bmi~1+POLYsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+fettsum1_TEI_adjusted_norm_sd+
+#											sacksum1_TEI_adjusted_norm_sd+kolhsum1_TEI_adjusted_norm_sd+FA_TEI_adjusted_norm_sd+
+#											protsum1_anim_TEI_adjusted_norm_sd+protsum1_veg_TEI_adjusted_norm_sd+DISAsum1_TEI_adjusted_norm_sd+
+#											MOSAsum1_TEI_adjusted_norm_sd+TRANSsum1_TEI_adjusted_norm_sd+NATRsum1_TEI_adjusted_norm_sd
+#Crit= 126760.144093861
+#Mean crit= 127213.585074377
 
 
 
+#ELASTIC NET alpha=0.5
+#variables excluded : POLYsum1, fettsum1, kolhsum1, protsum1, fibesum1, DISAsum1, selesum1, retisum1, B2sum1, NIACsum1, kalcsum1
 
-DSA
-
+38 x 1 sparse Matrix of class "dgCMatrix"
+                                               1
+(Intercept)                        -0.0007269646
+POLYsum1_TEI_adjusted_norm_sd       .           
+MONOsum1_TEI_adjusted_norm_sd       0.0530249068
+mfetsum1_TEI_adjusted_norm_sd      -0.0214043501
+fettsum1_TEI_adjusted_norm_sd       .           
+sacksum1_TEI_adjusted_norm_sd      -0.0216445478
+kolhsum1_TEI_adjusted_norm_sd       .           
+FA_TEI_adjusted_norm_sd            -0.0393836740
+protsum1_TEI_adjusted_norm_sd       .           
+protsum1_anim_TEI_adjusted_norm_sd  0.0766010530
+protsum1_veg_TEI_adjusted_norm_sd  -0.0031866230
+fibesum1_TEI_adjusted_norm_sd       .           
+DISAsum1_TEI_adjusted_norm_sd       .           
+MOSAsum1_TEI_adjusted_norm_sd      -0.0430981809
+TRANSsum1_TEI_adjusted_norm_sd     -0.1150261842
+NATRsum1_TEI_adjusted_norm_sd       0.1407787522
+kolesum1_TEI_adjusted_norm_sd      -0.0294835575
+ensum1_norm_sd                      0.0550592802
+MAGNsum1_TEI_adjusted_norm_sd      -0.1441553030
+FOSFsum1_TEI_adjusted_norm_sd      -0.0161183853
+selesum1_TEI_adjusted_norm_sd       .           
+ZINCsum1_TEI_adjusted_norm_sd       0.0608472311
+retisum1_TEI_adjusted_norm_sd       .           
+karosum1_TEI_adjusted_norm_sd      -0.0075446523
+TIAMsum1_TEI_adjusted_norm_sd       0.0716013371
+Folasum1_TEI_adjusted_norm_sd      -0.0927870312
+B2sum1_TEI_adjusted_norm_sd         .           
+NIACsum1_TEI_adjusted_norm_sd       .           
+B6sum1_TEI_adjusted_norm_sd         0.0217456768
+B12sum1_TEI_adjusted_norm_sd        0.0109133523
+askosum1_TEI_adjusted_norm_sd       0.0980104641
+Dsum1_TEI_adjusted_norm_sd          0.0382862917
+tokosum1_TEI_adjusted_norm_sd       0.0166582121
+VITKsum1_TEI_adjusted_norm_sd      -0.0159346806
+jernsum1_TEI_adjusted_norm_sd      -0.0538978234
+JODIsum1_TEI_adjusted_norm_sd      -0.0741232330
+kalcsum1_TEI_adjusted_norm_sd       .           
+KALIsum1_TEI_adjusted_norm_sd       0.0522729300
 
 
