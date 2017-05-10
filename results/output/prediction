@@ -1,0 +1,274 @@
+
+alpha level : 0
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26503  4677
+                    1     2     1
+AC : 0.849950293429112
+SENS : 0.000213766566908935
+SPEC : 0.999924542539144
+PREC : 0.333333333333333
+AUC : 0.500069154553026
+
+
+logistic regression
+AUC : 0.53968043007204
+
+
+logistic regression in time
+AUC : 0.562394456538124
+
+
+
+
+alpha level : 0.1
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26502  4678
+                    1     3     0
+AC : 0.849886155918289
+SENS : 0
+SPEC : 0.999886813808715
+PREC : 0
+AUC : 0.499943406904358
+
+
+logistic regression
+AUC : 0.526615522380404
+
+
+logistic regression in time
+AUC : 0.538247649676721
+
+
+
+
+alpha level : 0.2
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26501  4678
+                    1     4     0
+AC : 0.849854087162877
+SENS : 0
+SPEC : 0.999849085078287
+PREC : 0
+AUC : 0.499924542539144
+
+
+logistic regression
+AUC : 0.526926756178443
+
+
+logistic regression in time
+AUC : 0.536737080994745
+
+
+
+
+alpha level : 0.3
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26501  4678
+                    1     4     0
+AC : 0.849854087162877
+SENS : 0
+SPEC : 0.999849085078287
+PREC : 0
+AUC : 0.499924542539144
+
+
+logistic regression
+AUC : 0.527113569043536
+
+
+logistic regression in time
+AUC : 0.536240219907365
+
+
+
+
+alpha level : 0.4
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26502  4678
+                    1     3     0
+AC : 0.849886155918289
+SENS : 0
+SPEC : 0.999886813808715
+PREC : 0
+AUC : 0.499943406904358
+
+
+logistic regression
+AUC : 0.52738333188564
+
+
+logistic regression in time
+AUC : 0.535809613954759
+
+
+
+
+alpha level : 0.5
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26501  4678
+                    1     4     0
+AC : 0.849854087162877
+SENS : 0
+SPEC : 0.999849085078287
+PREC : 0
+AUC : 0.499924542539144
+
+
+logistic regression
+AUC : 0.527478911873735
+
+
+logistic regression in time
+AUC : 0.535602331761357
+
+
+
+
+alpha level : 0.6
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26500  4678
+                    1     5     0
+AC : 0.849822018407466
+SENS : 0
+SPEC : 0.999811356347859
+PREC : 0
+AUC : 0.499905678173929
+
+
+logistic regression
+AUC : 0.52748066200937
+
+
+logistic regression in time
+AUC : 0.535705831718087
+
+
+
+
+alpha level : 0.7
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26500  4678
+                    1     5     0
+AC : 0.849822018407466
+SENS : 0
+SPEC : 0.999811356347859
+PREC : 0
+AUC : 0.499905678173929
+
+
+logistic regression
+AUC : 0.527547909156508
+
+
+logistic regression in time
+AUC : 0.535586540214931
+
+
+
+
+alpha level : 0.8
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26500  4678
+                    1     5     0
+AC : 0.849822018407466
+SENS : 0
+SPEC : 0.999811356347859
+PREC : 0
+AUC : 0.499905678173929
+
+
+logistic regression
+AUC : 0.527664184296864
+
+
+logistic regression in time
+AUC : 0.535368192647833
+
+
+
+
+alpha level : 0.9
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26500  4678
+                    1     5     0
+AC : 0.849822018407466
+SENS : 0
+SPEC : 0.999811356347859
+PREC : 0
+AUC : 0.499905678173929
+
+
+logistic regression
+AUC : 0.527687581271419
+
+
+logistic regression in time
+AUC : 0.535346481287784
+
+
+
+
+alpha level : 1
+
+
+random forest
+                     
+obesity_prediction_rf     0     1
+                    0 26500  4678
+                    1     5     0
+AC : 0.849822018407466
+SENS : 0
+SPEC : 0.999811356347859
+PREC : 0
+AUC : 0.499905678173929
+
+
+logistic regression
+AUC : 0.527798799568257
+
+
+logistic regression in time
+AUC : 0.535146546437994
+
+

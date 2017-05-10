@@ -396,6 +396,20 @@ capture.output(summary(model_selection_macronutrients_g), file = "model_selectio
 #[1] 1080
 
 
+#after 40000  generations.....same thing
+
+#$bestic
+#[1] 126738.2
+
+#$bestmodel
+#[1] "basic_residuals_bmi ~ 1 + POLYsum1_TEI_adjusted_norm_sd + mfetsum1_TEI_adjusted_norm_sd + "
+#[2] "    fettsum1_TEI_adjusted_norm_sd + sacksum1_TEI_adjusted_norm_sd + "                      
+#[3] "    kolhsum1_TEI_adjusted_norm_sd + FA_TEI_adjusted_norm_sd + "                            
+#[4] "    protsum1_anim_TEI_adjusted_norm_sd + protsum1_veg_TEI_adjusted_norm_sd + "             
+#[5] "    MOSAsum1_TEI_adjusted_norm_sd + NATRsum1_TEI_adjusted_norm_sd + "                      
+#[6] "    kolesum1_TEI_adjusted_norm_sd + ensum1_norm_sd"                                        
+
+
 #weightable(model_selection_macronutrients_g)
 
 
@@ -440,21 +454,47 @@ capture.output(summary(model_selection_macronutrients_d), file = "model_selectio
 
 #LASSO
 
-#make a complete cases dataframe
-VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("bmi_norm_sd", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+#make a complete cases dataframe, taking residauls of bmi~basic covariates
+VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_TEI_adjusted_norm_sd","protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
 						"NATRsum1_TEI_adjusted_norm_sd","kolesum1_TEI_adjusted_norm_sd","ensum1_norm_sd")])
 
 predictors <- as.matrix(VIP_data_independant_complete_cases[,-1])
-dependent <- VIP_data_independant_complete_cases$bmi_norm_sd
+dependent <- VIP_data_independant_complete_cases$basic_residuals_bmi
 
 #just cross-validation(default is 10fold)
 
 model_selection_macronutrients_lasso <- cv.glmnet(predictors,dependent, family="gaussian")
 
 coef(model_selection_macronutrients_lasso)
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001705103
+#POLYsum1_TEI_adjusted_norm_sd       .          
+#MONOsum1_TEI_adjusted_norm_sd       0.015277941
+#mfetsum1_TEI_adjusted_norm_sd      -0.052855131
+#fettsum1_TEI_adjusted_norm_sd       .          
+#sacksum1_TEI_adjusted_norm_sd       .          
+#kolhsum1_TEI_adjusted_norm_sd       .          
+#FA_TEI_adjusted_norm_sd             .          
+#protsum1_TEI_adjusted_norm_sd       .          
+#protsum1_anim_TEI_adjusted_norm_sd  0.102559527
+#protsum1_veg_TEI_adjusted_norm_sd  -0.030111701
+#fibesum1_TEI_adjusted_norm_sd       .          
+#DISAsum1_TEI_adjusted_norm_sd       .          
+#MOSAsum1_TEI_adjusted_norm_sd       .          
+#TRANSsum1_TEI_adjusted_norm_sd     -0.013442728
+#NATRsum1_TEI_adjusted_norm_sd       0.121243925
+#kolesum1_TEI_adjusted_norm_sd       .          
+#ensum1_norm_sd                      .          
+#
+
+
+
+#-----taking bmi without basic covariates
+
 #18 x 1 sparse Matrix of class "dgCMatrix"
 #1
 #(Intercept)                        -0.0007306138
@@ -482,6 +522,30 @@ coef(model_selection_macronutrients_lasso)
 model_selection_macronutrients_elastic_net <- cv.glmnet(predictors,dependent,alpha= 0.5, family="gaussian")
 
 coef(model_selection_macronutrients_elastic_net)
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001704365
+#POLYsum1_TEI_adjusted_norm_sd       .          
+#MONOsum1_TEI_adjusted_norm_sd       0.038085180
+#mfetsum1_TEI_adjusted_norm_sd      -0.083282126
+#fettsum1_TEI_adjusted_norm_sd       .          
+#sacksum1_TEI_adjusted_norm_sd       .          
+#kolhsum1_TEI_adjusted_norm_sd       .          
+#FA_TEI_adjusted_norm_sd             .          
+#protsum1_TEI_adjusted_norm_sd       .          
+#protsum1_anim_TEI_adjusted_norm_sd  0.104740544
+#protsum1_veg_TEI_adjusted_norm_sd  -0.040630327
+#fibesum1_TEI_adjusted_norm_sd       .          
+#DISAsum1_TEI_adjusted_norm_sd       .          
+#MOSAsum1_TEI_adjusted_norm_sd       .          
+#TRANSsum1_TEI_adjusted_norm_sd     -0.012507289
+#NATRsum1_TEI_adjusted_norm_sd       0.120169983
+#kolesum1_TEI_adjusted_norm_sd       .          
+#ensum1_norm_sd                      0.002018945
+#
+
+#-----taking bmi without basic covariates
+
 
 #18 x 1 sparse Matrix of class "dgCMatrix"
 #1
@@ -510,6 +574,30 @@ coef(model_selection_macronutrients_elastic_net)
 model_selection_macronutrients_ridge_regression <- cv.glmnet(predictors,dependent,alpha= 0, family="gaussian")
 
 coef(model_selection_macronutrients_ridge_regression)
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001714950
+#POLYsum1_TEI_adjusted_norm_sd       0.012992766
+#MONOsum1_TEI_adjusted_norm_sd       0.034170059
+#mfetsum1_TEI_adjusted_norm_sd      -0.043418541
+#fettsum1_TEI_adjusted_norm_sd       0.001016224
+#sacksum1_TEI_adjusted_norm_sd      -0.012679395
+#kolhsum1_TEI_adjusted_norm_sd      -0.003832229
+#FA_TEI_adjusted_norm_sd            -0.006299341
+#protsum1_TEI_adjusted_norm_sd       0.060021218
+#protsum1_anim_TEI_adjusted_norm_sd  0.053549180
+#protsum1_veg_TEI_adjusted_norm_sd  -0.035546378
+#fibesum1_TEI_adjusted_norm_sd      -0.005418635
+#DISAsum1_TEI_adjusted_norm_sd       0.002470987
+#MOSAsum1_TEI_adjusted_norm_sd       0.012443309
+#TRANSsum1_TEI_adjusted_norm_sd     -0.020389046
+#NATRsum1_TEI_adjusted_norm_sd       0.081170659
+#kolesum1_TEI_adjusted_norm_sd      -0.004646340
+#ensum1_norm_sd                      0.008560330
+
+
+#-----taking bmi without basic covariates
+
 
 #18 x 1 sparse Matrix of class "dgCMatrix"
 #1
@@ -538,6 +626,29 @@ coef(model_selection_macronutrients_ridge_regression)
 model_selection_macronutrients_elastic_net_alpha_01 <- cv.glmnet(predictors,dependent,alpha= 0.1, family="gaussian")
 
 coef(model_selection_macronutrients_elastic_net_alpha_01)
+#
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001707236
+#POLYsum1_TEI_adjusted_norm_sd       .          
+#MONOsum1_TEI_adjusted_norm_sd       0.034884512
+#mfetsum1_TEI_adjusted_norm_sd      -0.066189344
+#fettsum1_TEI_adjusted_norm_sd       .          
+#sacksum1_TEI_adjusted_norm_sd       .          
+#kolhsum1_TEI_adjusted_norm_sd       .          
+#FA_TEI_adjusted_norm_sd             .          
+#protsum1_TEI_adjusted_norm_sd       0.031862228
+#protsum1_anim_TEI_adjusted_norm_sd  0.078671429
+#protsum1_veg_TEI_adjusted_norm_sd  -0.041716986
+#fibesum1_TEI_adjusted_norm_sd       .          
+#DISAsum1_TEI_adjusted_norm_sd       .          
+#MOSAsum1_TEI_adjusted_norm_sd       .          
+#TRANSsum1_TEI_adjusted_norm_sd     -0.016244395
+#NATRsum1_TEI_adjusted_norm_sd       0.110397447
+#kolesum1_TEI_adjusted_norm_sd       .          
+#ensum1_norm_sd                      0.002868971
+
+#-----taking bmi without basic covariates
 
 #
 #1
@@ -564,6 +675,29 @@ coef(model_selection_macronutrients_elastic_net_alpha_01)
 model_selection_macronutrients_elastic_net_alpha_02 <- cv.glmnet(predictors,dependent,alpha= 0.2, family="gaussian")
 
 coef(model_selection_macronutrients_elastic_net_alpha_02)
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001706267
+#POLYsum1_TEI_adjusted_norm_sd       .          
+#MONOsum1_TEI_adjusted_norm_sd       0.005823492
+#mfetsum1_TEI_adjusted_norm_sd      -0.030766491
+#fettsum1_TEI_adjusted_norm_sd       .          
+#sacksum1_TEI_adjusted_norm_sd       .          
+#kolhsum1_TEI_adjusted_norm_sd       .          
+#FA_TEI_adjusted_norm_sd             .          
+#protsum1_TEI_adjusted_norm_sd       0.006071089
+#protsum1_anim_TEI_adjusted_norm_sd  0.092082168
+#protsum1_veg_TEI_adjusted_norm_sd  -0.023152486
+#fibesum1_TEI_adjusted_norm_sd       .          
+#DISAsum1_TEI_adjusted_norm_sd       .          
+#MOSAsum1_TEI_adjusted_norm_sd       .          
+#TRANSsum1_TEI_adjusted_norm_sd     -0.015613462
+#NATRsum1_TEI_adjusted_norm_sd       0.113976019
+#kolesum1_TEI_adjusted_norm_sd       .          
+#ensum1_norm_sd                      .          
+
+#-----taking bmi without basic covariates
+
 #
 #1
 #(Intercept)                        -0.0007285847
@@ -592,6 +726,30 @@ model_selection_macronutrients_elastic_net_alpha_03 <- cv.glmnet(predictors,depe
 
 coef(model_selection_macronutrients_elastic_net_alpha_03)
 #
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.0017046638
+#POLYsum1_TEI_adjusted_norm_sd       .           
+#MONOsum1_TEI_adjusted_norm_sd       0.0285943450
+#mfetsum1_TEI_adjusted_norm_sd      -0.0679309764
+#fettsum1_TEI_adjusted_norm_sd       .           
+#sacksum1_TEI_adjusted_norm_sd       .           
+#kolhsum1_TEI_adjusted_norm_sd       .           
+#FA_TEI_adjusted_norm_sd             .           
+#protsum1_TEI_adjusted_norm_sd       .           
+#protsum1_anim_TEI_adjusted_norm_sd  0.1021963092
+#protsum1_veg_TEI_adjusted_norm_sd  -0.0356105829
+#fibesum1_TEI_adjusted_norm_sd       .           
+#DISAsum1_TEI_adjusted_norm_sd       .           
+#MOSAsum1_TEI_adjusted_norm_sd       .           
+#TRANSsum1_TEI_adjusted_norm_sd     -0.0140774865
+#NATRsum1_TEI_adjusted_norm_sd       0.1190266912
+#kolesum1_TEI_adjusted_norm_sd       .           
+#ensum1_norm_sd                      0.0007892007
+#
+#-----taking bmi without basic covariates
+
+#
 #1
 #(Intercept)                        -0.0007279347
 #POLYsum1_TEI_adjusted_norm_sd       .           
@@ -617,6 +775,29 @@ coef(model_selection_macronutrients_elastic_net_alpha_03)
 model_selection_macronutrients_elastic_net_alpha_04 <- cv.glmnet(predictors,dependent,alpha= 0.4, family="gaussian")
 
 coef(model_selection_macronutrients_elastic_net_alpha_04)
+#18 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001707528
+#POLYsum1_TEI_adjusted_norm_sd       .          
+#MONOsum1_TEI_adjusted_norm_sd       .          
+#mfetsum1_TEI_adjusted_norm_sd      -0.024276832
+#fettsum1_TEI_adjusted_norm_sd       .          
+#sacksum1_TEI_adjusted_norm_sd       .          
+#kolhsum1_TEI_adjusted_norm_sd       .          
+#FA_TEI_adjusted_norm_sd             .          
+#protsum1_TEI_adjusted_norm_sd       .          
+#protsum1_anim_TEI_adjusted_norm_sd  0.098498808
+#protsum1_veg_TEI_adjusted_norm_sd  -0.018038273
+#fibesum1_TEI_adjusted_norm_sd       .          
+#DISAsum1_TEI_adjusted_norm_sd       .          
+#MOSAsum1_TEI_adjusted_norm_sd       .          
+#TRANSsum1_TEI_adjusted_norm_sd     -0.015006160
+#NATRsum1_TEI_adjusted_norm_sd       0.116571704
+#kolesum1_TEI_adjusted_norm_sd       .          
+#ensum1_norm_sd                      .          
+#
+#-----taking bmi without basic covariates
+
 #
 #1
 #(Intercept)                        -0.0007281705
@@ -761,7 +942,7 @@ vif(full_model_macro_micronutrients)
 #12.305460 
 #
 
-VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("bmi_norm_sd", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_TEI_adjusted_norm_sd","protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -774,12 +955,60 @@ VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("bmi_norm
 						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd")])
 
 predictors <- as.matrix(VIP_data_independant_complete_cases[,-1])
-dependent <- VIP_data_independant_complete_cases$bmi_norm_sd
+dependent <- VIP_data_independant_complete_cases$basic_residuals_bmi
 
 
 model_selection_macro_micronutrients_elastic_net <- cv.glmnet(predictors,dependent,alpha= 0.5, family="gaussian")
 
 coef(model_selection_macro_micronutrients_elastic_net)
+#38 x 1 sparse Matrix of class "dgCMatrix"
+#1
+#(Intercept)                        -0.001675756
+#POLYsum1_TEI_adjusted_norm_sd       .          
+#MONOsum1_TEI_adjusted_norm_sd       0.043025226
+#mfetsum1_TEI_adjusted_norm_sd      -0.072816190
+#fettsum1_TEI_adjusted_norm_sd       .          
+#sacksum1_TEI_adjusted_norm_sd      -0.001103022
+#kolhsum1_TEI_adjusted_norm_sd       .          
+#FA_TEI_adjusted_norm_sd            -0.012864472
+#protsum1_TEI_adjusted_norm_sd       .          
+#protsum1_anim_TEI_adjusted_norm_sd  0.079095850
+#protsum1_veg_TEI_adjusted_norm_sd  -0.017723867
+#fibesum1_TEI_adjusted_norm_sd       .          
+#DISAsum1_TEI_adjusted_norm_sd       0.012613715
+#MOSAsum1_TEI_adjusted_norm_sd       .          
+#TRANSsum1_TEI_adjusted_norm_sd     -0.032879713
+#NATRsum1_TEI_adjusted_norm_sd       0.159995972
+#kolesum1_TEI_adjusted_norm_sd       .          
+#ensum1_norm_sd                      0.009607752
+#MAGNsum1_TEI_adjusted_norm_sd      -0.226833408
+#FOSFsum1_TEI_adjusted_norm_sd      -0.038259515
+#selesum1_TEI_adjusted_norm_sd      -0.009401695
+#ZINCsum1_TEI_adjusted_norm_sd       0.099361222
+#retisum1_TEI_adjusted_norm_sd       0.039897752
+#karosum1_TEI_adjusted_norm_sd      -0.007044902
+#TIAMsum1_TEI_adjusted_norm_sd       0.087039710
+#Folasum1_TEI_adjusted_norm_sd      -0.053031084
+#B2sum1_TEI_adjusted_norm_sd         .          
+#NIACsum1_TEI_adjusted_norm_sd       .          
+#B6sum1_TEI_adjusted_norm_sd         0.046570087
+#B12sum1_TEI_adjusted_norm_sd        .          
+#askosum1_TEI_adjusted_norm_sd       0.012817108
+#Dsum1_TEI_adjusted_norm_sd          0.017654985
+#tokosum1_TEI_adjusted_norm_sd       0.034033806
+#VITKsum1_TEI_adjusted_norm_sd      -0.023035518
+#jernsum1_TEI_adjusted_norm_sd      -0.009878221
+#JODIsum1_TEI_adjusted_norm_sd      -0.054679396
+#kalcsum1_TEI_adjusted_norm_sd      -0.009959457
+#KALIsum1_TEI_adjusted_norm_sd       0.150600736
+#
+#
+#
+
+
+
+#-----taking bmi without basic covariates
+
 
 #
 #
@@ -823,3 +1052,94 @@ coef(model_selection_macro_micronutrients_elastic_net)
 #JODIsum1_TEI_adjusted_norm_sd      -0.0741232330
 #kalcsum1_TEI_adjusted_norm_sd       .           
 #KALIsum1_TEI_adjusted_norm_sd       0.0522729300
+
+
+#try regular lm for the variables selected
+selected_model_macro_micronutrients<-glm(basic_residuals_bmi~MONOsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+sacksum1_TEI_adjusted_norm_sd+
+				FA_TEI_adjusted_norm_sd+protsum1_anim_TEI_adjusted_norm_sd+protsum1_veg_TEI_adjusted_norm_sd+
+				MOSAsum1_TEI_adjusted_norm_sd+TRANSsum1_TEI_adjusted_norm_sd+
+				NATRsum1_TEI_adjusted_norm_sd+kolesum1_TEI_adjusted_norm_sd+ensum1_norm_sd+ MAGNsum1_TEI_adjusted_norm_sd+
+				FOSFsum1_TEI_adjusted_norm_sd+ZINCsum1_TEI_adjusted_norm_sd+
+				karosum1_TEI_adjusted_norm_sd+TIAMsum1_TEI_adjusted_norm_sd+Folasum1_TEI_adjusted_norm_sd+B2sum1_TEI_adjusted_norm_sd+
+				B12sum1_TEI_adjusted_norm_sd+askosum1_TEI_adjusted_norm_sd+
+				Dsum1_TEI_adjusted_norm_sd+tokosum1_TEI_adjusted_norm_sd+VITKsum1_TEI_adjusted_norm_sd+jernsum1_TEI_adjusted_norm_sd+
+				JODIsum1_TEI_adjusted_norm_sd+KALIsum1_TEI_adjusted_norm_sd, family = gaussian(link = "identity"))
+
+
+summary(selected_model_macro_micronutrients)
+
+#Coefficients:
+#		Estimate Std. Error t value Pr(>|t|)    
+#(Intercept)                        -0.001693   0.004510  -0.376 0.707269    
+#		MONOsum1_TEI_adjusted_norm_sd       0.100125   0.020322   4.927 8.39e-07 ***
+#		mfetsum1_TEI_adjusted_norm_sd      -0.117977   0.025764  -4.579 4.68e-06 ***
+#		sacksum1_TEI_adjusted_norm_sd      -0.014111   0.010275  -1.373 0.169676    #####n.s.
+#		FA_TEI_adjusted_norm_sd            -0.038521   0.009106  -4.230 2.34e-05 ***
+#		protsum1_anim_TEI_adjusted_norm_sd  0.117078   0.022378   5.232 1.68e-07 ***
+#		protsum1_veg_TEI_adjusted_norm_sd  -0.003728   0.015022  -0.248 0.803999    #####n.s.
+#		MOSAsum1_TEI_adjusted_norm_sd       0.001044   0.011498   0.091 0.927659    #####n.s.
+#		TRANSsum1_TEI_adjusted_norm_sd     -0.016387   0.007764  -2.111 0.034801 *  
+#		NATRsum1_TEI_adjusted_norm_sd       0.185397   0.015788  11.743  < 2e-16 ***
+#		kolesum1_TEI_adjusted_norm_sd      -0.051853   0.022324  -2.323 0.020197 *  
+#		ensum1_norm_sd                      0.014605   0.004517   3.234 0.001223 ** 
+#		MAGNsum1_TEI_adjusted_norm_sd      -0.295201   0.027343 -10.796  < 2e-16 ***
+#		FOSFsum1_TEI_adjusted_norm_sd      -0.106468   0.032969  -3.229 0.001242 ** 
+#		ZINCsum1_TEI_adjusted_norm_sd       0.153258   0.015669   9.781  < 2e-16 ***
+#		karosum1_TEI_adjusted_norm_sd      -0.014900   0.007155  -2.082 0.037305 *  
+#		TIAMsum1_TEI_adjusted_norm_sd       0.107562   0.012334   8.721  < 2e-16 ***
+#		Folasum1_TEI_adjusted_norm_sd      -0.084328   0.015150  -5.566 2.62e-08 ***
+#		B2sum1_TEI_adjusted_norm_sd        -0.003431   0.018763  -0.183 0.854917    #####n.s.
+#		B12sum1_TEI_adjusted_norm_sd       -0.010727   0.011477  -0.935 0.349967    #####n.s.
+#		askosum1_TEI_adjusted_norm_sd       0.029644   0.008598   3.448 0.000566 ***
+#		Dsum1_TEI_adjusted_norm_sd          0.035730   0.009816   3.640 0.000273 ***
+#		tokosum1_TEI_adjusted_norm_sd       0.037164   0.009684   3.838 0.000124 ***
+#		VITKsum1_TEI_adjusted_norm_sd      -0.025739   0.006886  -3.738 0.000186 ***
+#		jernsum1_TEI_adjusted_norm_sd      -0.060245   0.019936  -3.022 0.002513 ** 
+#		JODIsum1_TEI_adjusted_norm_sd      -0.067276   0.007925  -8.490  < 2e-16 ***
+#		KALIsum1_TEI_adjusted_norm_sd       0.234569   0.018305  12.814  < 2e-16 ***
+#		---
+#		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#
+#(Dispersion parameter for gaussian family taken to be 0.9283819)
+#
+#Null deviance: 44234  on 45651  degrees of freedom
+#Residual deviance: 42357  on 45625  degrees of freedom
+#(1455 observations deleted due to missingness)
+#AIC: 126191
+#
+#Number of Fisher Scoring iterations: 2
+#
+#> 
+
+#
+#> vif(selected_model_macro_micronutrients)
+#MONOsum1_TEI_adjusted_norm_sd      mfetsum1_TEI_adjusted_norm_sd 
+#6.606398                          11.783190 
+#sacksum1_TEI_adjusted_norm_sd            FA_TEI_adjusted_norm_sd 
+#3.543788                           2.212097 
+#protsum1_anim_TEI_adjusted_norm_sd  protsum1_veg_TEI_adjusted_norm_sd 
+#11.228620                           5.158614 
+#MOSAsum1_TEI_adjusted_norm_sd     TRANSsum1_TEI_adjusted_norm_sd 
+#5.231356                           2.011489 
+#NATRsum1_TEI_adjusted_norm_sd      kolesum1_TEI_adjusted_norm_sd 
+#3.360197                          10.470687 
+#ensum1_norm_sd      MAGNsum1_TEI_adjusted_norm_sd 
+#1.000007                          12.531216 
+#FOSFsum1_TEI_adjusted_norm_sd      ZINCsum1_TEI_adjusted_norm_sd 
+#15.944473                           3.992602 
+#karosum1_TEI_adjusted_norm_sd      TIAMsum1_TEI_adjusted_norm_sd 
+#2.484882                           3.240158 
+#Folasum1_TEI_adjusted_norm_sd        B2sum1_TEI_adjusted_norm_sd 
+#7.816920                           7.251337 
+#B12sum1_TEI_adjusted_norm_sd      askosum1_TEI_adjusted_norm_sd 
+#3.601901                           2.796372 
+#Dsum1_TEI_adjusted_norm_sd      tokosum1_TEI_adjusted_norm_sd 
+#2.273276                           2.084865 
+#VITKsum1_TEI_adjusted_norm_sd      jernsum1_TEI_adjusted_norm_sd 
+#1.474044                           4.135960 
+#JODIsum1_TEI_adjusted_norm_sd      KALIsum1_TEI_adjusted_norm_sd 
+#1.869147                           7.658726 
+#> 
+		
+
+		

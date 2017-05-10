@@ -3306,3 +3306,47 @@ all_variables<-c(macronutrients_variables, micronutrients_variables)
 
 
 
+#sugar
+#long ffq: da14 coffe buns rusk, da28 cornflakes, da48 pancakes vaffles, da65 icecream, da66 sweets and chocolate, da67 sugar honey, da 68 jam, da69 cookies, da74 soft drinks, da75 sodas, da 76 juice
+#short ffq: dat13 coffe buns rusk, dat23 cornflakes, DAT35  pancakes vaffles, dat48 icecream, dat49 sweets and chocolate, DAT50 sugar honey jam, dat51 cookies, dat 56 soft drinks sodas juice
+
+VIP_data_independant$sugar_food[ffq==0]<-apply(cbind(gramshort13,gramshort23,gramshort35,gramshort48,gramshort49,gramshort50,gramshort51,gramshort56),1,FUN=sum,na.rm=TRUE)[ffq==0]
+VIP_data_independant$sugar_food[ffq==1]<-apply(cbind(gramlong14,gramlong28,gramlong48,gramlong65,gramlong66,gramlong67,gramlong68,gramlong69,gramlong74,gramlong75,gramlong76),1,FUN=sum,na.rm=TRUE)[ffq==1]
+VIP_data_independant$sugar_food_norm_sd[!is.na(VIP_data_independant$sugar_food)]<-log(VIP_data_independant$sugar_food[!is.na(VIP_data_independant$sugar_food)]+0.0001)
+VIP_data_independant$sugar_food_norm_sd[!is.na(VIP_data_independant$sugar_food_norm_sd)]<-(VIP_data_independant$sugar_food_norm_sd[!is.na(VIP_data_independant$sugar_food_norm_sd)]-mean(VIP_data_independant$sugar_food_norm_sd[!is.na(VIP_data_independant$sugar_food_norm_sd)]))/
++ (sd(VIP_data_independant$sugar_food_norm_sd[!is.na(VIP_data_independant$sugar_food_norm_sd)]))
+
+
+
+VIP_data_independant$fruit[ffq==0]<-apply(cbind(gramshort24,gramshort25,gramshort26),1,FUN=sum,na.rm=TRUE)[ffq==0]
+VIP_data_independant$fruit[ffq==1]<-apply(cbind(gramlong29, gramlong30,gramlong31,gramlong32),1,FUN=sum,na.rm=TRUE)[ffq==1]
+VIP_data_independant$fruit_norm_sd[!is.na(VIP_data_independant$fruit)]<-log(VIP_data_independant$fruit[!is.na(VIP_data_independant$fruit)]+0.0001)
+VIP_data_independant$fruit_norm_sd[!is.na(VIP_data_independant$fruit)]<-(VIP_data_independant$fruit_norm_sd-mean(VIP_data_independant$fruit_norm_sd))/
+		(sd(VIP_data_independant$fruit_norm_sd))
+
+
+
+VIP_data_independant$vegetables[ffq==0]<-apply(cbind(gramshort27,gramshort28,gramshort29,gramshort34),1,FUN=sum,na.rm=TRUE)[ffq==0]
+VIP_data_independant$vegetables[ffq==1]<-apply(cbind(gramlong33,gramlong34,gramlong35,gramlong36,gramlong37,gramlong38, gramlong46),1,FUN=sum,na.rm=TRUE)[ffq==1]
+VIP_data_independant$vegetables_norm_sd[!is.na(VIP_data_independant$vegetables)]<-log(VIP_data_independant$vegetables[!is.na(VIP_data_independant$vegetables)]+0.0001)
+VIP_data_independant$vegetables_norm_sd[!is.na(VIP_data_independant$vegetables)]<-(VIP_data_independant$vegetables_norm_sd-mean(VIP_data_independant$vegetables_norm_sd))/
+		(sd(VIP_data_independant$vegetables_norm_sd))
+
+
+
+
+associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + sugar_food_norm_sd, family = gaussian(link = "identity"))
+
+summary(associations)
+vif(associations)
+
+
+
+associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + sugar_food_norm_sd + fruit_norm_sd + vegetables_norm_sd, family = gaussian(link = "identity"))
+
+summary(associations)
+vif(associations)
+
+
+
+
