@@ -3336,7 +3336,7 @@ VIP_data_independant$vegetables_norm_sd[!is.na(VIP_data_independant$vegetables)]
 
 
 associations<-glm(bmi_norm_sd~age + agesq + gender_factor + year + ffq_factor + sugar_food_norm_sd, family = gaussian(link = "identity"))
-
+ 
 summary(associations)
 vif(associations)
 
@@ -3349,4 +3349,68 @@ vif(associations)
 
 
 
+#make matrix of bmi classes
+bmi_classes_visit1<-c()
+bmi_classes_visit1[VIP_data_subset_visit1_complete_cases$bmi_category==0]<-1
+bmi_classes_visit1[VIP_data_subset_visit1_complete_cases$bmi_category!=0]<-0
+bmi_classes_visit1<-cbind(bmi_classes_visit1,bmi_classes_visit1, bmi_classes_visit1)
+bmi_classes_visit1[VIP_data_subset_visit1_complete_cases$bmi_category!=1,2]<-0
+bmi_classes_visit1[VIP_data_subset_visit1_complete_cases$bmi_category==1,2]<-1
+bmi_classes_visit1[VIP_data_subset_visit1_complete_cases$bmi_category!=2,3]<-0
+bmi_classes_visit1[VIP_data_subset_visit1_complete_cases$bmi_category==2,3]<-1
+colnames(bmi_classes_visit1)<-c(1,2,3)
 
+#make categories of bmi for visit1
+
+#01
+bmi_category01_visit1<-VIP_data_subset_visit1_complete_cases$bmi_category[VIP_data_subset_visit1_complete_cases$bmi_category!=2]
+bmi_category01_visit1<-factor(bmi_category01_visit1)
+
+
+#02
+bmi_category02_visit1<-VIP_data_subset_visit1_complete_cases$bmi_category[VIP_data_subset_visit1_complete_cases$bmi_category!=1]
+bmi_category02_visit1[bmi_category02_visit1==2]<-1
+bmi_category02_visit1<-factor(bmi_category02_visit1)
+
+
+#12
+bmi_category12_visit1<-VIP_data_subset_visit1_complete_cases$bmi_category[VIP_data_subset_visit1_complete_cases$bmi_category!=0]
+bmi_category12_visit1[bmi_category12_visit1==1]<-0
+bmi_category12_visit1[bmi_category12_visit1==2]<-1
+bmi_category12_visit1<-factor(bmi_category12_visit1)
+
+
+fitted_probabilities<-c()
+fitted_probabilities[VIP_data_subset_visit1_complete_cases$bmi_category==0]<-
+		bmi_category_model_sep_log_reg$fitted.values[VIP_data_subset_visit1_complete_cases$bmi_category==0,1]
+fitted_probabilities[VIP_data_subset_visit1_complete_cases$bmi_category==1]<-
+		bmi_category_model_sep_log_reg$fitted.values[VIP_data_subset_visit1_complete_cases$bmi_category==1,2]
+fitted_probabilities[VIP_data_subset_visit1_complete_cases$bmi_category==2]<-
+		bmi_category_model_sep_log_reg$fitted.values[VIP_data_subset_visit1_complete_cases$bmi_category==2,3]
+
+		
+		
+		
+		(pcor.test(VIP_data_subset_visit1_complete_cases$obesity,
+							VIP_data_subset_visit1_complete_cases$diet_score,
+							apply(VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor")],2,function(x){as.numeric(x)}),
+							method="spearman")$estimate)^2)
+							
+							
+							
+							
+							
+							
+							
+#check tables for best alpha 0.3 and fitting all together with multi lm based on ols
+
+#elastic net
+
+#visit1
+
+VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,10:45])%*%
+				diag(regression_coefficients[set_alpha,]),1,sum,na.rm=T)
+
+obesity_prediction_lr<-predict(obesity_models_log_reg[[4]], VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
+		,type="response")
+							
