@@ -1,0 +1,37 @@
+notes:
+
+-residualising on the environmental score
+-bacground exposures
+
+
+broad project plan:
+
+1.Exposure review. Define which variables contribute to obesogenic environment:
+A.by literature review and following guidelines (Alaitz has already done that for the Diabetologia 2016 paper)
+B.use the variables shown to be significant by EWAS (Yan is still working on that)
+*at the moment we will go with A (variables will be selected with Alaitz help, based on her SAS and R code)
+*VIP dataset used
+
+2.Derive persistent phenotype(in my case persistent lean phenotype):
+A.Subgrouping. Identify and extract subjects which are exposed to an obesogenic environment , but remain lean, through out the 10 year period. The persistently lean phenotype is then defined by the characteristics of that subgroup and further analysis is done whithin that subgroup. + It is simple, clear and enables straight forward presentation of the results. - It will probably result in lack of power and a lot of information might be lost.
+B.By continous score of persistently leannes, based on the distribution of weight vs obesogenic risk score(s) / the residuals of that. +It will have more power, full information. -Nobody seems to have a clear idea how this will be done.
+*We will try both, my guess is that the subgroup should appear in one part of the distrbution anyway, other wise it wont make much sense. cross reference against each other and the phenotype will be made, this leads to the next step.
+*VIP dataset used
+2.1.
+Analysing that the weight change is not correlated with the derived phenotype, although we the weight change will have to be more or less minimal, we will probably allow some weight change inside the lean category and that change should not correlate with the phenotype, so it should be random inside the phenotype.
+*VIP dataset used
+
+3.Preform heritability analysis with SOLAR.
+*if EWAS available and used in step 1. , GxE heritability analysis can be done.
+*GCTA results, which use GWAS data, can be compared with SOLAR to infere pedigree strucuture
+*VIKING and GLACIER(-V2) dataset used
+
+
+4.GWAS:
+-discover loci for the persistently healthy phenotype
+-replication
+
+
+5.Genotype based recall:
+-functional annotation
+-DPP look up

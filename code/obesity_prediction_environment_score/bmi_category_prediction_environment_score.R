@@ -30,9 +30,9 @@ detach(VIP_data_all)
 source(file="../load_variables_independent_dataset_TEI_adjusted.R")
 
 
-#take only complete cases
+#take only complete cases....45652(44582 with alkosum1 and utbild and g6)
 
-VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("basic_residuals_bmi", "utbild", "alkosum1", "g6", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -92,7 +92,9 @@ regression_coefficients<-matrix(regression_coefficients,11,byrow=F)
 source(file="../load_variables_visit1_dataset_TEI_adjusted.R")
 
 #take only complete cases
-VIP_data_subset_visit1_complete_cases <- na.omit(VIP_data_subset_visit1[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor","basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+VIP_data_subset_visit1_complete_cases <- na.omit(VIP_data_subset_visit1[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
+						"basic_residuals_bmi", "utbild","alkosum1","g6",
+						"POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -112,7 +114,9 @@ VIP_data_subset_visit1_complete_cases$bmi_category<-as.factor(VIP_data_subset_vi
 source(file="../load_variables_visit2_dataset_TEI_adjusted.R")
 
 #take only complete cases
-VIP_data_subset_visit2_complete_cases <- na.omit(VIP_data_subset_visit2[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor","basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+VIP_data_subset_visit2_complete_cases <- na.omit(VIP_data_subset_visit2[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
+						"basic_residuals_bmi", "utbild","alkosum1","g6",
+						"POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -129,7 +133,7 @@ VIP_data_subset_visit2_complete_cases$bmi_category[VIP_data_subset_visit2_comple
 VIP_data_subset_visit2_complete_cases$bmi_category<-as.factor(VIP_data_subset_visit2_complete_cases$bmi_category)
 
 
-#keep subjects that were in the complete cases in both visits
+#keep subjects that were in the complete cases in both visits...31183(30118 with alkosum1 and utbild and g6)
 VIP_data_subset_visit2_complete_cases<-VIP_data_subset_visit2_complete_cases[VIP_data_subset_visit2_complete_cases$Subject_id %in% VIP_data_subset_visit1_complete_cases$Subject_id,]
 VIP_data_subset_visit1_complete_cases<-VIP_data_subset_visit1_complete_cases[VIP_data_subset_visit1_complete_cases$Subject_id %in% VIP_data_subset_visit2_complete_cases$Subject_id,]
 
@@ -777,7 +781,7 @@ bmi_category_prediction_visit1<-multinom(bmi_category ~ age + agesq + gender_fac
 
 
 obesity_prediction_visit1<-predict(bmi_category_models_log_reg[[4]], VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
-		,type="class")
+		type="class")
 
 table(obesity_prediction_visit1,VIP_data_subset_visit1_complete_cases$bmi_category)
 #obesity_prediction_visit1     0     1     2
