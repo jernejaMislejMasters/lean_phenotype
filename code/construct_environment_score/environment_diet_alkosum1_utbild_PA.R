@@ -24,13 +24,14 @@ detach(VIP_data_all)
 
 
 #check if alkosum1 can be improved with utbild
+source(file="../load_variables_independent_dataset_TEI_adjusted.R")
 
 attach(VIP_data_independant)
 
 #alkosum1 has a messy zero inflated distribution
 hist(alkosum1)
 
-#if modeled with utbild, would probably be best to transform alkosum1 in mg per day and round it, model it as count data, using zero inflated negative binomial
+#if modeled with utbild(to get residuals), would probably be best to transform alkosum1 in mg per day and round it, model it as count data, using zero inflated negative binomial
 #although looking at just these results, does not seem to make a big difference:
 
 #no utbild

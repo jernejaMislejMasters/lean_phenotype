@@ -1,0 +1,168 @@
+\documentclass[a4paper,12pt]{article}
+% a4paper sets it up with the measures for A4 paper
+% 12pt is the lettering size, (you can use 11pt or 12pt)
+
+% this produces A4 pages with a lot more text on each page
+\usepackage{a4wide}
+
+% this tells LaTeX how the latex file is encoded
+% on a modern linux usually utf8, older linux in Sweden usually latin1
+% Windows has sometimes, but not always, its own encoding
+% latin1 and utf8 allow direct input of accented characters like åäö 
+\usepackage[utf8]{inputenc}
+
+
+% uncomment (i.e. remove the % in front) for a fancier bibliography
+%\bibliographystyle{natbib}
+
+% this defines the \includegraphics command used for including figures
+\usepackage{graphicx}
+
+% the amsmath package has a lot of useful stuff for equations,
+% especially for ligning up multiple equations
+\usepackage{amsmath}
+
+%useful for dealing with labels, uncomment while writing
+%\usepackage{showkeys}
+
+
+% if you prefer the equations numbered consecutively comment out
+% the following line AND all the
+% \setcounter{equation}{0} after every \section command
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% first as you might guess the title page
+\begin{titlepage}
+% flushright puts it towards the right of the page
+%\begin{flushright}
+% our preprint number yy-nn (year-number), ask your supervisor how to get this
+%LU TP 14-nn\\
+% some indication of the date
+%June 2014\\
+%\end{flushright}
+\vfill
+\begin{center}
+% put in line breaks to make the title look nicer and provide more
+% space between the lines
+{\large\bf Genetic aetiology of the persistently lean phenotype, exposed to an unhealthy environment.}
+\\[3cm]
+{\bf Jerneja Mislej}
+\\[5mm]
+\\[2cm]
+{Master thesis supervised by Alaitz Poveda}
+\\[2cm]
+% use the eps version for latex and the pdf version for pdflatex 
+\includegraphics[height=4cm]{Lund_University_logotype.png}
+%\includegraphics[height=4cm]{logocLUeng.pdf}
+{\\\\2017}
+\\[5cm]
+\end{center}
+{\\Examensarbete för 30 hp\\
+Institutionen för ?, ? fakulteten, Lunds universitet
+\\
+\\Thesis for a ? in ?, 30 ECTS credits
+\\Department of ?, Faculty of ?, Lund University}
+
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% a page with the abstract and popular description
+\thispagestyle{empty} % do not count pages just yet
+
+% these 'rubber' spaces make the page layout look nicer
+%the \phantom{p} is to make something there for the \vfill to push against
+
+\section*{Abstract}
+Abstract goes here, formated in text....
+
+\newpage
+
+\phantom{p}
+\vfill
+
+\newpage
+
+\tableofcontents
+% the list of figures and tables is optional
+\listoffigures 
+\listoftables
+
+\newpage
+
+\section{Introduction}
+\setcounter{equation}{0}
+
+
+
+Introduction goes here, formated in text....
+
+\section{Methods}
+\setcounter{equation}{0}
+
+Methods go here, formated in text....
+
+\section{Results}
+\setcounter{equation}{0}
+
+Results go here, formated in text....
+
+\section{Discussion}
+\setcounter{equation}{0}
+
+Discussion goes here, formated in text....
+
+
+\section{Conclusions}
+\setcounter{equation}{0}
+
+Conclusions go here, formated in text....
+
+% this changes the numbering of sections to letters as is needed
+% for an appendix
+\appendix
+
+\section{This is an appendix}
+\setcounter{equation}{0}
+
+You can put long mathematical derivations or tables in appendices.
+\begin{equation}
+\label{appendixequation}
+x = y\,.
+\end{equation}
+
+\section{This is another appendix}
+\setcounter{equation}{0}
+
+Subsections etc. are also allowed here
+
+\subsection{An appendix subsection}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+\bibitem{notsoshort}
+T. Oetiker {it et al.}, ``The Not So Short Introduction to \LaTeX2e,''
+{\tt http://www.ctan.org/tex-archive/info/lshort/english/}
+
+\bibitem{graphicx}
+{\tt http://ctan.org/pkg/graphicx}
+
+\bibitem{Kallen:1952zz}
+G.~Kallen,
+%``On the definition of the Renormalization Constants in Quantum Electrodynamics,''
+Helv.\ Phys.\ Acta {\bf 25} (1952) 417.
+%%CITATION = HPACA,25,417;%%
+
+\bibitem{amsmath}
+``User's guide for the {\tt amsmath} package,''
+{\tt http://www.ctan.org/pkg/amsmath}
+
+\bibitem{inspire} High-Energy Physics Literature Database,
+{\tt http://inspirehep.net}
+
+\end{thebibliography}
+
+
+\end{document}

@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {2}\LaTeX }{3}
+\contentsline {section}{\numberline {3}Comments}{3}
+\contentsline {section}{\numberline {4}Labeling}{3}
+\contentsline {subsection}{\numberline {4.1}A subsection of Section 1}{4}
+\contentsline {subsubsection}{\numberline {4.1.1}A subsubsections}{4}
+\contentsline {paragraph}{Paragraphs are not numbered}{4}
+\contentsline {section}{\numberline {5}An example computer code}{4}
+\contentsline {section}{\numberline {6}Figures}{5}
+\contentsline {section}{\numberline {7}Tables}{5}
+\contentsline {section}{\numberline {8}Equations}{5}
+\contentsline {section}{\numberline {9}The list environment}{6}
+\contentsline {section}{\numberline {10}References}{7}
+\contentsline {section}{\numberline {11}Conclusions}{7}
+\contentsline {section}{\numberline {A}This is an appendix}{7}
+\contentsline {section}{\numberline {B}This is another appendix}{7}
+\contentsline {subsection}{\numberline {B.1}An appendix subsection}{8}

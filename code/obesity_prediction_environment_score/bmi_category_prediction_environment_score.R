@@ -32,7 +32,7 @@ source(file="../load_variables_independent_dataset_TEI_adjusted.R")
 
 #take only complete cases....45652(44582 with alkosum1 and utbild and g6)
 
-VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("basic_residuals_bmi", "utbild", "alkosum1", "g6", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -93,8 +93,7 @@ source(file="../load_variables_visit1_dataset_TEI_adjusted.R")
 
 #take only complete cases
 VIP_data_subset_visit1_complete_cases <- na.omit(VIP_data_subset_visit1[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
-						"basic_residuals_bmi", "utbild","alkosum1","g6",
-						"POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+						"basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -115,8 +114,7 @@ source(file="../load_variables_visit2_dataset_TEI_adjusted.R")
 
 #take only complete cases
 VIP_data_subset_visit2_complete_cases <- na.omit(VIP_data_subset_visit2[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
-						"basic_residuals_bmi", "utbild","alkosum1","g6",
-						"POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+						"basic_residuals_bmi", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -732,10 +730,11 @@ for ( AUC_diff1 in c(1:16))
 VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,10:45])%*%
 				diag(regression_coefficients[4,]),1,sum,na.rm=T)
 
+
 bmi_category_prediction_visit1<-multinom(bmi_category ~ age + agesq + gender_factor + year + ffq_factor + diet_score, 
 		data=VIP_data_subset_visit1_complete_cases)
 
-obesity_prediction_visit1<-predict(bmi_category_models_log_reg[[4]], VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
+obesity_prediction_visit1<-predict(bmi_category_prediction_visit1, VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
 		,type="class")
 
 table(obesity_prediction_visit1,VIP_data_subset_visit1_complete_cases$bmi_category)
@@ -807,4 +806,147 @@ table(obesity_prediction_visit2,VIP_data_subset_visit2_complete_cases$bmi_catego
 #0 							6347 3984 1406
 #1 							6752 9005 3114
 #2  						 191  226  158
+
+
+
+
+#for alpha is 0.3 and multi ols check the consistency of misclassified subjects:
+
+
+#elastic net
+
+#visit1
+
+
+VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,10:45])%*%
+				diag(regression_coefficients[4,]),1,sum,na.rm=T)
+
+bmi_category_prediction_visit1<-multinom(bmi_category ~ age + agesq + gender_factor + year + ffq_factor + diet_score, 
+		data=VIP_data_subset_visit1_complete_cases)
+
+obesity_prediction_visit1<-predict(bmi_category_prediction_visit1, VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
+		,type="class")
+
+#get those subjects who are normal weight but were classified as overweight or obese
+Subject_ids_overweight_visit1<-VIP_data_subset_visit1_complete_cases$Subject_id[obesity_prediction_visit1==1 & VIP_data_subset_visit1_complete_cases$bmi_category==0]
+
+Subject_ids_obese_visit1<-VIP_data_subset_visit1_complete_cases$Subject_id[obesity_prediction_visit1==2 & VIP_data_subset_visit1_complete_cases$bmi_category==0]
+
+
+
+
+#visit2
+
+
+VIP_data_subset_visit2_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,10:45])%*%
+				diag(regression_coefficients[4,]),1,sum,na.rm=T)
+
+bmi_category_prediction_visit2<-multinom(bmi_category ~ age + agesq + gender_factor + year + ffq_factor + diet_score, 
+		data=VIP_data_subset_visit2_complete_cases)
+
+obesity_prediction_visit2<-predict(bmi_category_prediction_visit2, VIP_data_subset_visit2_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
+		,type="class")
+
+#get those subjects who are normal weight but were classified as overweight or obese
+Subject_ids_overweight_visit2<-VIP_data_subset_visit2_complete_cases$Subject_id[obesity_prediction_visit2==1 & VIP_data_subset_visit2_complete_cases$bmi_category==0]
+
+Subject_ids_obese_visit2<-VIP_data_subset_visit2_complete_cases$Subject_id[obesity_prediction_visit2==2 & VIP_data_subset_visit2_complete_cases$bmi_category==0]
+
+
+#check how many are the same subjects
+
+#overweight
+length(Subject_ids_overweight_visit2[Subject_ids_overweight_visit2 %in% Subject_ids_overweight_visit1])
+#1827
+# 0.3652539% of visit2(5002) and 0.6467257% of visit1(2825)
+
+#obese
+length(Subject_ids_obese_visit2[Subject_ids_obese_visit2 %in% Subject_ids_obese_visit1])
+#0
+# 0% of visit2(37) and 0% of visit1(2)
+
+
+
+
+#multi all
+
+#visit1
+
+VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,10:45])%*%
+				diag(multiple_coefficients),1,sum,na.rm=T)
+
+bmi_category_prediction_visit1<-multinom(bmi_category ~ age + agesq + gender_factor + year + ffq_factor + diet_score, 
+		data=VIP_data_subset_visit1_complete_cases)
+
+obesity_prediction_visit1<-predict(bmi_category_models_log_reg[[4]], VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
+		type="class")
+
+#get those subjects who are normal weight but were classified as overweight or obese
+Subject_ids_overweight_visit1_multi<-VIP_data_subset_visit1_complete_cases$Subject_id[obesity_prediction_visit1==1 & VIP_data_subset_visit1_complete_cases$bmi_category==0]
+
+Subject_ids_obese_visit1_multi<-VIP_data_subset_visit1_complete_cases$Subject_id[obesity_prediction_visit1==2 & VIP_data_subset_visit1_complete_cases$bmi_category==0]
+
+
+
+
+#visit2
+
+VIP_data_subset_visit2_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,10:45])%*%
+				diag(multiple_coefficients),1,sum,na.rm=T)
+
+bmi_category_prediction_visit2<-multinom(bmi_category ~ age + agesq + gender_factor + year + ffq_factor + diet_score, 
+		data=VIP_data_subset_visit2_complete_cases)
+
+obesity_prediction_visit2<-predict(bmi_category_models_log_reg[[4]], VIP_data_subset_visit2_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
+		,type="class")
+
+#get those subjects who are normal weight but were classified as overweight or obese
+Subject_ids_overweight_visit2_multi<-VIP_data_subset_visit2_complete_cases$Subject_id[obesity_prediction_visit2==1 & VIP_data_subset_visit2_complete_cases$bmi_category==0]
+
+Subject_ids_obese_visit2_multi<-VIP_data_subset_visit2_complete_cases$Subject_id[obesity_prediction_visit2==2 & VIP_data_subset_visit2_complete_cases$bmi_category==0]
+
+
+#check how many are the same subjects
+
+#overweight
+length(Subject_ids_overweight_visit2_multi[Subject_ids_overweight_visit2_multi %in% Subject_ids_overweight_visit1_multi])
+#1718
+# 0.2544431% of visit2_multi(6752) and 0.6222383% of visit1_multi(2761)
+
+#obese
+length(Subject_ids_obese_visit2_multi[Subject_ids_obese_visit2_multi %in% Subject_ids_obese_visit1_multi])
+#2
+# 0.0104712% of visit2_multi(191) and 0.09090909% of visit1_multi(22)
+
+
+
+
+#check consistency between the models
+
+#visit1
+
+#overweight
+length(Subject_ids_overweight_visit1[Subject_ids_overweight_visit1 %in% Subject_ids_overweight_visit1_multi])
+#2285
+# 0.8088496% of visit1 shrinkage(2825) and 0.8275987% of visit1 multi ols(2761)
+
+#obese
+length(Subject_ids_obese_visit1[Subject_ids_obese_visit1 %in% Subject_ids_obese_visit1_multi])
+#2
+# 100% of visit1 shrinkage(2) and 0.09090909% of visit1 multi ols(22)
+
+
+
+
+#visit2
+
+#overweight
+length(Subject_ids_overweight_visit2[Subject_ids_overweight_visit2 %in% Subject_ids_overweight_visit2_multi])
+#4321
+#0.8638545% of visit2 shrinkage(5002) and 0.6399585% of visit2 multi ols(6752)
+
+#obese
+length(Subject_ids_obese_visit2[Subject_ids_obese_visit2 %in% Subject_ids_obese_visit2_multi])
+#36
+# 0.972973% of visit2 shrinkage(37) and 0.1884817% of visit2 multi ols(191)
 

@@ -1,0 +1,425 @@
+\documentclass[a4paper,12pt]{article}
+% a4paper sets it up with the measures for A4 paper
+% 12pt is the lettering size, (you can use 11pt or 12pt)
+
+% this produces A4 pages with a lot more text on each page
+\usepackage{a4wide}
+
+% this tells LaTeX how the latex file is encoded
+% on a modern linux usually utf8, older linux in Sweden usually latin1
+% Windows has sometimes, but not always, its own encoding
+% latin1 and utf8 allow direct input of accented characters like åäö 
+\usepackage[utf8]{inputenc}
+
+
+% uncomment (i.e. remove the % in front) for a fancier bibliography
+%\bibliographystyle{natbib}
+
+% this defines the \includegraphics command used for including figures
+\usepackage{graphicx}
+
+% the amsmath package has a lot of useful stuff for equations,
+% especially for ligning up multiple equations
+\usepackage{amsmath}
+
+%useful for dealing with labels, uncomment while writing
+%\usepackage{showkeys}
+
+
+% if you prefer the equations numbered consecutively comment out
+% the following line AND all the
+% \setcounter{equation}{0} after every \section command
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% first as you might guess the title page
+\begin{titlepage}
+% flushright puts it towards the right of the page
+%\begin{flushright}
+% our preprint number yy-nn (year-number), ask your supervisor how to get this
+%LU TP 14-nn\\
+% some indication of the date
+%June 2014\\
+%\end{flushright}
+\vfill
+\begin{center}
+% put in line breaks to make the title look nicer and provide more
+% space between the lines
+{\large\bf Genetic aetiology of the persistently lean phenotype, exposed to an unhealthy environment.}
+\\[3cm]
+{\bf Gunnar Käll\'en}
+\\[5mm]
+{Department of Astronomy and Theoretical Physics, Lund University}
+\\[2cm]
+{Bachelor/Master thesis supervised by Johan Bijnens}
+\vfill
+% use the eps version for latex and the pdf version for pdflatex 
+\includegraphics[height=4cm]{logocLUeng.eps}
+%\includegraphics[height=4cm]{logocLUeng.pdf}
+\end{center}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% a page with the abstract and popular description
+\thispagestyle{empty} % do not count pages just yet
+
+% these 'rubber' spaces make the page layout look nicer
+%the \phantom{p} is to make something there for the \vfill to push against
+\phantom{p}
+\vfill
+
+\section*{Abstract}
+The abstract is a short summary describing the content of the main text.
+This should give enough information about the contents to decide for the
+intended audience whether further reading will be useful. The size should
+be about half a page, best written at the end, after most of the thesis is
+written.
+This is a \LaTeX\ template for a bachelor/master thesis in theoretical physics
+at Lund University. It contains examples of most needed structures
+and discusses other relevant aspects of writing a thesis.
+
+\vfill
+
+\section*{Populärvetenskapligt sammanfattning}
+% Swedish letters: \"a, \"o, \aa or ä, ö, å if you use utf8
+
+This is meant to be popular \emph{introduction} to and
+\emph{description} of your thesis, preferably
+written in Swedish. The name is unfortunately misleading. It is not a summary
+but mainly an introduction to what you have done. A good idea is to write this
+when you are about one third through the time allotted for the thesis work.
+
+Especially important here are the context of your project and why this is
+an interesting project to do. This should be about half a page as well.
+
+\vfill
+
+\newpage
+
+\tableofcontents
+% the list of figures and tables is optional
+\listoffigures 
+\listoftables
+
+\newpage
+
+\section{Introduction}
+\setcounter{equation}{0}
+\label{sec:introduction}
+
+
+This is a template \LaTeX\ file for a bachelor or master thesis in theoretical
+physics at Lund University. It has an example front page and in the \LaTeX\ file
+itself there are many comments. The introduction should contain the background
+of why you are doing this and a short description of the general area.
+
+Writing a thesis is a time consuming project. Especially in theoretical physics
+where a bachelor/master thesis typically contains a large number of equations.
+These are very difficult to handle using more standard programs or
+applications.
+
+\section{\LaTeX}
+\setcounter{equation}{0}
+
+There are very many introductions to \LaTeX\ around. A simple one is
+``A not-so-short introduction to \LaTeX'' \cite{notsoshort}.
+Inclusion of graphics is done with the package {\tt graphicx} \cite{graphicx}.
+The sections below will contain examples of most of the things that might be
+needed in writing a thesis and a number of hints and comments.
+Pay especially heed to the latter. you will be grateful when hunting for
+typing errors and other mistakes later. Before reading the remainder
+of this template, make sure you have a basic knowledge of \LaTeX.
+
+\section{Comments}
+\setcounter{equation}{0}
+
+The comments below are done with a simple listing environment called
+{\tt itemize}.
+\begin{itemize}
+\item
+In the template file itself there are many comments as well, it will probably
+pay off to look at those as well.
+\item
+Type cleanly, especially equations. It will make life easier hunting for errors.
+\item
+Both \TeX\ and \LaTeX\ themselves classify as a full programming language, so
+you can do some really fancy stuff with it. However, if not needed, it can
+lead to very funny behaviour if you don't exactly know what the funny
+commands do and a small change messes up things.
+\item
+You probably already have, but have a look at earlier bachelor or master 
+theses, for examples.
+\item
+Examples of useful things all over in the file, look at them.
+\end{itemize}
+
+\section{Labeling}
+\setcounter{equation}{0}
+\label{sec:labeling}
+
+
+Latex is very nice because it can help you to refer to the right table, figure,
+item section orpage. Just remember that you need to compile with latex or
+pdflatex twice (!) before it has updated all the cross references. This is also
+true for references (see Sect.\,\ref{sect:refs}). If you use some special
+packages, sometimes it requires even more times processing with latex
+or pdflatex.
+
+In item\,\ref{label:item} on page \pageref{label:item} you can find some
+important information that was not covered in Eq.\,(\ref{eq:smart}) or in
+Table\,\ref{table:1}. That covers the most important references\footnote{If you
+want to learn more -- read more.}
+
+\LaTeX\ allows to use labels for references, tables, sections,\ldots.
+Use this consistently. If you do not, you will have to go through the entire
+manuscript by hand if you add an equation or a figure and change all the
+numbers. You will for sure forget some. Add the command
+{\tt {$\backslash$}usepackage\{showkeys\}} at the top of the file. It will make
+labels and where they are used visible which is very useful while writing.
+The labels can be (almost) anything but choosing them wisely and easier
+to remember helps very much.
+
+The actual referring can be done in many ways. The words equation,
+tabke, figure and section can be included or not, as well as capitalized
+or not. There is no preferred way of doing this but be consistent.
+Use the same style throughout.
+Citations to the literature are in our field put at the end and the most common
+style is ordering by appearance and a number in square brackets like
+\cite{Kallen:1952zz}. That, by the way, is the real reference for the
+first part of the title.
+
+You can refer to a section as Sect.~\ref{sec:introduction}
+and a subsection as Sect.~\ref{sec:asubsection}.
+
+
+\subsection{A subsection of Section 1}
+\label{sec:asubsection}
+
+\subsubsection{A subsubsections}
+
+\paragraph{Paragraphs are not numbered}
+
+Paragraphs are allowed but usually not used.
+
+\section{An example computer code}
+\setcounter{equation}{0}
+
+When we write down computer code we might
+want it to look just like it does in the editor (using a fixed with font). This
+is done using the {\sl verbatim} environment.
+
+\begin{verbatim}
+
+       PROGRAM myfortran
+
+       IMPLICIT NONE
+
+       REAL*8 mag(20)
+       REAL flux(20)
+       INTEGER nstar
+
+       WRITE(*,*) "This program calculates a magnitude"
+       READ(*,*) flux(1)
+       mag(1)=-2.5*LOG(flux(1))
+
+\end{verbatim}
+
+Computer languages are, usually but not always, written in the smallcaps font
+like {\sc FORTRAN}.
+
+
+\section{Figures}
+\setcounter{equation}{0}
+
+Figures are of course very important in the thesis. Make sure that your figures
+have thick lines that stand out in the printed version, that the axes are
+labelled and explained and that colours are distinguishable in a black and
+white printout as well (this is helpful for the not insignificant fraction of
+the population who are colorblind).
+\begin{figure}
+%\includegraphics[width=8cm]{Draco_cmd.ps}
+\caption[CMD of Draco]{This colour-magnitude diagram shows the giant branch of
+the Draco dwarf spheroidal galaxy as seen in the Str\"omgren filter system
+(also known as $uvby$). Are the lines thick enough to read? Did you find out
+how to make nice postscript fonts with your plotting program?}
+\end{figure}
+
+\section{Tables}
+\setcounter{equation}{0}
+
+This section contains a table which shows the most basic elements and a simple
+layout. The table can be seen in Table\,\ref{table:1}.  Make sure to make your
+labeling system easy. Maybe table:1 is not so smart -- what if you move the
+table somewhere else, and it is not any longer the first table or you add a
+table before this one. Perhaps a label like {\tt table:varstars} would have
+been better?
+\begin{table}[!h]
+\caption{This is a table of variable stars}\smallskip
+\label{table:1}
+\centering  
+\begin{tabular}{lrrc}
+\hline\hline  
+\smallskip
+Id of star & I &  V & Var.? \\
+\hline
+1234 & 15.6 & 17.3 & No \\
+5677 & 13.4 & 12.3 & Yes\\
+\hline
+\end{tabular}
+\end{table}
+
+Here we managed to place the table directly in the text (using the !h option).
+Generally we should let latex control the positions of figures and tables --
+if you are unhappy with their placement then try to move them around in the raw
+text or experiment with !h and !t.
+
+\section{Equations}
+\setcounter{equation}{0}
+
+Writing mathematical formular in latex is not always so easy at first. But it
+does look good! There are several environments that we can use, and we can get
+numbers for all the equations etc. Very neat. If I want simply to have a small
+equation or some expression in the text I can just do {\tt \$ x+a  cdot b= f(x)
+\$}. Which, when latexed, gives us the formula $x+a \cdot b= f(x)$.
+\\ \\
+If we want an equation by itself, we just add one more {\tt \$} at each side:
+$$ g(x,y)=\sin (x) + 10 \ log(y \cdot 20 \cdot 10^{-2x}) $$
+It is also possible to use an {\sl environment} especially for equations.
+Remember that equations should be integrated in the flow of the text, even if
+they are on separate lines. Therefore we should use punctuation in equations as
+well, for example in the equation which reads
+\begin{equation}
+  \sum_{k=i}^n (x- \overline{x})^2 +\sqrt{x^2 + y^3} = h(x,y) \label{eq:smart}
+  \, .
+\end{equation}
+
+Remember that the {\tt equation} environment does not like empty lines.  This
+is the same in {\tt tabular}, by the way.  You can do many more things in the
+maths-mode. If you are going to write lots of equations you will learn it very
+quickly.
+
+You should also look a the American Mathemematical Society package
+{\tt amsmath} \cite{amsmath}. It is very useful for lining up equations and
+has a lot more symbols than the base \LaTeX\ set.
+
+Equations are typeset in a separate font, but note that units,
+abbreviations and names should not be typeset in this font. This way
+we can distinguish m for meter from $m$ for mass. Inside an equation
+the $\backslash$mathrm\{\ldots\} command can be used to typeset in the normal font,
+e.g. $m_{\mathrm{eff}}$ rather than $m_{eff}$ (unless $m$ is a tensor
+with three indices). 
+
+\section{The list environment}
+\setcounter{equation}{0}
+
+If you want to make good looking lists, short or long, latex can do it for you.
+
+\begin{itemize}
+\item This is the first entry
+\item and the second one
+  \begin{itemize}
+    \item lets go down one level
+    \item and stay there
+      \begin{itemize}
+          \item And one more
+          \item very deep
+      \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+But you can also do other types of lists. For example with numbers. Very useful
+as you can refer to them later with labels.
+
+\begin{enumerate}
+  \item First entry
+  \item Second entry
+  \item Third entry
+    \begin{enumerate} 
+  \item First entry \label{label:item}
+  \item Second entry
+  \end{enumerate}
+      \begin{itemize}
+          \item And you can mix the listings
+          \item like this 
+      \end{itemize}
+\end{enumerate}     
+
+
+\section{References}
+\setcounter{equation}{0}
+\label{sect:refs}
+
+You also need to cite all the thick and good papers that you have read during
+your thesis work. There are several ways. Here we will use the 
+standard style given by \LaTeX\ 
+as that one is the one that most resembles the way we write references in
+high energy physics journal papers. 
+
+You can add the references in a so called bibtex file. This file contains all
+the information latex needs about a single paper in order to make an entry in
+the reference list and to write the correct reference inside your text. 
+Alternatively we can add a list of bibitems directly in the latex file. This
+is what we will do here, and probably the most useful for you.
+
+Finding references can be done by many means, Google, your supervisor, etc..
+In particle physics there is a very good database called INSPIRE
+\cite{inspire}. They also allow to get the \LaTeX\ code for a reference
+directly. We use the style Latex EU, see \cite{Kallen:1952zz} in the references
+how their output looks like.
+
+\section{Conclusions}
+\setcounter{equation}{0}
+
+\section*{Acknowledgements}
+
+There is no acknowledgements section in the regular latex, but you can easily
+make one yourself. The * makes in the command makes it not have a number
+
+% this changes the numbering of sections to letters as is needed
+% for an appendix
+\appendix
+
+\section{This is an appendix}
+\setcounter{equation}{0}
+
+You can put long mathematical derivations or tables in appendices.
+\begin{equation}
+\label{appendixequation}
+x = y\,.
+\end{equation}
+
+\section{This is another appendix}
+\setcounter{equation}{0}
+
+Subsections etc. are also allowed here
+
+\subsection{An appendix subsection}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+\bibitem{notsoshort}
+T. Oetiker {it et al.}, ``The Not So Short Introduction to \LaTeX2e,''
+{\tt http://www.ctan.org/tex-archive/info/lshort/english/}
+
+\bibitem{graphicx}
+{\tt http://ctan.org/pkg/graphicx}
+
+\bibitem{Kallen:1952zz}
+G.~Kallen,
+%``On the definition of the Renormalization Constants in Quantum Electrodynamics,''
+Helv.\ Phys.\ Acta {\bf 25} (1952) 417.
+%%CITATION = HPACA,25,417;%%
+
+\bibitem{amsmath}
+``User's guide for the {\tt amsmath} package,''
+{\tt http://www.ctan.org/pkg/amsmath}
+
+\bibitem{inspire} High-Energy Physics Literature Database,
+{\tt http://inspirehep.net}
+
+\end{thebibliography}
+
+
+\end{document}
