@@ -737,13 +737,21 @@ bmi_category_prediction_visit1<-multinom(bmi_category ~ age + agesq + gender_fac
 obesity_prediction_visit1<-predict(bmi_category_prediction_visit1, VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
 		,type="class")
 
-table(obesity_prediction_visit1,VIP_data_subset_visit1_complete_cases$bmi_category)
+elastic_net_visit1_table<-table(obesity_prediction_visit1,VIP_data_subset_visit1_complete_cases$bmi_category)
 #
 #obesity_prediction_visit1     0     1     2
 #0 							14501  7514  1910
 #1  						 2825  3656   774
 #2     							2     0     1
 #
+
+#micro precision 0.5823045
+(elastic_net_visit1_table[1]+elastic_net_visit1_table[5]+elastic_net_visit1_table[9])/sum(elastic_net_visit1_table)
+
+#macro precision 0.6061024
+mean(elastic_net_visit1_table[1]/(elastic_net_visit1_table[1]+elastic_net_visit1_table[4]+elastic_net_visit1_table[7]),
+		elastic_net_visit1_table[5]/(elastic_net_visit1_table[5]+elastic_net_visit1_table[2]+elastic_net_visit1_table[8]),
+		elastic_net_visit1_table[9]/(elastic_net_visit1_table[9]+elastic_net_visit1_table[3]+elastic_net_visit1_table[6]))
 
 #visit2
 
@@ -757,12 +765,19 @@ bmi_category_prediction_visit2<-multinom(bmi_category ~ age + agesq + gender_fac
 obesity_prediction_visit2<-predict(bmi_category_prediction_visit2, VIP_data_subset_visit2_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
 		,type="class")
 
-table(obesity_prediction_visit2,VIP_data_subset_visit2_complete_cases$bmi_category)
+elastic_net_visit2_table<-table(obesity_prediction_visit2,VIP_data_subset_visit2_complete_cases$bmi_category)
 #
 #obesity_prediction_visit2    0    1    2
 #0							 8251 5477 2143
 #1 							 5002 7694 2501
 #2   						  37   44   34
+#micro precision 0.5124266
+(elastic_net_visit2_table[1]+elastic_net_visit2_table[5]+elastic_net_visit2_table[9])/sum(elastic_net_visit2_table)
+
+#macro precision 0.519879
+mean(elastic_net_visit2_table[1]/(elastic_net_visit2_table[1]+elastic_net_visit2_table[4]+elastic_net_visit2_table[7]),
+		elastic_net_visit2_table[5]/(elastic_net_visit2_table[5]+elastic_net_visit2_table[2]+elastic_net_visit2_table[8]),
+		elastic_net_visit2_table[9]/(elastic_net_visit2_table[9]+elastic_net_visit2_table[3]+elastic_net_visit2_table[6]))
 
 
 
@@ -782,12 +797,23 @@ bmi_category_prediction_visit1<-multinom(bmi_category ~ age + agesq + gender_fac
 obesity_prediction_visit1<-predict(bmi_category_models_log_reg[[4]], VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
 		type="class")
 
-table(obesity_prediction_visit1,VIP_data_subset_visit1_complete_cases$bmi_category)
+multi_visit1_table<-table(obesity_prediction_visit1,VIP_data_subset_visit1_complete_cases$bmi_category)
 #obesity_prediction_visit1     0     1     2
 #0 							14545  7560  1819
 #1  						 2761  3585   849
 #2    						   22    25    17
 
+#micro precision 0.5819517
+(multi_visit1_table[1]+multi_visit1_table[5]+multi_visit1_table[9])/sum(multi_visit1_table)
+
+#macro precision 0.6079669
+mean(multi_visit1_table[1]/(multi_visit1_table[1]+multi_visit1_table[4]+multi_visit1_table[7]),
+		multi_visit1_table[5]/(multi_visit1_table[5]+multi_visit1_table[2]+multi_visit1_table[8]),
+		multi_visit1_table[9]/(multi_visit1_table[9]+multi_visit1_table[3]+multi_visit1_table[6]))
+
+
+
+#visit2
 
 VIP_data_subset_visit2_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,10:45])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
@@ -800,12 +826,20 @@ bmi_category_prediction_visit2<-multinom(bmi_category ~ age + agesq + gender_fac
 obesity_prediction_visit2<-predict(bmi_category_models_log_reg[[4]], VIP_data_subset_visit2_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
 		,type="class")
 
-table(obesity_prediction_visit2,VIP_data_subset_visit2_complete_cases$bmi_category)
+multi_visit2_table<-table(obesity_prediction_visit2,VIP_data_subset_visit2_complete_cases$bmi_category)
 
 #obesity_prediction_visit2    0    1    2
 #0 							6347 3984 1406
 #1 							6752 9005 3114
 #2  						 191  226  158
+
+#micro precision 0.4973864
+(multi_visit2_table[1]+multi_visit2_table[5]+multi_visit2_table[9])/sum(multi_visit2_table)
+
+#macro precision 0.5407685
+mean(multi_visit2_table[1]/(multi_visit2_table[1]+multi_visit2_table[4]+multi_visit2_table[7]),
+		multi_visit2_table[5]/(multi_visit2_table[5]+multi_visit2_table[2]+multi_visit2_table[8]),
+		multi_visit2_table[9]/(multi_visit2_table[9]+multi_visit2_table[3]+multi_visit2_table[6]))
 
 
 
@@ -854,6 +888,8 @@ Subject_ids_obese_visit2<-VIP_data_subset_visit2_complete_cases$Subject_id[obesi
 
 
 #check how many are the same subjects
+
+outliers_Subjects_shrinkage_overweight<-Subject_ids_overweight_visit2[Subject_ids_overweight_visit2 %in% Subject_ids_overweight_visit1]
 
 #overweight
 length(Subject_ids_overweight_visit2[Subject_ids_overweight_visit2 %in% Subject_ids_overweight_visit1])
@@ -908,6 +944,8 @@ Subject_ids_obese_visit2_multi<-VIP_data_subset_visit2_complete_cases$Subject_id
 
 #check how many are the same subjects
 
+outliers_Subjects_multi_overweight<-Subject_ids_overweight_visit2_multi[Subject_ids_overweight_visit2_multi %in% Subject_ids_overweight_visit1_multi]
+
 #overweight
 length(Subject_ids_overweight_visit2_multi[Subject_ids_overweight_visit2_multi %in% Subject_ids_overweight_visit1_multi])
 #1718
@@ -950,3 +988,9 @@ length(Subject_ids_obese_visit2[Subject_ids_obese_visit2 %in% Subject_ids_obese_
 #36
 # 0.972973% of visit2 shrinkage(37) and 0.1884817% of visit2 multi ols(191)
 
+
+
+#out of those that are outliers in shrinkage model in both visit, check how many are also outlier in both visits of multi ols model
+length(outliers_Subjects_shrinkage_overweight[outliers_Subjects_shrinkage_overweight %in% outliers_Subjects_multi_overweight])
+#1454
+# 0.7958402% of shrinkage(1827) and 0.8463329% of visit1 multi ols(1718)
