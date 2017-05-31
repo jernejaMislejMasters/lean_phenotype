@@ -993,4 +993,4 @@ length(Subject_ids_obese_visit2[Subject_ids_obese_visit2 %in% Subject_ids_obese_
 #out of those that are outliers in shrinkage model in both visit, check how many are also outlier in both visits of multi ols model
 length(outliers_Subjects_shrinkage_overweight[outliers_Subjects_shrinkage_overweight %in% outliers_Subjects_multi_overweight])
 #1454
-# 0.7958402% of shrinkage(1827) and 0.8463329% of visit1 multi ols(1718)
+# 0.7958402% of shrinkage(1827) and 0.8463329% of multi ols(1718)
