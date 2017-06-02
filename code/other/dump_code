@@ -3414,3 +3414,20 @@ VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subse
 obesity_prediction_lr<-predict(obesity_models_log_reg[[4]], VIP_data_subset_visit1_complete_cases[,c("age","agesq","gender_factor","year","ffq_factor","diet_score")],
 		,type="response")
 							
+							
+							
+							
+#plot them on the distributions
+d<-density(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd)
+d$x<-d$x[d$x %in% VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1]]
+d$y<-d$y[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1]
+
+
+
+plot(d, main=" Environment Z-score distribution in frist vist")
+polygon(d, col="gray90", border="gray20")
+polygon(c(min(d$x[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1]),d$x[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1],
+				max(d$x[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1])), 
+				c(0,d$y[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1],0), col="gray90", border="gray20")
+
+							
