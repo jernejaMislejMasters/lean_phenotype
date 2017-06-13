@@ -100,3 +100,44 @@ other’s absorption
 Mulholland CA, Benford DJ. What is known about the safety of mul-
 tivitamin-multimineral supplements for the generally healthy pop-
 ulation? Theoretical basis for harm. Am J Clin Nutr 2007;85:318S–22S.
+
+
+
+
+
+
+
+
+
+adjusting for fruit and vegetables does not seem to make much difference:
+
+sugar_food R : 0.0196 , p-value : 2.13442e-05
+
+
+
+
+Regarding the diet score, as you have read in Alaitz update, we had tried many different things and got all sorts of unexpected results.
+We explored the sugar variable a bit more, but there are others and I am still not sure if we can say anything about sugar.
+So sugar containing food items could be cornflakes, pancakes and vaffles, ice cream, sweets and chocolate, sugar, honey and jam, cookies, 
+soft drink, sodas, juice(some of these were merged into one variable in the new questionnare)
+partial spearmans rank correlation coefficient between bmi and those variables in grams, adjusting for basic covariates, like age, gender, etc. :
+
+cornflakes  R : 0.016 , p-value : <2e-16
+pancakes_vaffles  R : 0.026 , p-value : <2e-16
+icecream  R : 0 , p-value : 0.979
+sweets_chocolate  R : -0.002 , p-value : 0.596
+sugar_honey_jam  R : -0.072 , p-value : <2e-16
+cookies  R : -0.022 , p-value : <2e-16
+softdrinks_sodas_juice  R : 0.039 , p-value : <2e-16
+fruit  R : -0.009 , p-value : 0.051
+vegetables  R : -0.002 , p-value : 0.67
+
+
+combining all the sugar variables together and adjusting for fruit and vegetables:
+
+
+
+We started with the guidlines, where in theory it would have been clear who has an unhealthy environment, and now endened up with a score which is completly dependant on the data
+and the model of bmi and we cant say much about the score and what it really represents. First the data is macro and micro nutrients, combined from all food items in the questionnare, meaning
+that the variation from nutrients from all sorts of food matrices and combinations are put together in one variable. In one way we get a lot of information, since we summarize all food items, but on the other hand
+we loose information since we oversimplfy a very complex model. 

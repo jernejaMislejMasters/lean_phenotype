@@ -1,8 +1,9 @@
 library(nnet)
 library(stargazer)
 library(pROC)
+library(car)
 
-#load entire cleaned data (154009 subjects)
+#load entire cleaned data (154009 lines)
 VIP_data_all <- read.csv("../VIP_data/VIP_170206_cleaned.csv", header = TRUE, sep = ",", row.names = NULL, fill=TRUE)
 
 #load the subset
@@ -208,9 +209,20 @@ multiple_p_values<-summary(glm(basic_residuals_bmi~POLYsum1_TEI_adjusted_norm_sd
 						Dsum1_TEI_adjusted_norm_sd+tokosum1_TEI_adjusted_norm_sd+VITKsum1_TEI_adjusted_norm_sd+jernsum1_TEI_adjusted_norm_sd+
 						JODIsum1_TEI_adjusted_norm_sd+kalcsum1_TEI_adjusted_norm_sd+KALIsum1_TEI_adjusted_norm_sd, family=gaussian(link="identity")))$coefficients[113:148]
 
+#dont rerun with significant only,since the rest of the variables might not effect bmi, but effect the rest of the variables
+#multiple_coefficients2<-glm(basic_residuals_bmi~POLYsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+sacksum1_TEI_adjusted_norm_sd+kolhsum1_TEI_adjusted_norm_sd+
+#				FA_TEI_adjusted_norm_sd+protsum1_anim_TEI_adjusted_norm_sd+fibesum1_TEI_adjusted_norm_sd+DISAsum1_TEI_adjusted_norm_sd+TRANSsum1_TEI_adjusted_norm_sd+
+#				NATRsum1_TEI_adjusted_norm_sd+ensum1_norm_sd+ MAGNsum1_TEI_adjusted_norm_sd+FOSFsum1_TEI_adjusted_norm_sd+selesum1_TEI_adjusted_norm_sd+
+#				ZINCsum1_TEI_adjusted_norm_sd+retisum1_TEI_adjusted_norm_sd+TIAMsum1_TEI_adjusted_norm_sd+Folasum1_TEI_adjusted_norm_sd+B2sum1_TEI_adjusted_norm_sd+
+#				NIACsum1_TEI_adjusted_norm_sd+B6sum1_TEI_adjusted_norm_sd+askosum1_TEI_adjusted_norm_sd+jernsum1_TEI_adjusted_norm_sd+
+#				JODIsum1_TEI_adjusted_norm_sd+kalcsum1_TEI_adjusted_norm_sd+KALIsum1_TEI_adjusted_norm_sd, family=gaussian(link="identity"))$coefficients[-1]
+
+
 detach(VIP_data_independant_complete_cases)
 
 multiple_coefficients[multiple_p_values>=0.05]<-0
+
+#multiple_coefficients[multiple_p_values<0.05]<-multiple_coefficients2 #only if we rerun with significant only
 
 VIP_data_independant_complete_cases$diet_score<-apply(as.matrix(VIP_data_independant_complete_cases[,12:47])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
@@ -261,6 +273,64 @@ full_model<-glm(basic_residuals_bmi~diet_score+g6+alkosum1_TEI_adjusted_norm_sd,
 
 multiple_coefficients<-full_model$coefficients[-1]
 #they are all significant
+
+
+#make boxplots for each component and look at the values
+
+VIP_data_independant_complete_cases$bmi_category[VIP_data_independant_complete_cases$bmi < 25]<-0
+VIP_data_independant_complete_cases$bmi_category[VIP_data_independant_complete_cases$bmi >= 25 & VIP_data_independant_complete_cases$bmi < 30]<-1
+VIP_data_independant_complete_cases$bmi_category[VIP_data_independant_complete_cases$bmi >= 30]<-2
+VIP_data_independant_complete_cases$bmi_category<-as.factor(VIP_data_independant_complete_cases$bmi_category)
+
+#diet
+boxplot(diet_score~VIP_data_independant_complete_cases$bmi_category,
+main=" Diet score per\nBMI category in independent data",xlab="BMI categories",ylab="diet score",
+col=c("gray80","gray60","gray40"), xaxt='n')
+axis(side=1, at=c(1,2,3),labels=c("normal","overweight","obese"))
+
+#alko
+boxplot(alkosum1_TEI_adjusted_norm_sd~VIP_data_independant_complete_cases$bmi_category,
+		main="Alcohol consumption, adjusted for TEI, per\nBMI category in independent data",xlab="BMI categories",ylab="Alcohol consumption adjusted for TEI",
+		col=c("gray80","gray60","gray40"), xaxt='n')
+axis(side=1, at=c(1,2,3),labels=c("normal","overweight","obese"))
+
+#PA
+boxplot(bmi_norm_sd~g6,
+		main="continous BMI per PA indication in independent data",xlab="PA indication",ylab="continous BMI",
+		col=c("gray90","gray75","gray60","gray45","gray30"), xaxt='n')
+axis(side=1, at=c(1,2,3,4,5),labels=c("never","occasionaly","1-2 times/week","2-3 times/week","3+ times/week"))
+
+#check distribtions
+
+
+#PA 1 2 3 4 5
+unique(sort(g6))
+
+#alko
+min(alkosum1_TEI_adjusted_norm_sd) #-3.496847
+max(alkosum1_TEI_adjusted_norm_sd) # 1.093769
+
+#diet
+min(diet_score) # -1.719813
+max(diet_score) # 1.38329
+
+
+#check the same, but when doing the multiplication
+
+#diet
+min((diet_score*multiple_coefficients[1])) # -1.508262
+max((diet_score*multiple_coefficients[1])) # 1.213135
+
+#alko
+min(alkosum1_TEI_adjusted_norm_sd*multiple_coefficients[3]) # -0.0458068
+max(alkosum1_TEI_adjusted_norm_sd*multiple_coefficients[3]) # 0.1464471
+
+
+#PA
+unique(sort(g6*multiple_coefficients[2]))
+#-0.4069860 -0.3255888 -0.2441916 -0.1627944 -0.0813972
+
+
 
 detach(VIP_data_independant_complete_cases)
 
@@ -590,7 +660,7 @@ VIP_data_subset_visit2_complete_cases$environment_score_norm_sd<-scale(VIP_data_
 d<-density(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd)
 png("../Results/environment_score/visit1_environment_z_score.png",width=1500,height=750)
 plot(d, main=" Environment Z-score distribution in frist vist")
-polygon(d, col="gray90", border="gray20") 
+polygon(d, col=adjustcolor("red",alpha.f=0.5), border="gray20") 
 dev.off()
 
 d<-density(VIP_data_subset_visit1_complete_cases$bmi_norm_sd)
@@ -636,3 +706,24 @@ length(visit2_subjects)#14083
 
 persistently_lean_subjects<-visit2_subjects[visit2_subjects %in% visit1_subjects]
 length(persistently_lean_subjects)#8253
+
+
+#plot results without saving
+d<-density(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd)
+plot(d, main=" Environment Z-score distribution in frist vist")
+polygon(d, col="gray90", border="gray20") 
+
+d<-density(VIP_data_subset_visit1_complete_cases$bmi_norm_sd)
+lines(d, main=" BMI Z-score distribution in first visit")
+
+legend(-4,0.4, c("Environment Z-score","BMI Z-score"), col=c("gray90","gray10"), pch = c(15,15))
+
+
+d<-density(VIP_data_subset_visit2_complete_cases$environment_score_norm_sd)
+plot(d, main=" Environment Z-score distribution in second vist",ylim=c(0,0.42))
+polygon(d, col="gray90", border="gray20") 
+
+d<-density(VIP_data_subset_visit2_complete_cases$bmi_norm_sd)
+lines(d, main=" BMI Z-score distribution in second visit")
+legend(-4,0.4, c("Environment Z-score","BMI Z-score"), col=c("gray90","gray10"), pch = c(15,15))
+
