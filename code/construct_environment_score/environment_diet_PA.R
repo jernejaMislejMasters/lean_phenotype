@@ -35,14 +35,14 @@ source(file="load_variables_visit1_dataset_TEI_adjusted.R")
 source(file="load_variables_visit2_dataset_TEI_adjusted.R")
 
 
-#make a diet score with a OLS multi lm
+#make a diet score 
 
 #take only complete cases
 
 # independent....44735
 
 VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
-						"basic_residuals_bmi", "alkosum1_TEI_adjusted_norm_sd", "g6", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
+						"basic_residuals_bmi", "g6", "POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
 						"fibesum1_TEI_adjusted_norm_sd","DISAsum1_TEI_adjusted_norm_sd","MOSAsum1_TEI_adjusted_norm_sd","TRANSsum1_TEI_adjusted_norm_sd",
@@ -58,7 +58,7 @@ VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("Subject_
 #visit1 & visit2....30380
 
 VIP_data_subset_visit1_complete_cases <- na.omit(VIP_data_subset_visit1[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
-						"basic_residuals_bmi","alkosum1_TEI_adjusted_norm_sd","g6",
+						"basic_residuals_bmi","g6",
 						"POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
@@ -77,7 +77,7 @@ VIP_data_subset_visit1_complete_cases$bmi_category<-as.factor(VIP_data_subset_vi
 
 
 VIP_data_subset_visit2_complete_cases <- na.omit(VIP_data_subset_visit2[,c("Subject_id","bmi","bmi_norm_sd","age","agesq","gender_factor","year","ffq_factor",
-						"basic_residuals_bmi","alkosum1_TEI_adjusted_norm_sd","g6",
+						"basic_residuals_bmi","g6",
 						"POLYsum1_TEI_adjusted_norm_sd","MONOsum1_TEI_adjusted_norm_sd","mfetsum1_TEI_adjusted_norm_sd",
 						"fettsum1_TEI_adjusted_norm_sd","sacksum1_TEI_adjusted_norm_sd","kolhsum1_TEI_adjusted_norm_sd","FA_TEI_adjusted_norm_sd",
 						"protsum1_anim_TEI_adjusted_norm_sd","protsum1_veg_TEI_adjusted_norm_sd",
@@ -224,81 +224,56 @@ multiple_coefficients[multiple_p_values>=0.05]<-0
 
 #multiple_coefficients[multiple_p_values<0.05]<-multiple_coefficients2 #only if we rerun with significant only
 
-VIP_data_independant_complete_cases$diet_score<-apply(as.matrix(VIP_data_independant_complete_cases[,12:47])%*%
+VIP_data_independant_complete_cases$diet_score<-apply(as.matrix(VIP_data_independant_complete_cases[,11:46])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
 
-VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,12:47])%*%
+VIP_data_subset_visit1_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,11:46])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
 
-VIP_data_subset_visit2_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,12:47])%*%
+VIP_data_subset_visit2_complete_cases$diet_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,11:46])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
 
-#now take diet and PA and alcohol and get the effect sizes for each and make a final environment score
+
+#scale diet score
+VIP_data_independant_complete_cases$diet_score_scale<-scale(VIP_data_independant_complete_cases$diet_score)
+VIP_data_subset_visit1_complete_cases$diet_score_scale<-scale(VIP_data_subset_visit1_complete_cases$diet_score)
+VIP_data_subset_visit2_complete_cases$diet_score_scale<-scale(VIP_data_subset_visit2_complete_cases$diet_score)
+
+
+#subtract 1 from PA and scale it 
+VIP_data_independant_complete_cases$PA_scale<-scale(VIP_data_independant_complete_cases$g6-1)
+VIP_data_subset_visit1_complete_cases$PA_scale<-scale(VIP_data_subset_visit1_complete_cases$g6-1)
+VIP_data_subset_visit2_complete_cases$PA_scale<-scale(VIP_data_subset_visit2_complete_cases$g6-1)
+
+
+
+
+#now take diet and PA and get the effect sizes for each and make a final environment score
 attach(VIP_data_independant_complete_cases)
 
-full_model<-glm(basic_residuals_bmi~diet_score+g6+alkosum1_TEI_adjusted_norm_sd, family=gaussian(link="identity"))
+full_model<-lm(basic_residuals_bmi~diet_score_scale+PA_scale)
 #
 #> summary(full_model)
-#
 #Call:
-#		glm(formula = basic_residuals_bmi ~ diet_score + g6 + alkosum1_TEI_adjusted_norm_sd, 
-#				family = gaussian(link = "identity"))
+#		lm(formula = basic_residuals_bmi ~ diet_score_scale + PA_scale)
 #
-#Deviance Residuals: 
-#		Min       1Q   Median       3Q      Max  
-#-3.4940  -0.6421  -0.0768   0.5428   6.1189  
+#Residuals:
+#		Min      1Q  Median      3Q     Max 
+#-3.5309 -0.6429 -0.0802  0.5422  6.1060 
 #
 #Coefficients:
 #		Estimate Std. Error t value Pr(>|t|)    
-#(Intercept)                    0.188691   0.009142  20.640   <2e-16 ***
-#		diet_score                     0.876992   0.020018  43.811   <2e-16 ***
-#		g6                            -0.081397   0.003376 -24.107   <2e-16 ***
-#		alkosum1_TEI_adjusted_norm_sd -0.041880   0.004598  -9.107   <2e-16 ***
+#(Intercept)      -0.003038   0.004523  -0.672    0.502    
+#diet_score_scale  0.201390   0.004523  44.525   <2e-16 ***
+#		PA_scale         -0.111493   0.004523 -24.650   <2e-16 ***
 #		---
 #		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #
-#(Dispersion parameter for gaussian family taken to be 0.9133826)
+#Residual standard error: 0.9566 on 44732 degrees of freedom
+#Multiple R-squared:  0.05426,	Adjusted R-squared:  0.05421 
+#F-statistic:  1283 on 2 and 44732 DF,  p-value: < 2.2e-16
 #
-#Null deviance: 43281  on 44734  degrees of freedom
-#Residual deviance: 40857  on 44731  degrees of freedom
-#AIC: 122905
-#
-#Number of Fisher Scoring iterations: 2
-#> vif(full_model)
-#diet_score                            g6 
-#1.005146                      1.003445 
-#alkosum1_TEI_adjusted_norm_sd 
-#1.008257 
 
-
-#exclude alcohol and scale variables and subtract one from PA
-
-full_model<-glm(basic_residuals_bmi~scale(diet_score)+scale(g6-1), family=gaussian(link="identity"))
-summary(full_model)
-#
-#Call:
-#		glm(formula = basic_residuals_bmi ~ scale(diet_score) + scale(g6 - 
-#								1), family = gaussian(link = "identity"))
-#
-#Deviance Residuals: 
-#		Min       1Q   Median       3Q      Max  
-#-3.5309  -0.6429  -0.0802   0.5422   6.1060  
-#
-#Coefficients:
-#		Estimate Std. Error t value Pr(>|t|)    
-#(Intercept)       -0.003038   0.004523  -0.672    0.502    
-#scale(diet_score)  0.201390   0.004523  44.525   <2e-16 ***
-#scale(g6 - 1)     -0.111493   0.004523 -24.650   <2e-16 ***
-#		---
-#		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-#
-#(Dispersion parameter for gaussian family taken to be 0.9150558)
-#
-#Null deviance: 43281  on 44734  degrees of freedom
-#Residual deviance: 40932  on 44732  degrees of freedom
-#AIC: 122986
-#
-#Number of Fisher Scoring iterations: 2
 
 
 multiple_coefficients<-full_model$coefficients[-1]
@@ -313,52 +288,31 @@ VIP_data_independant_complete_cases$bmi_category[VIP_data_independant_complete_c
 VIP_data_independant_complete_cases$bmi_category<-as.factor(VIP_data_independant_complete_cases$bmi_category)
 
 #diet
-boxplot(diet_score~VIP_data_independant_complete_cases$bmi_category,
+png("../Results/environment_risk_score/diet_score_independent_data.png",width=1000,height=800)
+boxplot(diet_score_scale~VIP_data_independant_complete_cases$bmi_category,
 main=" Diet score per\nBMI category in independent data",xlab="BMI categories",ylab="diet score",
 col=c("gray80","gray60","gray40"), xaxt='n')
 axis(side=1, at=c(1,2,3),labels=c("normal","overweight","obese"))
-
-#alko
-boxplot(alkosum1_TEI_adjusted_norm_sd~VIP_data_independant_complete_cases$bmi_category,
-		main="Alcohol consumption, adjusted for TEI, per\nBMI category in independent data",xlab="BMI categories",ylab="Alcohol consumption adjusted for TEI",
-		col=c("gray80","gray60","gray40"), xaxt='n')
-axis(side=1, at=c(1,2,3),labels=c("normal","overweight","obese"))
+dev.off()
 
 #PA
-boxplot(bmi_norm_sd~g6,
+png("../Results/environment_risk_score/PA_independent_data.png",width=1000,height=800)
+boxplot(bmi_norm_sd~PA_scale,
 		main="continous BMI per PA indication in independent data",xlab="PA indication",ylab="continous BMI",
 		col=c("gray90","gray75","gray60","gray45","gray30"), xaxt='n')
 axis(side=1, at=c(1,2,3,4,5),labels=c("never","occasionaly","1-2 times/week","2-3 times/week","3+ times/week"))
-
-#check distribtions
-
-
-#PA 1 2 3 4 5
-unique(sort(g6))
-
-#alko
-min(alkosum1_TEI_adjusted_norm_sd) #-3.496847
-max(alkosum1_TEI_adjusted_norm_sd) # 1.093769
-
-#diet
-min(diet_score) # -1.719813
-max(diet_score) # 1.38329
-
+dev.off()
 
 #check the same, but when doing the multiplication
 
 #diet
-min((diet_score*multiple_coefficients[1])) # -1.508262
-max((diet_score*multiple_coefficients[1])) # 1.213135
-
-#alko
-min(alkosum1_TEI_adjusted_norm_sd*multiple_coefficients[3]) # -0.0458068
-max(alkosum1_TEI_adjusted_norm_sd*multiple_coefficients[3]) # 0.1464471
+min((diet_score_scale*multiple_coefficients[1])) # -1.508262
+max((diet_score_scale*multiple_coefficients[1])) # 1.213135
 
 
 #PA
-unique(sort(g6*multiple_coefficients[2]))
-#-0.4069860 -0.3255888 -0.2441916 -0.1627944 -0.0813972
+unique(sort(PA_scale*multiple_coefficients[2]))
+#0.11260205  0.02943515 -0.05373175 -0.13689864 -0.22006554
 
 
 
@@ -367,125 +321,88 @@ detach(VIP_data_independant_complete_cases)
 
 #construct a final environment score and do the test
 
-#use alcohol not scale all
-#VIP_data_independant_complete_cases$environment_score<-apply(as.matrix(VIP_data_independant_complete_cases[,c(48,11,10)])%*%
-#				diag(multiple_coefficients),1,sum,na.rm=T)
-#
-#VIP_data_subset_visit1_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,c(49,11,10)])%*%
-#				diag(multiple_coefficients),1,sum,na.rm=T)
-#
-#VIP_data_subset_visit2_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,c(49,11,10)])%*%
-#				diag(multiple_coefficients),1,sum,na.rm=T)
-#
-#
-
-#dont use alcohol and scale variables
-VIP_data_independant_complete_cases$environment_score<-apply(as.matrix(apply(VIP_data_independant_complete_cases[,c(48,11)],2,scale))%*%
+VIP_data_independant_complete_cases$environment_score<-apply(as.matrix(VIP_data_independant_complete_cases[,c(48,49)])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
 
-VIP_data_subset_visit1_complete_cases$environment_score<-apply(as.matrix(apply(VIP_data_subset_visit1_complete_cases[,c(49,11)],2,scale))%*%
+VIP_data_subset_visit1_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,c(49,50)])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
 
-VIP_data_subset_visit2_complete_cases$environment_score<-apply(as.matrix(apply(VIP_data_subset_visit2_complete_cases[,c(49,11)],2,scale))%*%
+VIP_data_subset_visit2_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,c(49,50)])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
 
 
 #check the continous in independent, visit1 and visit2
 attach(VIP_data_independant_complete_cases)
 
-full_model<-glm(basic_residuals_bmi~environment_score, family=gaussian(link="identity"))
+full_model<-lm(basic_residuals_bmi~environment_score)
 #> summary(full_model)
-#
 #Call:
-#		glm(formula = basic_residuals_bmi ~ environment_score, family = gaussian(link = "identity"))
+#		lm(formula = basic_residuals_bmi ~ environment_score)
 #
-#Deviance Residuals: 
-#		Min       1Q   Median       3Q      Max  
-#-3.4940  -0.6421  -0.0768   0.5428   6.1189  
+#Residuals:
+#		Min      1Q  Median      3Q     Max 
+#-3.5309 -0.6429 -0.0802  0.5422  6.1060 
 #
 #Coefficients:
 #		Estimate Std. Error t value Pr(>|t|)    
-#		(Intercept)       0.188691   0.005854   32.23   <2e-16 ***
-#		environment_score 1.000000   0.019411   51.52   <2e-16 ***
+#(Intercept)       -0.003038   0.004523  -0.672    0.502    
+#environment_score  1.000000   0.019740  50.658   <2e-16 ***
 #		---
 #		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #
-#(Dispersion parameter for gaussian family taken to be 0.9133418)
+#Residual standard error: 0.9566 on 44733 degrees of freedom
+#Multiple R-squared:  0.05426,	Adjusted R-squared:  0.05424 
+#F-statistic:  2566 on 1 and 44733 DF,  p-value: < 2.2e-16
 #
-#Null deviance: 43281  on 44734  degrees of freedom
-#Residual deviance: 40857  on 44733  degrees of freedom
-#AIC: 122901
-#
-#Number of Fisher Scoring iterations: 2
-#
-#> 
-#		
-#Residual standard error: 0.9557 on 44733 degrees of freedom
-#Multiple R-squared:  0.05601,	Adjusted R-squared:  0.05599 
-#F-statistic:  2654 on 1 and 44733 DF,  p-value: < 2.2e-16
 
 detach(VIP_data_independant_complete_cases)
 
 attach(VIP_data_subset_visit1_complete_cases)
-full_model<-glm(basic_residuals_bmi~environment_score, family=gaussian(link="identity"))
+full_model<-lm(basic_residuals_bmi~environment_score)
 
 #> summary(full_model)
-#
 #Call:
-#		glm(formula = basic_residuals_bmi ~ environment_score, family = gaussian(link = "identity"))
+#		lm(formula = basic_residuals_bmi ~ environment_score)
 #
-#Deviance Residuals: 
-#		Min       1Q   Median       3Q      Max  
-#-3.6297  -0.6372  -0.0738   0.5496   7.7628  
+#Residuals:
+#		Min      1Q  Median      3Q     Max 
+#-3.5009 -0.6365 -0.0761  0.5471  7.7551 
 #
 #Coefficients:
 #		Estimate Std. Error t value Pr(>|t|)    
-#		(Intercept)       0.148786   0.006911   21.53   <2e-16 ***
-#		environment_score 0.866377   0.024164   35.85   <2e-16 ***
+#(Intercept)       -0.002094   0.005484  -0.382    0.703    
+#environment_score  0.843124   0.023881  35.306   <2e-16 ***
 #		---
 #		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #
-#(Dispersion parameter for gaussian family taken to be 0.9124448)
+#Residual standard error: 0.9558 on 30378 degrees of freedom
+#Multiple R-squared:  0.03942,	Adjusted R-squared:  0.03938 
+#F-statistic:  1247 on 1 and 30378 DF,  p-value: < 2.2e-16
 #
-#Null deviance: 28892  on 30380  degrees of freedom
-#Residual deviance: 27719  on 30379  degrees of freedom
-#AIC: 83438
 #
-#Number of Fisher Scoring iterations: 2
-#
-#> 
-#		
-#Residual standard error: 0.9552 on 30379 degrees of freedom
-#Multiple R-squared:  0.04058,	Adjusted R-squared:  0.04055 
-#F-statistic:  1285 on 1 and 30379 DF,  p-value: < 2.2e-16
-#
+
+
 detach(VIP_data_subset_visit1_complete_cases)
 attach(VIP_data_subset_visit2_complete_cases)
-full_model<-glm(basic_residuals_bmi~environment_score, family=gaussian(link="identity"))
+full_model<-lm(basic_residuals_bmi~environment_score)
 #Call:
-#		glm(formula = basic_residuals_bmi ~ environment_score, family = gaussian(link = "identity"))
+#		lm(formula = basic_residuals_bmi ~ environment_score)
 #
-#Deviance Residuals: 
-#		Min       1Q   Median       3Q      Max  
-#-3.9244  -0.6328  -0.0685   0.5544   6.4032  
+#Residuals:
+#		Min      1Q  Median      3Q     Max 
+#-3.9463 -0.6360 -0.0707  0.5522  6.4219 
 #
 #Coefficients:
 #		Estimate Std. Error t value Pr(>|t|)    
-#(Intercept)       0.189462   0.007098   26.69   <2e-16 ***
-#		environment_score 1.002757   0.023464   42.69   <2e-16 ***
+#(Intercept)       -0.001526   0.005516  -0.277    0.782    
+#environment_score  1.009263   0.024043  41.977   <2e-16 ***
 #		---
 #		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #
-#(Dispersion parameter for gaussian family taken to be 0.9225726)
+#Residual standard error: 0.9614 on 30378 degrees of freedom
+#Multiple R-squared:  0.05482,	Adjusted R-squared:  0.05479 
+#F-statistic:  1762 on 1 and 30378 DF,  p-value: < 2.2e-16
 #
-#Null deviance: 29708  on 30380  degrees of freedom
-#Residual deviance: 28027  on 30379  degrees of freedom
-#AIC: 83773
-#
-#Number of Fisher Scoring iterations: 2
-#Residual standard error: 0.9605 on 30379 degrees of freedom
-#Multiple R-squared:  0.0566,	Adjusted R-squared:  0.05657 
-#F-statistic:  1823 on 1 and 30379 DF,  p-value: < 2.2e-16
 #
 detach(VIP_data_subset_visit2_complete_cases)
 
@@ -500,41 +417,38 @@ bmi_category_model_multi_log_reg<-multinom(bmi_category ~ age + agesq + gender_f
 		data=VIP_data_subset_visit1_complete_cases)
 
 stargazer(bmi_category_model_multi_log_reg,type="text")
-#> stargazer(bmi_category_model_multi_log_reg,type="text")
-#
+##> stargazer(bmi_category_model_multi_log_reg,type="text")
 #==============================================
 #		Dependent variable:     
 #		----------------------------
 #		1              2      
 #(1)            (2)     
 #----------------------------------------------
-#		age                 -0.062***      -0.080***  
+#		age                 -0.065***      -0.086***  
 #		(0.022)        (0.004)   
 #
 #agesq                0.001***      0.001***   
 #		(0.0003)      (0.0001)   
 #
-#gender_factor2      -0.943***      -0.445***  
-#		(0.023)        (0.005)   
-#
-#year                 0.022***      0.054***   
-#		(0.0002)      (0.0001)   
-#
-#ffq_factor1         -0.123***      -0.236***  
+#gender_factor2      -0.924***      -0.400***  
 #		(0.024)        (0.005)   
 #
-#environment_score    1.369***      2.893***   
+#year                 0.023***      0.056***   
+#		(0.0002)      (0.0001)   
+#
+#ffq_factor1         -0.111***      -0.216***  
+#		(0.024)        (0.005)   
+#
+#environment_score    1.355***      2.784***   
 #		(0.003)        (0.001)   
 #
-#Constant            -43.433***    -107.840*** 
+#Constant            -45.707***    -111.410*** 
 #		(0.0001)      (0.00002)  
 #
 #----------------------------------------------
-#		Akaike Inf. Crit.   52,271.360    52,271.360  
+#		Akaike Inf. Crit.   52,308.790    52,308.790  
 #==============================================
 #		Note:              *p<0.1; **p<0.05; ***p<0.01
-#> 
-#		
 #
 # calculate average AUC for classes
 auc_visit1_01[[2]]<-pROC::auc(pROC::roc(bmi_classes_visit1[,1],bmi_category_model_multi_log_reg$fitted.value[,1]))
@@ -543,9 +457,9 @@ auc_visit1_12[[2]]<-pROC::auc(pROC::roc(bmi_classes_visit1[,3],bmi_category_mode
 
 
 mean(auc_visit1_01[[2]],auc_visit1_02[[2]],auc_visit1_12[[2]])
-#0.655383
+#0.6546982
 1-logLik(bmi_category_model_multi_log_reg)/likelihood_null_model_visit1
-#0.0496214
+#0.04892033
 
 
 #check signficance of difference of AUC from the basic model
@@ -587,7 +501,7 @@ roc.test(auc_visit1_12[[1]], auc_visit1_12[[2]])
 
 #plot
 
-png("../Results/environment_score/visit1_bmi_categories_vs_environment_score.png",width=1500,height=750)
+png("../Results/environment_risk_score/visit1_bmi_categories_vs_environment_score.png",width=1500,height=750)
 boxplot(VIP_data_subset_visit1_complete_cases$environment_score~VIP_data_subset_visit1_complete_cases$bmi_category,
 		main=" Environment score per\nBMI category in first visit",xlab="BMI categories",ylab="environment score",
 		col=c("gray80","gray60","gray40"), xaxt='n')
@@ -604,38 +518,40 @@ bmi_category_model_multi_log_reg<-multinom(bmi_category ~ age + agesq + gender_f
 stargazer(bmi_category_model_multi_log_reg,type="text")
 #> stargazer(bmi_category_model_multi_log_reg,type="text")
 #
+
 #==============================================
 #		Dependent variable:     
 #		----------------------------
 #		1              2      
 #(1)            (2)     
 #----------------------------------------------
-#		age                   0.008          0.012    
+#		age                   0.004          0.002    
 #(0.023)        (0.010)   
 #
-#agesq                 0.0001        -0.0001   
+#agesq                 0.0001       -0.00001   
 #(0.0002)      (0.0001)   
 #
-#gender_factor2      -0.916***      -0.590***  
+#gender_factor2      -0.906***      -0.553***  
 #		(0.020)        (0.009)   
 #
-#year                 0.011***      0.051***   
+#year                 0.011***      0.052***   
 #		(0.0003)      (0.0001)   
 #
-#ffq_factor1          0.692***      -0.334***  
-#		(0.00003)      (0.00000)  
+#ffq_factor1          0.698***      -0.307***  
+#		(0.00003)      (0.00001)  
 #
-#environment_score    1.248***      2.976***   
-#		(0.002)        (0.001)   
+#environment_score    1.302***      2.956***   
+#		(0.001)        (0.001)   
 #
-#Constant            -21.275***    -103.591*** 
+#Constant            -22.269***    -104.285*** 
 #		(0.00001)      (0.00000)  
 #
 #----------------------------------------------
-#		Akaike Inf. Crit.   58,746.880    58,746.880  
+#		Akaike Inf. Crit.   58,811.200    58,811.200  
 #==============================================
 #		Note:              *p<0.1; **p<0.05; ***p<0.01
-
+#
+		
 
 # calculate average AUC for classes
 auc_visit2_01[[2]]<-pROC::auc(pROC::roc(bmi_classes_visit2[,1],bmi_category_model_multi_log_reg$fitted.value[,1]))
@@ -644,10 +560,10 @@ auc_visit2_12[[2]]<-pROC::auc(pROC::roc(bmi_classes_visit2[,3],bmi_category_mode
 
 
 mean(auc_visit2_01[[2]],auc_visit2_02[[2]],auc_visit2_12[[2]])
-# 0.6491333
+# 0.6485699
 
 1-logLik(bmi_category_model_multi_log_reg)/likelihood_null_model_visit2
-#0.04508734
+# 0.044014
 
 
 #check signficance of difference of AUC from the basic model
@@ -685,106 +601,15 @@ roc.test(auc_visit2_12[[1]], auc_visit2_12[[2]])
 #		0.5342924   0.6519206 
 #		
 		
-png("../Results/environment_score/visit2_bmi_categories_vs_environment_score.png",width=1500,height=750)
+png("../Results/environment_risk_score/visit2_bmi_categories_vs_environment_score.png",width=1500,height=750)
 boxplot(VIP_data_subset_visit2_complete_cases$environment_score~VIP_data_subset_visit2_complete_cases$bmi_category,
 		main=" Environment score per\nBMI category in second visit",xlab="BMI categories",ylab="environment score",
 		col=c("gray80","gray60","gray40"), xaxt='n')
 axis(side=1, at=c(1,2,3),labels=c("normal","overweight","obese"))
 dev.off()
 
-
-
-
-#take z-scores of the evironment score and continous bmi for both visits
-
-VIP_data_subset_visit1_complete_cases$environment_score_norm_sd<-scale(VIP_data_subset_visit1_complete_cases$environment_score)
-VIP_data_subset_visit2_complete_cases$environment_score_norm_sd<-scale(VIP_data_subset_visit2_complete_cases$environment_score)
-
-#plot results
-d<-density(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd)
-png("../Results/environment_score/visit1_environment_z_score.png",width=1500,height=750)
-plot(d, main=" Environment Z-score distribution in frist vist")
-polygon(d, col=adjustcolor("red",alpha.f=0.5), border="gray20") 
-dev.off()
-
-d<-density(VIP_data_subset_visit1_complete_cases$bmi_norm_sd)
-png("../Results/environment_score/visit1_bmi_z_score.png",width=1500,height=750)
-plot(d, main=" BMI Z-score distribution in first visit")
-polygon(d, col="gray90", border="gray20") 
-dev.off()
-
-
-d<-density(VIP_data_subset_visit2_complete_cases$environment_score_norm_sd)
-png("../Results/environment_score/visit2_environment_z_score.png",width=1500,height=750)
-plot(d, main=" Environment Z-score distribution in second vist")
-polygon(d, col="gray90", border="gray20") 
-dev.off()
-
-d<-density(VIP_data_subset_visit2_complete_cases$bmi_norm_sd)
-png("../Results/environment_score/visit2_bmi_z_score.png",width=1500,height=750)
-plot(d, main=" BMI Z-score distribution in second visit")
-polygon(d, col="gray90", border="gray20") 
-dev.off()
-
-
-#create a variable of there ratio (bmi/environment), but make them positive first
-VIP_data_subset_visit1_complete_cases$environment_score_norm_sd_positive<-VIP_data_subset_visit1_complete_cases$environment_score_norm_sd+(-1)*
-		min(c(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd, VIP_data_subset_visit1_complete_cases$bmi_norm_sd))+0.000001
-VIP_data_subset_visit2_complete_cases$environment_score_norm_sd_positive<-VIP_data_subset_visit2_complete_cases$environment_score_norm_sd+(-1)*
-		min(c(VIP_data_subset_visit2_complete_cases$environment_score_norm_sd, VIP_data_subset_visit2_complete_cases$bmi_norm_sd))+0.000001
-VIP_data_subset_visit1_complete_cases$bmi_norm_sd_positive<-VIP_data_subset_visit1_complete_cases$bmi_norm_sd+(-1)*
-		min(c(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd, VIP_data_subset_visit1_complete_cases$bmi_norm_sd))+0.000001
-VIP_data_subset_visit2_complete_cases$bmi_norm_sd_positive<-VIP_data_subset_visit2_complete_cases$bmi_norm_sd+(-1)*
-		min(c(VIP_data_subset_visit2_complete_cases$environment_score_norm_sd, VIP_data_subset_visit2_complete_cases$bmi_norm_sd))+0.000001
-
-
-VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<-VIP_data_subset_visit1_complete_cases$bmi_norm_sd_positive/VIP_data_subset_visit1_complete_cases$environment_score_norm_sd_positive
-VIP_data_subset_visit2_complete_cases$ratio_bmi_environment_z_score<-VIP_data_subset_visit2_complete_cases$bmi_norm_sd_positive/VIP_data_subset_visit2_complete_cases$environment_score_norm_sd_positive
-
-
 #save the datasets for further analysis in selection
 write.csv(VIP_data_subset_visit1_complete_cases, "../VIP_data/VIP_data_subset_visit1_complete_cases.csv", row.names=FALSE, na="")
 write.csv(VIP_data_subset_visit2_complete_cases, "../VIP_data/VIP_data_subset_visit2_complete_cases.csv", row.names=FALSE, na="")
 
-
-
-#get subjects that have the ratio smaller then one...one might be a bit big
-visit1_subjects<-VIP_data_subset_visit1_complete_cases$Subject_id[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<0.1]
-length(visit1_subjects)#14459
-
-#what is their bmi and environment like compared to those that are above one
-summary(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<0.1])
-summary(VIP_data_subset_visit1_complete_cases$bmi_norm_sd[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score<1])
-
-summary(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score>=0.1])
-summary(VIP_data_subset_visit1_complete_cases$bmi_norm_sd[VIP_data_subset_visit1_complete_cases$ratio_bmi_environment_z_score>=1])
-
-#they are not the same but both cover all distribution
-
-visit2_subjects<-VIP_data_subset_visit2_complete_cases$Subject_id[VIP_data_subset_visit2_complete_cases$ratio_bmi_environment_z_score<0.1]
-length(visit2_subjects)#14083
-
-
-persistently_lean_subjects<-visit2_subjects[visit2_subjects %in% visit1_subjects]
-length(persistently_lean_subjects)#8253
-
-
-#plot results without saving
-d<-density(VIP_data_subset_visit1_complete_cases$environment_score_norm_sd)
-plot(d, main=" Environment Z-score distribution in frist vist")
-polygon(d, col="gray90", border="gray20") 
-
-d<-density(VIP_data_subset_visit1_complete_cases$bmi_norm_sd)
-lines(d, main=" BMI Z-score distribution in first visit")
-
-legend(-4,0.4, c("Environment Z-score","BMI Z-score"), col=c("gray90","gray10"), pch = c(15,15))
-
-
-d<-density(VIP_data_subset_visit2_complete_cases$environment_score_norm_sd)
-plot(d, main=" Environment Z-score distribution in second vist",ylim=c(0,0.42))
-polygon(d, col="gray90", border="gray20") 
-
-d<-density(VIP_data_subset_visit2_complete_cases$bmi_norm_sd)
-lines(d, main=" BMI Z-score distribution in second visit")
-legend(-4,0.4, c("Environment Z-score","BMI Z-score"), col=c("gray90","gray10"), pch = c(15,15))
 
