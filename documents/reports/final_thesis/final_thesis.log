@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.8.29)  29 MAY 2017 11:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.8.29)  22 JUN 2017 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -332,7 +332,7 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-No file final_thesis.aux.
+(./final_thesis.aux)
 \openout1 = `final_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
@@ -347,6 +347,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
+
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count100
@@ -462,44 +463,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--68
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Lund_University_logotype
-.png>] [1] [2]
-No file final_thesis.toc.
+.png>] [1] [2] (./final_thesis.toc)
 \tf@toc=\write3
 \openout3 = `final_thesis.toc'.
 
-No file final_thesis.lof.
+ (./final_thesis.lof)
 \tf@lof=\write4
 \openout4 = `final_thesis.lof'.
 
-No file final_thesis.lot.
+ (./final_thesis.lot)
 \tf@lot=\write5
 \openout5 = `final_thesis.lot'.
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 146--148
+Underfull \hbox (badness 10000) in paragraph at lines 147--149
 []\OT1/cmr/m/n/12 T. Oetiker it et al., ``The Not So Short In-tro-duc-tion to L
 []T[]X2e,''
  []
 
-[4] [5] (./final_thesis.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[4] [5] (./final_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 2327 strings out of 495028
- 30418 string characters out of 6181497
- 87393 words of memory out of 5000000
+ 2335 strings out of 495028
+ 30554 string characters out of 6181497
+ 87418 words of memory out of 5000000
  5505 multiletter control sequences out of 15000+600000
  8737 words of font info for 32 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 39i,4n,23p,259b,203s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on final_thesis.pdf (6 pages, 137181 bytes).
+ 39i,4n,23p,780b,203s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on final_thesis.pdf (6 pages, 138812 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  30 compressed objects within 1 object stream

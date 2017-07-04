@@ -52,7 +52,7 @@ VIP_data_independant_complete_cases <- na.omit(VIP_data_independant[,c("Subject_
 						"B2sum1_TEI_adjusted_norm_sd","NIACsum1_TEI_adjusted_norm_sd","B6sum1_TEI_adjusted_norm_sd","B12sum1_TEI_adjusted_norm_sd",
 						"askosum1_TEI_adjusted_norm_sd","Dsum1_TEI_adjusted_norm_sd","tokosum1_TEI_adjusted_norm_sd",
 						"VITKsum1_TEI_adjusted_norm_sd","jernsum1_TEI_adjusted_norm_sd","JODIsum1_TEI_adjusted_norm_sd",
-						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd")])
+						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd","enummer")])
 
 
 #visit1 & visit2....30380
@@ -69,7 +69,7 @@ VIP_data_subset_visit1_complete_cases <- na.omit(VIP_data_subset_visit1[,c("Subj
 						"B2sum1_TEI_adjusted_norm_sd","NIACsum1_TEI_adjusted_norm_sd","B6sum1_TEI_adjusted_norm_sd","B12sum1_TEI_adjusted_norm_sd",
 						"askosum1_TEI_adjusted_norm_sd","Dsum1_TEI_adjusted_norm_sd","tokosum1_TEI_adjusted_norm_sd",
 						"VITKsum1_TEI_adjusted_norm_sd","jernsum1_TEI_adjusted_norm_sd","JODIsum1_TEI_adjusted_norm_sd",
-						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd")])
+						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd","enummer")])
 VIP_data_subset_visit1_complete_cases$bmi_category[VIP_data_subset_visit1_complete_cases$bmi < 25]<-0
 VIP_data_subset_visit1_complete_cases$bmi_category[VIP_data_subset_visit1_complete_cases$bmi >= 25 & VIP_data_subset_visit1_complete_cases$bmi < 30]<-1
 VIP_data_subset_visit1_complete_cases$bmi_category[VIP_data_subset_visit1_complete_cases$bmi >= 30]<-2
@@ -88,7 +88,7 @@ VIP_data_subset_visit2_complete_cases <- na.omit(VIP_data_subset_visit2[,c("Subj
 						"B2sum1_TEI_adjusted_norm_sd","NIACsum1_TEI_adjusted_norm_sd","B6sum1_TEI_adjusted_norm_sd","B12sum1_TEI_adjusted_norm_sd",
 						"askosum1_TEI_adjusted_norm_sd","Dsum1_TEI_adjusted_norm_sd","tokosum1_TEI_adjusted_norm_sd",
 						"VITKsum1_TEI_adjusted_norm_sd","jernsum1_TEI_adjusted_norm_sd","JODIsum1_TEI_adjusted_norm_sd",
-						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd")])
+						"kalcsum1_TEI_adjusted_norm_sd","KALIsum1_TEI_adjusted_norm_sd","enummer")])
 VIP_data_subset_visit2_complete_cases$bmi_category[VIP_data_subset_visit2_complete_cases$bmi < 25]<-0
 VIP_data_subset_visit2_complete_cases$bmi_category[VIP_data_subset_visit2_complete_cases$bmi >= 25 & VIP_data_subset_visit2_complete_cases$bmi < 30]<-1
 VIP_data_subset_visit2_complete_cases$bmi_category[VIP_data_subset_visit2_complete_cases$bmi >= 30]<-2
@@ -187,7 +187,7 @@ mean(auc_visit2_01[[1]],auc_visit2_02[[1]],auc_visit2_12[[1]])#0.6043139
 #make diet score variables, get effect sizes from the independent dataset first for diet
 attach(VIP_data_independant_complete_cases)
 
-multiple_coefficients<-glm(basic_residuals_bmi~POLYsum1_TEI_adjusted_norm_sd+MONOsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+
+multiple_coefficients<-glm(scale(basic_residuals_bmi)~POLYsum1_TEI_adjusted_norm_sd+MONOsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+
 				fettsum1_TEI_adjusted_norm_sd+sacksum1_TEI_adjusted_norm_sd+kolhsum1_TEI_adjusted_norm_sd+FA_TEI_adjusted_norm_sd+
 				protsum1_anim_TEI_adjusted_norm_sd+protsum1_veg_TEI_adjusted_norm_sd+
 				fibesum1_TEI_adjusted_norm_sd+DISAsum1_TEI_adjusted_norm_sd+MOSAsum1_TEI_adjusted_norm_sd+TRANSsum1_TEI_adjusted_norm_sd+
@@ -198,7 +198,7 @@ multiple_coefficients<-glm(basic_residuals_bmi~POLYsum1_TEI_adjusted_norm_sd+MON
 				Dsum1_TEI_adjusted_norm_sd+tokosum1_TEI_adjusted_norm_sd+VITKsum1_TEI_adjusted_norm_sd+jernsum1_TEI_adjusted_norm_sd+
 				JODIsum1_TEI_adjusted_norm_sd+kalcsum1_TEI_adjusted_norm_sd+KALIsum1_TEI_adjusted_norm_sd, family=gaussian(link="identity"))$coefficients[-1]
 
-multiple_p_values<-summary(glm(basic_residuals_bmi~POLYsum1_TEI_adjusted_norm_sd+MONOsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+
+multiple_p_values<-summary(glm(scale(basic_residuals_bmi)~POLYsum1_TEI_adjusted_norm_sd+MONOsum1_TEI_adjusted_norm_sd+mfetsum1_TEI_adjusted_norm_sd+
 						fettsum1_TEI_adjusted_norm_sd+sacksum1_TEI_adjusted_norm_sd+kolhsum1_TEI_adjusted_norm_sd+FA_TEI_adjusted_norm_sd+
 						protsum1_anim_TEI_adjusted_norm_sd+protsum1_veg_TEI_adjusted_norm_sd+
 						fibesum1_TEI_adjusted_norm_sd+DISAsum1_TEI_adjusted_norm_sd+MOSAsum1_TEI_adjusted_norm_sd+TRANSsum1_TEI_adjusted_norm_sd+
@@ -251,7 +251,7 @@ VIP_data_subset_visit2_complete_cases$PA_scale<-scale(VIP_data_subset_visit2_com
 #now take diet and PA and get the effect sizes for each and make a final environment score
 attach(VIP_data_independant_complete_cases)
 
-full_model<-lm(basic_residuals_bmi~diet_score_scale+PA_scale)
+full_model<-lm(scale(basic_residuals_bmi)~diet_score_scale+PA_scale)
 #
 #> summary(full_model)
 #Call:
@@ -319,22 +319,25 @@ unique(sort(PA_scale*multiple_coefficients[2]))
 detach(VIP_data_independant_complete_cases)
 
 
-#construct a final environment score and do the test
+#construct a final environment score and do the test, the environment score needs to be scaled
 
-VIP_data_independant_complete_cases$environment_score<-apply(as.matrix(VIP_data_independant_complete_cases[,c(48,49)])%*%
+VIP_data_independant_complete_cases$environment_score<-apply(as.matrix(VIP_data_independant_complete_cases[,c(49,50)])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
+VIP_data_independant_complete_cases$environment_score_scaled<-scale(VIP_data_independant_complete_cases$environment_score)
 
-VIP_data_subset_visit1_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,c(49,50)])%*%
+VIP_data_subset_visit1_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit1_complete_cases[,c(50,51)])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
+VIP_data_subset_visit1_complete_cases$environment_score_scaled<-scale(VIP_data_subset_visit1_complete_cases$environment_score)
 
-VIP_data_subset_visit2_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,c(49,50)])%*%
+VIP_data_subset_visit2_complete_cases$environment_score<-apply(as.matrix(VIP_data_subset_visit2_complete_cases[,c(50,51)])%*%
 				diag(multiple_coefficients),1,sum,na.rm=T)
+VIP_data_subset_visit2_complete_cases$environment_score_scaled<-scale(VIP_data_subset_visit2_complete_cases$environment_score)
 
 
 #check the continous in independent, visit1 and visit2
 attach(VIP_data_independant_complete_cases)
 
-full_model<-lm(basic_residuals_bmi~environment_score)
+full_model<-lm(scale(basic_residuals_bmi)~environment_score_scaled)
 #> summary(full_model)
 #Call:
 #		lm(formula = basic_residuals_bmi ~ environment_score)
@@ -354,11 +357,13 @@ full_model<-lm(basic_residuals_bmi~environment_score)
 #Multiple R-squared:  0.05426,	Adjusted R-squared:  0.05424 
 #F-statistic:  2566 on 1 and 44733 DF,  p-value: < 2.2e-16
 #
+VIP_data_independant_complete_cases$bmi_environment_score_fitted<-environment_score_scaled*full_model$coefficients[2]
+
 
 detach(VIP_data_independant_complete_cases)
 
 attach(VIP_data_subset_visit1_complete_cases)
-full_model<-lm(basic_residuals_bmi~environment_score)
+full_model<-lm(scale(basic_residuals_bmi)~environment_score_scaled)
 
 #> summary(full_model)
 #Call:
@@ -380,11 +385,12 @@ full_model<-lm(basic_residuals_bmi~environment_score)
 #F-statistic:  1247 on 1 and 30378 DF,  p-value: < 2.2e-16
 #
 #
+VIP_data_subset_visit1_complete_cases$bmi_environment_score_fitted<-environment_score_scaled*full_model$coefficients[2]
 
 
 detach(VIP_data_subset_visit1_complete_cases)
 attach(VIP_data_subset_visit2_complete_cases)
-full_model<-lm(basic_residuals_bmi~environment_score)
+full_model<-lm(scale(basic_residuals_bmi)~environment_score_scaled)
 #Call:
 #		lm(formula = basic_residuals_bmi ~ environment_score)
 #
@@ -404,6 +410,10 @@ full_model<-lm(basic_residuals_bmi~environment_score)
 #F-statistic:  1762 on 1 and 30378 DF,  p-value: < 2.2e-16
 #
 #
+
+VIP_data_subset_visit2_complete_cases$bmi_environment_score_fitted<-environment_score_scaled*full_model$coefficients[2]
+
+
 detach(VIP_data_subset_visit2_complete_cases)
 
 
@@ -412,7 +422,6 @@ detach(VIP_data_subset_visit2_complete_cases)
 #visit1
 #model bmi categories
 
-#with all
 bmi_category_model_multi_log_reg<-multinom(bmi_category ~ age + agesq + gender_factor + year + ffq_factor + environment_score,
 		data=VIP_data_subset_visit1_complete_cases)
 
@@ -607,6 +616,29 @@ boxplot(VIP_data_subset_visit2_complete_cases$environment_score~VIP_data_subset_
 		col=c("gray80","gray60","gray40"), xaxt='n')
 axis(side=1, at=c(1,2,3),labels=c("normal","overweight","obese"))
 dev.off()
+
+
+VIP_data_subset_visit1_complete_cases$bmi_residuals_scaled<-scale(VIP_data_subset_visit1_complete_cases$basic_residuals_bmi)
+VIP_data_subset_visit2_complete_cases$bmi_residuals_scaled<-scale(VIP_data_subset_visit2_complete_cases$basic_residuals_bmi)
+
+
+#create a variable of ratio of scaled bmi_residuals and the fitted values of the scaled environment score, but make them positive first, by adding the minimum of the 
+#two mulitplied by minus one, also add a little to avoid division with zero or very small numbers
+VIP_data_subset_visit1_complete_cases$fitted_values_positive<-VIP_data_subset_visit1_complete_cases$bmi_environment_score_fitted+(-1)*
+		min(c(VIP_data_subset_visit1_complete_cases$bmi_environment_score_fitted, VIP_data_subset_visit1_complete_cases$bmi_residuals_scaled))+1
+
+VIP_data_subset_visit2_complete_cases$fitted_values_positive<-VIP_data_subset_visit2_complete_cases$bmi_environment_score_fitted+(-1)*
+		min(c(VIP_data_subset_visit2_complete_cases$bmi_environment_score_fitted, VIP_data_subset_visit2_complete_cases$bmi_residuals_scaled))+1
+
+VIP_data_subset_visit1_complete_cases$bmi_residuals_scaled_positive<-VIP_data_subset_visit1_complete_cases$bmi_residuals_scaled+(-1)*
+		min(c(VIP_data_subset_visit1_complete_cases$bmi_environment_score_fitted, VIP_data_subset_visit1_complete_cases$bmi_residuals_scaled))+1
+
+VIP_data_subset_visit2_complete_cases$bmi_residuals_scaled_positive<-VIP_data_subset_visit2_complete_cases$bmi_residuals_scaled+(-1)*
+		min(c(VIP_data_subset_visit2_complete_cases$bmi_environment_score_fitted, VIP_data_subset_visit2_complete_cases$bmi_residuals_scaled))+1
+
+#divide
+VIP_data_subset_visit1_complete_cases$continuous_lean_phenotype<-VIP_data_subset_visit1_complete_cases$bmi_residuals_scaled_positive/VIP_data_subset_visit1_complete_cases$fitted_values_positive
+VIP_data_subset_visit2_complete_cases$continuous_lean_phenotype<-VIP_data_subset_visit2_complete_cases$bmi_residuals_scaled_positive/VIP_data_subset_visit2_complete_cases$fitted_values_positive
 
 #save the datasets for further analysis in selection
 write.csv(VIP_data_subset_visit1_complete_cases, "../VIP_data/VIP_data_subset_visit1_complete_cases.csv", row.names=FALSE, na="")
